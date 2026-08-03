@@ -1811,3 +1811,95 @@ STICKY CONTACT
     }
 
 }
+
+/*=========================
+MOBILE MENU
+=========================*/
+
+.menu-toggle {
+
+    display: none;
+
+    width: 45px;
+
+    height: 45px;
+
+    cursor: pointer;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    gap: 6px;
+
+}
+
+.menu-toggle span {
+
+    width: 30px;
+
+    height: 3px;
+
+    background: #E8E40B;
+
+    border-radius: 20px;
+
+    transition: .35s;
+
+}
+
+@media(max-width:991px) {
+
+    .menu-toggle {
+
+        display: flex;
+
+    }
+
+    .hire-btn {
+
+        display: none;
+
+    }
+
+    .navbar {
+
+        position: fixed;
+
+        top: 90px;
+
+        right: -100%;
+
+        width: 270px;
+
+        height: calc(100vh - 90px);
+
+        background: #161B22;
+
+        transition: .4s;
+
+        padding: 40px 30px;
+
+    }
+
+    .navbar.active {
+
+        right: 0;
+
+    }
+
+    .nav-links {
+
+        flex-direction: column;
+
+        gap: 30px;
+
+    }
+
+    .nav-links a {
+
+        font-size: 20px;
+
+    }
+
+}
