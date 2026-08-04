@@ -1,0 +1,5 @@
+User-agent: *
+
+Allow: /
+
+Sitemap: https://javed-portfolio-jade.vercel.app/sitemap.xml
