@@ -1,77 +1,87 @@
 /* ==================================================
-   MODERN HERO - IMAGE LEFT / TEXT RIGHT
-   Uses the existing profile image as a background.
+   HERO - PREMIUM SPLIT COMPOSITION
+   Image stays in the LEFT as a background.
+   Content sits on the RIGHT with animated typography.
    ================================================== */
 
 .hero.hero-modern {
-    min-height: 100vh;
+    min-height: 100svh;
     position: relative;
     display: flex;
     align-items: center;
     overflow: hidden;
     isolation: isolate;
     background: #0D1117;
-    padding: 110px 0 60px;
+    padding: 105px 0 55px;
 }
 
+/* The existing profile photo is a background layer, never an inline image. */
 .hero-modern .hero-bg-image {
     position: absolute;
-    inset: 0 auto 0 0;
-    width: 58%;
-    z-index: -4;
+    inset: 0;
+    z-index: -5;
     background-image: url('../assests/images/profile.png');
-    background-position: 28% center;
     background-repeat: no-repeat;
-    background-size: auto 100%;
-    filter: saturate(1.08) contrast(1.04) brightness(1.05);
+    background-position: 17% center;
+    background-size: auto 91%;
     opacity: 1;
+    filter: saturate(1.08) contrast(1.04) brightness(1.06);
 }
 
-/* Keep the image visible on the left and create the strongest readability gradient on the right. */
+/* Soft vignette around the image while keeping the face sharp and visible. */
+.hero-modern .hero-bg-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 25% 48%, transparent 0%, transparent 27%, rgba(13,17,23,.12) 48%, rgba(13,17,23,.5) 78%, #0D1117 100%);
+}
+
+/* Main readability gradient: transparent over the photo, darker on the text side. */
 .hero-modern .hero-overlay {
     position: absolute;
     inset: 0;
-    z-index: -3;
+    z-index: -4;
     pointer-events: none;
     background:
         linear-gradient(90deg,
-            rgba(13,17,23,.08) 0%,
-            rgba(13,17,23,.10) 25%,
-            rgba(13,17,23,.40) 43%,
-            rgba(13,17,23,.88) 62%,
-            rgba(13,17,23,.98) 78%,
+            rgba(13,17,23,.03) 0%,
+            rgba(13,17,23,.08) 28%,
+            rgba(13,17,23,.38) 46%,
+            rgba(13,17,23,.83) 63%,
+            rgba(13,17,23,.98) 79%,
             #0D1117 100%),
         linear-gradient(180deg,
-            rgba(13,17,23,.32) 0%,
-            rgba(13,17,23,0) 28%,
-            rgba(13,17,23,.08) 72%,
-            rgba(13,17,23,.62) 100%);
+            rgba(13,17,23,.55) 0%,
+            rgba(13,17,23,.02) 28%,
+            rgba(13,17,23,.04) 72%,
+            rgba(13,17,23,.78) 100%);
 }
 
+/* Subtle premium glow behind the composition. */
 .hero-modern .hero-glow {
     position: absolute;
-    z-index: -2;
+    z-index: -3;
     width: 520px;
     height: 520px;
-    left: 22%;
+    left: 18%;
     top: 18%;
     border-radius: 50%;
-    background: rgba(232,228,11,.08);
-    filter: blur(110px);
-    animation: heroGlow 6s ease-in-out infinite alternate;
+    background: radial-gradient(circle, rgba(232,228,11,.13), rgba(32,107,255,.07) 42%, transparent 72%);
+    filter: blur(65px);
+    animation: heroGlow 7s ease-in-out infinite alternate;
     pointer-events: none;
 }
 
 .hero-modern .hero-grid {
     position: absolute;
     inset: 0;
-    z-index: -1;
-    opacity: .10;
+    z-index: -2;
+    opacity: .075;
     background-image:
-        linear-gradient(rgba(232,228,11,.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(232,228,11,.08) 1px, transparent 1px);
-    background-size: 55px 55px;
-    mask-image: linear-gradient(to right, transparent, #000 20%, #000 70%, transparent 100%);
+        linear-gradient(rgba(232,228,11,.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232,228,11,.1) 1px, transparent 1px);
+    background-size: 58px 58px;
+    mask-image: linear-gradient(90deg, transparent 0%, transparent 20%, #000 55%, #000 100%);
     pointer-events: none;
 }
 
@@ -83,12 +93,14 @@
     z-index: 2;
 }
 
-/* Text block intentionally occupies the right side. */
+/* Right-side content: balanced with the image on the left. */
 .hero-modern .hero-modern-content {
-    width: 50%;
-    max-width: 720px;
+    width: 51%;
+    max-width: 700px;
     margin-left: auto;
-    padding: 35px 0;
+    padding: 30px 0 45px;
+    position: relative;
+    z-index: 3;
 }
 
 .hero-modern .hero-kicker {
@@ -96,123 +108,192 @@
     align-items: center;
     gap: 10px;
     padding: 10px 17px;
-    margin-bottom: 24px;
-    border: 1px solid rgba(232,228,11,.35);
+    margin-bottom: 22px;
+    border: 1px solid rgba(232,228,11,.42);
     border-radius: 999px;
-    background: rgba(13,17,23,.42);
-    backdrop-filter: blur(6px);
+    background: rgba(13,17,23,.48);
+    backdrop-filter: blur(10px);
     color: #E8E40B;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 1.8px;
     text-transform: uppercase;
+    box-shadow: 0 10px 35px rgba(0,0,0,.2);
+    animation: heroReveal .8s cubic-bezier(.2,.8,.2,1) both;
 }
 
 .hero-modern .hero-kicker i { animation: pulseStar 1.8s ease-in-out infinite; }
 
 .hero-modern .hero-title {
-    margin: 0 0 22px;
+    margin: 0 0 18px;
     font-family: 'Outfit', sans-serif;
-    font-size: clamp(48px, 6.2vw, 88px);
-    line-height: .93;
+    font-size: clamp(52px, 6vw, 86px);
+    line-height: .94;
     letter-spacing: -3px;
     font-weight: 800;
     color: #F8FAFC;
-    text-shadow: 0 5px 30px rgba(0,0,0,.55);
+    text-shadow: 0 8px 32px rgba(0,0,0,.55);
 }
 
-.hero-modern .hero-title .hero-name { display: block; }
-.hero-modern .hero-title .hero-name span { color: #E8E40B; }
-
-.hero-modern .hero-title .hero-role {
+/* Javed + Chaudhary animate independently. */
+.hero-modern .hero-title .hero-name {
     display: block;
-    margin-top: 18px;
-    min-height: 1.05em;
+    overflow: hidden;
+    animation: nameReveal .95s cubic-bezier(.16,1,.3,1) both;
+}
+
+.hero-modern .hero-title .hero-name span {
+    color: #E8E40B;
+    display: inline-block;
+    animation: nameWordReveal 1s .18s cubic-bezier(.16,1,.3,1) both;
+    text-shadow: 0 0 32px rgba(232,228,11,.18);
+}
+
+/* SEO Specialist gets a continuously moving premium gradient. */
+.hero-modern .hero-title .hero-main-line {
+    display: block;
+    margin-top: 13px;
     color: transparent;
-    -webkit-text-stroke: 1px rgba(248,250,252,.8);
-    background: linear-gradient(90deg, #E8E40B, #FFF44F, #F8FAFC, #E8E40B);
-    background-size: 300% 100%;
+    background: linear-gradient(100deg, #F8FAFC 0%, #E8E40B 28%, #FFF44F 48%, #F8FAFC 67%, #E8E40B 100%);
+    background-size: 280% 100%;
     -webkit-background-clip: text;
     background-clip: text;
-    animation: roleGradient 4s linear infinite;
+    animation: titleShine 4.5s linear infinite, heroReveal 1s .32s cubic-bezier(.16,1,.3,1) both;
+}
+
+.hero-modern .hero-title .hero-main-line span {
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.hero-modern .hero-role-line {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 9px;
+    min-height: 34px;
+    margin: 0 0 22px;
+    animation: heroReveal .9s .45s cubic-bezier(.16,1,.3,1) both;
+}
+
+.hero-modern .hero-role-label {
+    color: #94A3B8;
+    letter-spacing: 1.8px;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.hero-modern .typing {
+    color: #E8E40B;
+    font-size: clamp(18px, 2vw, 24px);
+    font-weight: 700;
+    text-shadow: 0 0 22px rgba(232,228,11,.3);
+}
+
+.hero-modern .hero-cursor {
+    color: #E8E40B;
+    font-weight: 700;
+    animation: cursorBlink .7s step-end infinite;
 }
 
 .hero-modern .hero-description {
-    max-width: 650px;
-    margin: 0 0 30px;
-    color: #CBD5E1;
-    font-size: 17px;
-    line-height: 1.85;
+    max-width: 630px;
+    margin: 0 0 25px;
+    color: #D5DCE7;
+    font-size: 16px;
+    line-height: 1.8;
+    text-shadow: 0 3px 20px rgba(0,0,0,.7);
+    animation: heroReveal .9s .55s cubic-bezier(.16,1,.3,1) both;
 }
 
 .hero-modern .hero-highlights {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 34px;
+    gap: 9px;
+    margin-bottom: 28px;
+    animation: heroReveal .9s .65s cubic-bezier(.16,1,.3,1) both;
 }
 
 .hero-modern .hero-highlight {
     display: inline-flex;
     align-items: center;
-    gap: 9px;
-    padding: 11px 15px;
-    border: 1px solid rgba(255,255,255,.12);
+    gap: 8px;
+    padding: 9px 13px;
+    border: 1px solid rgba(255,255,255,.13);
     border-radius: 999px;
-    background: rgba(13,17,23,.38);
-    backdrop-filter: blur(6px);
+    background: rgba(13,17,23,.48);
+    backdrop-filter: blur(9px);
     color: #F8FAFC;
-    font-size: 14px;
-    transition: .35s ease;
+    font-size: 12px;
+    transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
 }
 
 .hero-modern .hero-highlight i { color: #E8E40B; }
+
 .hero-modern .hero-highlight:hover {
-    transform: translateY(-5px);
-    border-color: rgba(232,228,11,.5);
-    box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    transform: translateY(-4px);
+    border-color: rgba(232,228,11,.55);
+    box-shadow: 0 12px 32px rgba(0,0,0,.3);
 }
 
-.hero-modern .hero-btns { margin-top: 0; }
+.hero-modern .hero-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 0;
+    animation: heroReveal .9s .75s cubic-bezier(.16,1,.3,1) both;
+}
+
+.hero-modern .hero-btns .btn,
+.hero-modern .hero-btns .outline-btn {
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.hero-modern .hero-btns .btn:hover,
+.hero-modern .hero-btns .outline-btn:hover {
+    transform: translateY(-3px);
+}
 
 .hero-modern .hero-side-badge {
     position: absolute;
-    left: 2%;
-    bottom: 9%;
+    left: 4%;
+    bottom: 12%;
     display: grid;
     place-items: center;
-    width: 145px;
-    height: 145px;
+    width: 110px;
+    height: 110px;
     border: 1px solid rgba(232,228,11,.3);
     border-radius: 50%;
-    background: rgba(13,17,23,.38);
-    backdrop-filter: blur(6px);
-    box-shadow: 0 0 45px rgba(232,228,11,.12);
+    background: rgba(13,17,23,.32);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 50px rgba(232,228,11,.13);
     animation: badgeFloat 4s ease-in-out infinite;
 }
 
 .hero-modern .hero-side-badge strong {
     color: #E8E40B;
-    font: 800 34px 'Outfit', sans-serif;
+    font: 800 29px 'Outfit', sans-serif;
     line-height: 1;
 }
 
 .hero-modern .hero-side-badge span {
     color: #CBD5E1;
-    font-size: 11px;
-    letter-spacing: 1.4px;
+    font-size: 9px;
+    letter-spacing: 1.3px;
     text-transform: uppercase;
 }
 
 .hero-modern .hero-scroll {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    margin-top: 38px;
+    gap: 9px;
+    margin-top: 24px;
     color: #94A3B8;
-    font-size: 12px;
+    font-size: 10px;
     letter-spacing: 2px;
     text-transform: uppercase;
+    animation: heroReveal .9s .85s cubic-bezier(.16,1,.3,1) both;
 }
 
 .hero-modern .hero-scroll i {
@@ -220,76 +301,92 @@
     animation: scrollArrow 1.3s ease-in-out infinite;
 }
 
-@keyframes heroGlow {
-    from { transform: scale(.9); opacity: .35; }
-    to { transform: scale(1.12); opacity: .65; }
+@keyframes heroReveal {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes roleGradient { to { background-position: 300% 0; } }
+@keyframes nameReveal {
+    from { opacity: 0; transform: translateX(34px); filter: blur(8px); }
+    to { opacity: 1; transform: translateX(0); filter: blur(0); }
+}
+
+@keyframes nameWordReveal {
+    from { opacity: 0; transform: translateX(38px); filter: blur(7px); }
+    to { opacity: 1; transform: translateX(0); filter: blur(0); }
+}
+
+@keyframes titleShine { to { background-position: 280% 0; } }
+@keyframes heroGlow { from { transform: scale(.9); opacity: .35; } to { transform: scale(1.08); opacity: .75; } }
+@keyframes cursorBlink { 50% { opacity: 0; } }
 @keyframes pulseStar { 50% { transform: rotate(20deg) scale(1.2); } }
-@keyframes badgeFloat { 50% { transform: translateY(-12px) rotate(3deg); } }
+@keyframes badgeFloat { 50% { transform: translateY(-9px) rotate(3deg); } }
 @keyframes scrollArrow { 50% { transform: translateY(6px); } }
 
 @media (max-width: 1100px) {
     .hero-modern .hero-bg-image {
-        width: 58%;
-        background-position: 28% center;
-        background-size: auto 100%;
+        background-position: 11% center;
+        background-size: auto 87%;
     }
 
-    .hero-modern .hero-modern-content { width: 52%; }
+    .hero-modern .hero-modern-content { width: 55%; }
 
     .hero-modern .hero-overlay {
         background:
-            linear-gradient(90deg, rgba(13,17,23,.08) 0%, rgba(13,17,23,.22) 25%, rgba(13,17,23,.62) 48%, rgba(13,17,23,.94) 72%, #0D1117 100%),
-            linear-gradient(180deg, rgba(13,17,23,.42), rgba(13,17,23,0) 30%, rgba(13,17,23,.55) 100%);
+            linear-gradient(90deg, rgba(13,17,23,.06) 0%, rgba(13,17,23,.24) 32%, rgba(13,17,23,.7) 55%, rgba(13,17,23,.96) 78%, #0D1117 100%),
+            linear-gradient(180deg, rgba(13,17,23,.52), rgba(13,17,23,.02) 30%, rgba(13,17,23,.72) 100%);
     }
+
+    .hero-modern .hero-title { font-size: clamp(48px, 6.5vw, 72px); }
 }
 
 @media (max-width: 768px) {
-    .hero.hero-modern { min-height: 100svh; padding: 115px 0 55px; }
+    .hero.hero-modern { min-height: 100svh; padding: 105px 0 48px; }
 
-    /* On phones, image becomes the full background so the face is still visible. */
+    /* On mobile the image becomes a large background across the upper-left. */
     .hero-modern .hero-bg-image {
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        background-position: 28% center;
-        background-size: auto 100%;
-        opacity: 1;
+        background-position: 34% top;
+        background-size: auto 72%;
+    }
+
+    .hero-modern .hero-bg-image::after {
+        background: linear-gradient(180deg, transparent 0%, rgba(13,17,23,.08) 30%, rgba(13,17,23,.78) 72%, #0D1117 100%);
     }
 
     .hero-modern .hero-overlay {
         background:
-            linear-gradient(90deg, rgba(13,17,23,.18) 0%, rgba(13,17,23,.45) 35%, rgba(13,17,23,.88) 72%, rgba(13,17,23,.97) 100%),
-            linear-gradient(180deg, rgba(13,17,23,.55), rgba(13,17,23,.10) 38%, rgba(13,17,23,.65) 100%);
+            linear-gradient(180deg, rgba(13,17,23,.12) 0%, rgba(13,17,23,.28) 30%, rgba(13,17,23,.82) 60%, #0D1117 100%),
+            linear-gradient(90deg, rgba(13,17,23,.18), rgba(13,17,23,.5));
     }
 
     .hero-modern .hero-modern-content {
         width: 100%;
         max-width: 680px;
-        padding: 20px 0;
-        margin-left: auto;
+        margin-left: 0;
+        padding: 260px 0 25px;
     }
 
     .hero-modern .hero-title {
-        font-size: clamp(48px, 14vw, 70px);
-        letter-spacing: -2px;
+        font-size: clamp(46px, 13vw, 68px);
+        letter-spacing: -2.2px;
     }
-    .hero-modern .hero-description { font-size: 16px; }
-    .hero-modern .hero-highlights { gap: 8px; }
-    .hero-modern .hero-highlight { font-size: 12px; padding: 9px 12px; }
+
+    .hero-modern .hero-description { font-size: 15px; }
     .hero-modern .hero-side-badge { display: none; }
-    .hero-modern .hero-scroll { margin-top: 28px; }
 }
 
 @media (max-width: 480px) {
-    .hero-modern .hero-bg-image { background-position: 27% center; }
-    .hero-modern .hero-title { font-size: 45px; }
-    .hero-modern .hero-kicker { font-size: 11px; letter-spacing: 1.4px; }
-    .hero-modern .hero-description { line-height: 1.7; }
+    .hero-modern .hero-bg-image {
+        background-position: 38% top;
+        background-size: auto 67%;
+    }
+
+    .hero-modern .hero-modern-content { padding-top: 235px; }
+    .hero-modern .hero-title { font-size: 43px; }
+    .hero-modern .hero-kicker { font-size: 10px; letter-spacing: 1.2px; }
+    .hero-modern .hero-role-line { font-size: 16px; }
     .hero-modern .hero-highlights { display: grid; grid-template-columns: 1fr 1fr; }
-    .hero-modern .hero-highlight { justify-content: center; }
+    .hero-modern .hero-highlight { justify-content: center; padding: 8px 10px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
