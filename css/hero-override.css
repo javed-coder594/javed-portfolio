@@ -1,0 +1,221 @@
+/*==================================================
+HERO OVERRIDE — requested layout
+==================================================*/
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    background: rgba(232, 228, 11, .08);
+    filter: blur(130px);
+    right: -100px;
+    top: -120px;
+    pointer-events: none;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    background: #155dfc20;
+    filter: blur(120px);
+    left: -80px;
+    bottom: -120px;
+    pointer-events: none;
+}
+
+.hero .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.hero-text {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-text h4 {
+    color: var(--primary);
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.hero-text h1 {
+    font-size: 72px;
+    line-height: 1.1;
+    font-family: 'Outfit', sans-serif;
+    margin-bottom: 25px;
+}
+
+.hero-text h1 span {
+    color: var(--primary);
+}
+
+.hero-text h3 {
+    color: var(--text);
+    font-size: 30px;
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+.hero-text p {
+    color: var(--text);
+    line-height: 1.9;
+    max-width: 620px;
+    margin-bottom: 40px;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 20px;
+    margin-top: 35px;
+}
+
+.outline-btn {
+    padding: 16px 34px;
+    border: 2px solid #E8E40B;
+    color: #E8E40B;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: .35s;
+}
+
+.outline-btn:hover {
+    background: #E8E40B;
+    color: #000;
+}
+
+.hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-image::before {
+    content: "";
+    position: absolute;
+    width: 430px;
+    height: 430px;
+    background: #E8E40B;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: .12;
+    z-index: -1;
+}
+
+.hero-image img {
+    width: 430px;
+    border-radius: 30px;
+    border: 3px solid rgba(232, 228, 11, .25);
+    box-shadow: 0 20px 70px rgba(0, 0, 0, .45);
+    transition: .5s;
+}
+
+.hero-image img:hover {
+    transform: translateY(-10px);
+}
+
+.typing {
+    color: #E8E40B;
+    font-weight: 600;
+}
+
+@media (max-width: 991px) {
+    .hero .container {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+        gap: 50px;
+    }
+
+    .hero-image {
+        margin: 0;
+    }
+
+    .hero-image img {
+        width: 320px;
+    }
+
+    .hero-text h1 {
+        font-size: 50px;
+    }
+
+    .hero-text h3 {
+        font-size: 26px;
+    }
+
+    .hero-text p {
+        max-width: 100%;
+    }
+
+    .hero-btns {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding-top: 120px;
+    }
+
+    .hero-image img {
+        width: 240px;
+    }
+
+    .hero-text h4 {
+        font-size: 18px;
+    }
+
+    .hero-text h1 {
+        font-size: 36px;
+        line-height: 1.2;
+    }
+
+    .hero-text h3 {
+        font-size: 22px;
+    }
+
+    .hero-text p {
+        font-size: 16px;
+        line-height: 1.8;
+    }
+
+    .hero-btns {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-btns .btn,
+    .hero-btns .outline-btn {
+        width: 240px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-text h1 {
+        font-size: 30px;
+    }
+
+    .hero-text h3 {
+        font-size: 20px;
+    }
+
+    .hero-text p {
+        font-size: 15px;
+    }
+}
