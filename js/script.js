@@ -52,7 +52,7 @@ function setupHeroRedesign() {
     if (!hero || hero.dataset.redesigned === "true") return;
 
     hero.dataset.redesigned = "true";
-    hero.classList.add("hero-background-redesign");
+    hero.classList.add("hero-modern");
 
     hero.innerHTML = `
         <div class="hero-bg-image" aria-hidden="true"></div>
@@ -61,7 +61,7 @@ function setupHeroRedesign() {
         <div class="hero-grid" aria-hidden="true"></div>
 
         <div class="container hero-background-container">
-            <div class="hero-background-content">
+            <div class="hero-modern-content">
                 <div class="hero-kicker">
                     <i class="fa-solid fa-sparkles"></i>
                     SEO & Website Growth Specialist
