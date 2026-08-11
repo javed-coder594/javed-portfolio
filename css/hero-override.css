@@ -219,3 +219,5 @@ HERO OVERRIDE — requested layout
         font-size: 15px;
     }
 }
+
+/* Deployment trigger: keep hero override as the final stylesheet. */
