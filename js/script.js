@@ -52,3 +52,14 @@ menu.addEventListener("click", () => {
     navbar.classList.toggle("active");
 
 });
+
+// Add Blog to footer Quick Links only (keeps Blog out of the main navigation)
+document.addEventListener("DOMContentLoaded", () => {
+    const footerQuickLinks = document.querySelector(".footer .footer-col:nth-child(2) ul");
+
+    if (footerQuickLinks && !footerQuickLinks.querySelector('a[href="blog.html"]')) {
+        const blogItem = document.createElement("li");
+        blogItem.innerHTML = '<a href="blog.html">Blog</a>';
+        footerQuickLinks.appendChild(blogItem);
+    }
+});
