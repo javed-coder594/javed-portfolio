@@ -1,3 +1,22 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/blog.html",
+      "destination": "/blog/",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/blog/",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        }
+      ]
+    }
+  ]
 }
