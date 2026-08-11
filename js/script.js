@@ -1,65 +1,47 @@
 const texts = [
-        "SEO Executive",
+    "SEO Executive",
     "On-Page SEO Specialist",
     "Off-Page SEO Specialist",
     "Technical SEO Specialist",
     "WordPress Developer",
-    "HTML • CSS • JavaScript"   
+    "HTML • CSS • JavaScript"
 ];
 
-let count = 0;
-let index = 0;
-let currentText = "";
-let letter = "";
+const typingElement = document.querySelector(".typing");
 
-(function type() {
+if (typingElement) {
+    let count = 0;
+    let index = 0;
 
-    if (count === texts.length) {
-        count = 0;
-    }
+    (function type() {
+        if (count === texts.length) {
+            count = 0;
+        }
 
-    currentText = texts[count];
-    letter = currentText.slice(0, ++index);
+        const currentText = texts[count];
+        typingElement.textContent = currentText.slice(0, ++index);
 
-    document.querySelector(".typing").textContent = letter;
+        if (index === currentText.length) {
+            setTimeout(() => {
+                index = 0;
+                count++;
+                type();
+            }, 1800);
+        } else {
+            setTimeout(type, 90);
+        }
+    })();
+}
 
-    if (letter.length === currentText.length) {
-
-        setTimeout(() => {
-
-            index = 0;
-            count++;
-
-            type();
-
-        }, 1800);
-
-    } else {
-
-        setTimeout(type, 90);
-
-    }
-
-})();   
-
-// Mobile Menu
-
-const menu = document.querySelector(".menu-toggle");
-const navbar = document.querySelector(".navbar");
-
-menu.addEventListener("click", () => {
-
-    navbar.classList.toggle("active");
-
-});
-
-// Add Blog to footer Quick Links only (keeps Blog out of the main navigation)
+// Mobile menu - works on homepage and every blog page.
 document.addEventListener("DOMContentLoaded", () => {
-    const footerQuickLinks = document.querySelector(".footer .footer-col:nth-child(2) ul");
+    const menu = document.querySelector(".menu-toggle");
+    const navbar = document.querySelector(".navbar");
 
-    if (footerQuickLinks && !footerQuickLinks.querySelector('a[href="blog.html"]')) {
-        const blogItem = document.createElement("li");
-        blogItem.innerHTML = '<a href="blog.html">Blog</a>';
-        footerQuickLinks.appendChild(blogItem);
+    if (menu && navbar) {
+        menu.addEventListener("click", () => {
+            navbar.classList.toggle("active");
+            menu.classList.toggle("active");
+        });
     }
 });
