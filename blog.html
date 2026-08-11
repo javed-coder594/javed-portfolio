@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Blog | Javed Chaudhary | SEO & WordPress</title>
-    <meta name="description" content="SEO, WordPress and website optimization insights from Javed Chaudhary.">
+    <title>Blog | Javed Chaudhary | SEO & Web Development</title>
+    <meta name="description" content="Explore SEO, WordPress and web development insights from Javed Chaudhary, covering Technical SEO, On-Page SEO, Off-Page SEO, Local SEO, WordPress SEO and Web Development.">
     <meta name="author" content="Javed Chaudhary">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://javed-portfolio-jade.vercel.app/blog.html">
@@ -27,18 +27,20 @@
         .blog-header h1 { font-family: 'Outfit', sans-serif; font-size: clamp(42px, 6vw, 70px); line-height: 1.05; margin-bottom: 18px; }
         .blog-header h1 span { color: var(--primary); }
         .blog-header p { color: var(--text); font-size: 18px; line-height: 1.8; }
-        .blog-layout { max-width: 900px; margin: 0 auto; }
-        .blog-card { background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: clamp(25px, 5vw, 50px); box-shadow: 0 20px 60px rgba(0,0,0,.22); }
-        .blog-meta { display: flex; flex-wrap: wrap; gap: 10px 20px; color: var(--text); font-size: 14px; margin-bottom: 24px; }
-        .blog-category { color: var(--primary); font-weight: 700; }
-        .blog-card h2 { font-family: 'Outfit', sans-serif; font-size: clamp(30px, 4vw, 46px); line-height: 1.15; margin-bottom: 24px; }
-        .blog-card h3 { font-family: 'Outfit', sans-serif; font-size: 25px; margin: 34px 0 12px; }
-        .blog-card p, .blog-card li { color: var(--text); font-size: 16px; line-height: 1.9; }
-        .blog-card ul { list-style: disc; padding-left: 22px; margin: 15px 0; }
-        .blog-card li { margin-bottom: 8px; }
-        .blog-back { display: inline-flex; align-items: center; gap: 8px; margin-top: 32px; color: var(--primary); font-weight: 700; }
-        .blog-footer { text-align: center; margin-top: 55px; color: var(--text); }
+        .category-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; max-width: 1100px; margin: 0 auto; }
+        .category-card { display: block; background: var(--card); border: 1px solid var(--border); border-radius: 22px; padding: 30px; transition: var(--transition); }
+        .category-card:hover { transform: translateY(-6px); border-color: var(--primary); }
+        .category-icon { width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; border-radius: 14px; background: rgba(232, 228, 11, .1); color: var(--primary); font-size: 21px; margin-bottom: 20px; }
+        .category-card h2 { font-family: 'Outfit', sans-serif; color: var(--white); font-size: 24px; margin-bottom: 12px; }
+        .category-card p { color: var(--text); line-height: 1.75; font-size: 15px; }
+        .coming-soon { max-width: 900px; margin: 55px auto 0; text-align: center; background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 45px 30px; }
+        .coming-soon i { color: var(--primary); font-size: 32px; margin-bottom: 16px; }
+        .coming-soon h2 { font-family: 'Outfit', sans-serif; font-size: 30px; margin-bottom: 10px; }
+        .coming-soon p { color: var(--text); line-height: 1.8; }
+        .blog-footer { text-align: center; margin-top: 45px; color: var(--text); }
         .blog-footer a { color: var(--primary); font-weight: 600; }
+        @media (max-width: 900px) { .category-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .blog-page { padding: 120px 0 70px; } .category-grid { grid-template-columns: 1fr; } .category-card { padding: 25px; } }
     </style>
 </head>
 <body>
@@ -48,45 +50,62 @@
             <header class="blog-header">
                 <span class="eyebrow">Javed Chaudhary Blog</span>
                 <h1>SEO & <span>Web Insights</span></h1>
-                <p>Practical insights about SEO, WordPress, website optimization and search visibility.</p>
+                <p>Practical insights, guides and strategies covering SEO, WordPress and modern web development.</p>
             </header>
 
-            <div class="blog-layout">
-                <article class="blog-card">
-                    <div class="blog-meta">
-                        <span class="blog-category">Technical SEO</span>
-                        <span>August 11, 2026</span>
-                        <span>5 min read</span>
-                    </div>
+            <section aria-labelledby="blog-categories">
+                <div class="section-title" style="margin-bottom:35px; text-align:center;">
+                    <h2 id="blog-categories">Explore <span>Categories</span></h2>
+                    <p>Choose a topic to explore upcoming articles and practical guides.</p>
+                </div>
 
-                    <h2>What Is Technical SEO? A Beginner's Guide</h2>
+                <div class="category-grid">
+                    <a href="#technical-seo" class="category-card" id="technical-seo">
+                        <div class="category-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                        <h2>Technical SEO</h2>
+                        <p>Crawling, indexing, Core Web Vitals, sitemap, robots.txt, canonical, schema and technical website optimization.</p>
+                    </a>
 
-                    <p>Technical SEO focuses on the technical parts of a website that help search engines crawl, understand and index its pages. A technically sound website also creates a better foundation for users and future content.</p>
+                    <a href="#on-page-seo" class="category-card" id="on-page-seo">
+                        <div class="category-icon"><i class="fa-solid fa-file-lines"></i></div>
+                        <h2>On-Page SEO</h2>
+                        <p>Keywords, titles, meta descriptions, headings, internal linking and content optimization.</p>
+                    </a>
 
-                    <h3>Why Technical SEO Matters</h3>
-                    <p>Even strong content can struggle to perform if search engines cannot access important pages or understand how a website is organized. Technical SEO helps remove those barriers and supports a better search experience.</p>
+                    <a href="#off-page-seo" class="category-card" id="off-page-seo">
+                        <div class="category-icon"><i class="fa-solid fa-link"></i></div>
+                        <h2>Off-Page SEO</h2>
+                        <p>Backlinks, link building, digital PR, authority building and outreach strategies.</p>
+                    </a>
 
-                    <h3>Important Technical SEO Checks</h3>
-                    <ul>
-                        <li>Make sure important pages can be crawled and indexed.</li>
-                        <li>Keep XML sitemaps accurate and accessible.</li>
-                        <li>Use robots.txt carefully to control crawler access.</li>
-                        <li>Implement canonical URLs where duplicate URL variations exist.</li>
-                        <li>Improve page speed and Core Web Vitals.</li>
-                        <li>Use clear internal linking and a logical site structure.</li>
-                        <li>Make the website mobile-friendly and accessible.</li>
-                    </ul>
+                    <a href="#local-seo" class="category-card" id="local-seo">
+                        <div class="category-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <h2>Local SEO</h2>
+                        <p>Google Business Profile, local rankings, citations, reviews and local keyword strategies.</p>
+                    </a>
 
-                    <h3>Final Thoughts</h3>
-                    <p>Technical SEO is an ongoing process rather than a one-time task. Regularly checking crawling, indexing, performance and site structure can help maintain a strong technical foundation as a website grows.</p>
+                    <a href="#wordpress-seo" class="category-card" id="wordpress-seo">
+                        <div class="category-icon"><i class="fa-brands fa-wordpress"></i></div>
+                        <h2>WordPress SEO</h2>
+                        <p>WordPress optimization, plugins, speed, technical issues, security and SEO best practices.</p>
+                    </a>
 
-                    <a href="index.html#home" class="blog-back"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</a>
-                </article>
-            </div>
+                    <a href="#web-development" class="category-card" id="web-development">
+                        <div class="category-icon"><i class="fa-solid fa-code"></i></div>
+                        <h2>Web Development</h2>
+                        <p>HTML, CSS, JavaScript, responsive design, website performance and modern web development.</p>
+                    </a>
+                </div>
+            </section>
+
+            <section class="coming-soon" aria-labelledby="coming-soon-title">
+                <i class="fa-regular fa-pen-to-square"></i>
+                <h2 id="coming-soon-title">Articles Coming Soon</h2>
+                <p>The dummy article has been removed. Original, researched and practical articles will be published here across the categories above.</p>
+            </section>
 
             <div class="blog-footer">
-                <p>More SEO and web development articles will be published here.</p>
-                <p><a href="index.html">Javed Chaudhary Portfolio</a></p>
+                <p><a href="index.html">← Back to Javed Chaudhary Portfolio</a></p>
             </div>
         </div>
     </main>
