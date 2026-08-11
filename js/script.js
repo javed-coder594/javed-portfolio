@@ -111,6 +111,11 @@ function setupHeroRedesign() {
     modernCss.rel = "stylesheet";
     modernCss.href = "css/hero-modern.css";
     document.head.appendChild(modernCss);
+
+    const referenceCss = document.createElement("link");
+    referenceCss.rel = "stylesheet";
+    referenceCss.href = "css/hero-reference.css";
+    document.head.appendChild(referenceCss);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
