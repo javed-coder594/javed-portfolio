@@ -1,5 +1,6 @@
 /* ==================================================
-   MODERN HERO - VISIBLE PROFILE IMAGE + GRADIENT OVERLAY
+   MODERN HERO - IMAGE LEFT / TEXT RIGHT
+   Uses the existing profile image as a background.
    ================================================== */
 
 .hero.hero-modern {
@@ -13,21 +14,20 @@
     padding: 110px 0 60px;
 }
 
-/* Full, sharp profile image. Keep the face visible instead of hiding it behind the overlay. */
 .hero-modern .hero-bg-image {
     position: absolute;
-    inset: 0;
+    inset: 0 auto 0 0;
+    width: 58%;
     z-index: -4;
     background-image: url('../assests/images/profile.png');
-    background-position: 78% center;
+    background-position: 28% center;
     background-repeat: no-repeat;
     background-size: auto 100%;
-    transform: none;
-    filter: saturate(1.05) contrast(1.03) brightness(1.03);
+    filter: saturate(1.08) contrast(1.04) brightness(1.05);
     opacity: 1;
 }
 
-/* Text-readability gradient: dark on the text side, almost transparent over the face. */
+/* Keep the image visible on the left and create the strongest readability gradient on the right. */
 .hero-modern .hero-overlay {
     position: absolute;
     inset: 0;
@@ -35,16 +35,17 @@
     pointer-events: none;
     background:
         linear-gradient(90deg,
-            rgba(13,17,23,.94) 0%,
-            rgba(13,17,23,.78) 25%,
-            rgba(13,17,23,.42) 43%,
-            rgba(13,17,23,.12) 60%,
-            rgba(13,17,23,.04) 100%),
+            rgba(13,17,23,.08) 0%,
+            rgba(13,17,23,.10) 25%,
+            rgba(13,17,23,.40) 43%,
+            rgba(13,17,23,.88) 62%,
+            rgba(13,17,23,.98) 78%,
+            #0D1117 100%),
         linear-gradient(180deg,
-            rgba(13,17,23,.42) 0%,
+            rgba(13,17,23,.32) 0%,
             rgba(13,17,23,0) 28%,
             rgba(13,17,23,.08) 72%,
-            rgba(13,17,23,.55) 100%);
+            rgba(13,17,23,.62) 100%);
 }
 
 .hero-modern .hero-glow {
@@ -52,7 +53,7 @@
     z-index: -2;
     width: 520px;
     height: 520px;
-    right: 8%;
+    left: 22%;
     top: 18%;
     border-radius: 50%;
     background: rgba(232,228,11,.08);
@@ -70,7 +71,7 @@
         linear-gradient(rgba(232,228,11,.08) 1px, transparent 1px),
         linear-gradient(90deg, rgba(232,228,11,.08) 1px, transparent 1px);
     background-size: 55px 55px;
-    mask-image: linear-gradient(to right, transparent, #000 45%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent, #000 20%, #000 70%, transparent 100%);
     pointer-events: none;
 }
 
@@ -82,8 +83,11 @@
     z-index: 2;
 }
 
+/* Text block intentionally occupies the right side. */
 .hero-modern .hero-modern-content {
-    max-width: 850px;
+    width: 50%;
+    max-width: 720px;
+    margin-left: auto;
     padding: 35px 0;
 }
 
@@ -109,12 +113,12 @@
 .hero-modern .hero-title {
     margin: 0 0 22px;
     font-family: 'Outfit', sans-serif;
-    font-size: clamp(52px, 7.2vw, 102px);
+    font-size: clamp(48px, 6.2vw, 88px);
     line-height: .93;
     letter-spacing: -3px;
     font-weight: 800;
     color: #F8FAFC;
-    text-shadow: 0 5px 30px rgba(0,0,0,.45);
+    text-shadow: 0 5px 30px rgba(0,0,0,.55);
 }
 
 .hero-modern .hero-title .hero-name { display: block; }
@@ -134,10 +138,10 @@
 }
 
 .hero-modern .hero-description {
-    max-width: 690px;
+    max-width: 650px;
     margin: 0 0 30px;
     color: #CBD5E1;
-    font-size: 18px;
+    font-size: 17px;
     line-height: 1.85;
 }
 
@@ -173,7 +177,7 @@
 
 .hero-modern .hero-side-badge {
     position: absolute;
-    right: 1%;
+    left: 2%;
     bottom: 9%;
     display: grid;
     place-items: center;
@@ -228,32 +232,46 @@
 
 @media (max-width: 1100px) {
     .hero-modern .hero-bg-image {
-        background-position: 82% center;
+        width: 58%;
+        background-position: 28% center;
         background-size: auto 100%;
     }
+
+    .hero-modern .hero-modern-content { width: 52%; }
+
     .hero-modern .hero-overlay {
         background:
-            linear-gradient(90deg, rgba(13,17,23,.94) 0%, rgba(13,17,23,.70) 28%, rgba(13,17,23,.25) 50%, rgba(13,17,23,.04) 100%),
-            linear-gradient(180deg, rgba(13,17,23,.45), rgba(13,17,23,0) 30%, rgba(13,17,23,.5) 100%);
+            linear-gradient(90deg, rgba(13,17,23,.08) 0%, rgba(13,17,23,.22) 25%, rgba(13,17,23,.62) 48%, rgba(13,17,23,.94) 72%, #0D1117 100%),
+            linear-gradient(180deg, rgba(13,17,23,.42), rgba(13,17,23,0) 30%, rgba(13,17,23,.55) 100%);
     }
 }
 
 @media (max-width: 768px) {
     .hero.hero-modern { min-height: 100svh; padding: 115px 0 55px; }
 
+    /* On phones, image becomes the full background so the face is still visible. */
     .hero-modern .hero-bg-image {
-        background-position: 70% center;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        background-position: 28% center;
         background-size: auto 100%;
         opacity: 1;
     }
 
     .hero-modern .hero-overlay {
         background:
-            linear-gradient(90deg, rgba(13,17,23,.82) 0%, rgba(13,17,23,.48) 48%, rgba(13,17,23,.12) 100%),
-            linear-gradient(180deg, rgba(13,17,23,.55), rgba(13,17,23,.05) 38%, rgba(13,17,23,.58) 100%);
+            linear-gradient(90deg, rgba(13,17,23,.18) 0%, rgba(13,17,23,.45) 35%, rgba(13,17,23,.88) 72%, rgba(13,17,23,.97) 100%),
+            linear-gradient(180deg, rgba(13,17,23,.55), rgba(13,17,23,.10) 38%, rgba(13,17,23,.65) 100%);
     }
 
-    .hero-modern .hero-modern-content { padding: 20px 0; }
+    .hero-modern .hero-modern-content {
+        width: 100%;
+        max-width: 680px;
+        padding: 20px 0;
+        margin-left: auto;
+    }
+
     .hero-modern .hero-title {
         font-size: clamp(48px, 14vw, 70px);
         letter-spacing: -2px;
@@ -266,7 +284,7 @@
 }
 
 @media (max-width: 480px) {
-    .hero-modern .hero-bg-image { background-position: 68% center; }
+    .hero-modern .hero-bg-image { background-position: 27% center; }
     .hero-modern .hero-title { font-size: 45px; }
     .hero-modern .hero-kicker { font-size: 11px; letter-spacing: 1.4px; }
     .hero-modern .hero-description { line-height: 1.7; }
