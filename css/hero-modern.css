@@ -1,5 +1,6 @@
 /* ==================================================
-   MODERN HERO - VISIBLE PROFILE IMAGE + GRADIENT OVERLAY
+   HERO - PREMIUM PERSONAL BRAND PRESENTATION
+   Uses the existing profile image only.
    ================================================== */
 
 .hero.hero-modern {
@@ -10,24 +11,28 @@
     overflow: hidden;
     isolation: isolate;
     background: #0D1117;
-    padding: 110px 0 60px;
+    padding: 112px 0 58px;
 }
 
-/* Full, sharp profile image. Keep the face visible instead of hiding it behind the overlay. */
+/* Existing profile image: sharp, prominent and anchored to the right. */
 .hero-modern .hero-bg-image {
     position: absolute;
-    inset: 0;
+    top: 0;
+    right: 0;
+    width: 66%;
+    height: 100%;
     z-index: -4;
     background-image: url('../assests/images/profile.png');
     background-position: 78% center;
     background-repeat: no-repeat;
-    background-size: auto 100%;
-    transform: none;
-    filter: saturate(1.05) contrast(1.03) brightness(1.03);
+    background-size: auto 96%;
     opacity: 1;
+    filter: saturate(1.08) contrast(1.04) brightness(1.06);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.25) 10%, #000 30%, #000 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.25) 10%, #000 30%, #000 100%);
 }
 
-/* Text-readability gradient: dark on the text side, almost transparent over the face. */
+/* Strongest gradient is only behind the copy; the face remains clear. */
 .hero-modern .hero-overlay {
     position: absolute;
     inset: 0;
@@ -35,29 +40,30 @@
     pointer-events: none;
     background:
         linear-gradient(90deg,
-            rgba(13,17,23,.94) 0%,
-            rgba(13,17,23,.78) 25%,
-            rgba(13,17,23,.42) 43%,
-            rgba(13,17,23,.12) 60%,
-            rgba(13,17,23,.04) 100%),
+            rgba(13,17,23,1) 0%,
+            rgba(13,17,23,.96) 24%,
+            rgba(13,17,23,.72) 42%,
+            rgba(13,17,23,.18) 62%,
+            rgba(13,17,23,.02) 100%),
         linear-gradient(180deg,
-            rgba(13,17,23,.42) 0%,
-            rgba(13,17,23,0) 28%,
-            rgba(13,17,23,.08) 72%,
-            rgba(13,17,23,.55) 100%);
+            rgba(13,17,23,.78) 0%,
+            rgba(13,17,23,.04) 30%,
+            rgba(13,17,23,.08) 68%,
+            rgba(13,17,23,.82) 100%);
 }
 
+/* Premium blue/yellow light accents. */
 .hero-modern .hero-glow {
     position: absolute;
     z-index: -2;
-    width: 520px;
-    height: 520px;
-    right: 8%;
-    top: 18%;
+    width: 560px;
+    height: 560px;
+    right: 12%;
+    top: 17%;
     border-radius: 50%;
-    background: rgba(232,228,11,.08);
-    filter: blur(110px);
-    animation: heroGlow 6s ease-in-out infinite alternate;
+    background: radial-gradient(circle, rgba(232,228,11,.16) 0%, rgba(36,112,255,.08) 42%, transparent 72%);
+    filter: blur(35px);
+    animation: heroGlow 7s ease-in-out infinite alternate;
     pointer-events: none;
 }
 
@@ -65,12 +71,12 @@
     position: absolute;
     inset: 0;
     z-index: -1;
-    opacity: .10;
+    opacity: .08;
     background-image:
-        linear-gradient(rgba(232,228,11,.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(232,228,11,.08) 1px, transparent 1px);
-    background-size: 55px 55px;
-    mask-image: linear-gradient(to right, transparent, #000 45%, transparent 100%);
+        linear-gradient(rgba(232,228,11,.09) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232,228,11,.09) 1px, transparent 1px);
+    background-size: 58px 58px;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 34%, transparent 100%);
     pointer-events: none;
 }
 
@@ -83,8 +89,8 @@
 }
 
 .hero-modern .hero-modern-content {
-    max-width: 850px;
-    padding: 35px 0;
+    width: min(760px, 58%);
+    padding: 35px 0 70px;
 }
 
 .hero-modern .hero-kicker {
@@ -93,15 +99,16 @@
     gap: 10px;
     padding: 10px 17px;
     margin-bottom: 24px;
-    border: 1px solid rgba(232,228,11,.35);
+    border: 1px solid rgba(232,228,11,.42);
     border-radius: 999px;
-    background: rgba(13,17,23,.42);
-    backdrop-filter: blur(6px);
+    background: rgba(13,17,23,.48);
+    backdrop-filter: blur(8px);
     color: #E8E40B;
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
+    box-shadow: 0 8px 30px rgba(0,0,0,.18);
 }
 
 .hero-modern .hero-kicker i { animation: pulseStar 1.8s ease-in-out infinite; }
@@ -109,94 +116,121 @@
 .hero-modern .hero-title {
     margin: 0 0 22px;
     font-family: 'Outfit', sans-serif;
-    font-size: clamp(52px, 7.2vw, 102px);
-    line-height: .93;
-    letter-spacing: -3px;
+    font-size: clamp(54px, 7vw, 100px);
+    line-height: .92;
+    letter-spacing: -3.5px;
     font-weight: 800;
     color: #F8FAFC;
-    text-shadow: 0 5px 30px rgba(0,0,0,.45);
+    text-shadow: 0 8px 32px rgba(0,0,0,.52);
 }
 
 .hero-modern .hero-title .hero-name { display: block; }
 .hero-modern .hero-title .hero-name span { color: #E8E40B; }
 
-.hero-modern .hero-title .hero-role {
+.hero-modern .hero-title .hero-main-line {
     display: block;
-    margin-top: 18px;
-    min-height: 1.05em;
+    margin-top: 12px;
     color: transparent;
-    -webkit-text-stroke: 1px rgba(248,250,252,.8);
-    background: linear-gradient(90deg, #E8E40B, #FFF44F, #F8FAFC, #E8E40B);
-    background-size: 300% 100%;
+    background: linear-gradient(100deg, #F8FAFC 5%, #E8E40B 45%, #FFF44F 68%, #F8FAFC 95%);
+    background-size: 260% 100%;
     -webkit-background-clip: text;
     background-clip: text;
-    animation: roleGradient 4s linear infinite;
+    animation: titleShine 5s linear infinite;
+}
+
+.hero-modern .hero-role-line {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    min-height: 36px;
+    margin: 0 0 24px;
+    font-size: clamp(18px, 2vw, 25px);
+    font-weight: 600;
+}
+
+.hero-modern .hero-role-label {
+    color: #94A3B8;
+    letter-spacing: 2px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.hero-modern .typing {
+    color: #E8E40B;
+    text-shadow: 0 0 22px rgba(232,228,11,.28);
+}
+
+.hero-modern .hero-cursor {
+    color: #E8E40B;
+    animation: cursorBlink .75s step-end infinite;
 }
 
 .hero-modern .hero-description {
-    max-width: 690px;
-    margin: 0 0 30px;
-    color: #CBD5E1;
-    font-size: 18px;
-    line-height: 1.85;
-    text-shadow: 0 2px 16px rgba(0,0,0,.55);
+    max-width: 650px;
+    margin: 0 0 28px;
+    color: #D7DEE8;
+    font-size: 17px;
+    line-height: 1.8;
+    text-shadow: 0 3px 18px rgba(0,0,0,.65);
 }
 
 .hero-modern .hero-highlights {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 34px;
+    gap: 10px;
+    margin-bottom: 30px;
 }
 
 .hero-modern .hero-highlight {
     display: inline-flex;
     align-items: center;
     gap: 9px;
-    padding: 11px 15px;
-    border: 1px solid rgba(255,255,255,.12);
+    padding: 10px 14px;
+    border: 1px solid rgba(255,255,255,.13);
     border-radius: 999px;
-    background: rgba(13,17,23,.38);
-    backdrop-filter: blur(6px);
+    background: rgba(13,17,23,.48);
+    backdrop-filter: blur(8px);
     color: #F8FAFC;
-    font-size: 14px;
+    font-size: 13px;
     transition: .35s ease;
 }
 
 .hero-modern .hero-highlight i { color: #E8E40B; }
+
 .hero-modern .hero-highlight:hover {
-    transform: translateY(-5px);
-    border-color: rgba(232,228,11,.5);
-    box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    transform: translateY(-4px);
+    border-color: rgba(232,228,11,.55);
+    box-shadow: 0 12px 34px rgba(0,0,0,.3);
 }
 
 .hero-modern .hero-btns { margin-top: 0; }
 
 .hero-modern .hero-side-badge {
     position: absolute;
-    right: 1%;
-    bottom: 9%;
+    right: 2%;
+    bottom: 12%;
     display: grid;
     place-items: center;
-    width: 145px;
-    height: 145px;
-    border: 1px solid rgba(232,228,11,.3);
+    width: 130px;
+    height: 130px;
+    border: 1px solid rgba(232,228,11,.38);
     border-radius: 50%;
-    background: rgba(13,17,23,.38);
-    backdrop-filter: blur(6px);
-    box-shadow: 0 0 45px rgba(232,228,11,.12);
+    background: rgba(13,17,23,.36);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 55px rgba(232,228,11,.14);
     animation: badgeFloat 4s ease-in-out infinite;
 }
 
 .hero-modern .hero-side-badge strong {
     color: #E8E40B;
-    font: 800 34px 'Outfit', sans-serif;
+    font: 800 32px 'Outfit', sans-serif;
     line-height: 1;
 }
 
 .hero-modern .hero-side-badge span {
     color: #CBD5E1;
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 1.4px;
     text-transform: uppercase;
 }
@@ -205,9 +239,9 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    margin-top: 38px;
+    margin-top: 32px;
     color: #94A3B8;
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 2px;
     text-transform: uppercase;
 }
@@ -218,58 +252,79 @@
 }
 
 @keyframes heroGlow {
-    from { transform: scale(.9); opacity: .35; }
-    to { transform: scale(1.12); opacity: .65; }
+    from { transform: scale(.92); opacity: .55; }
+    to { transform: scale(1.08); opacity: .9; }
 }
 
-@keyframes roleGradient { to { background-position: 300% 0; } }
+@keyframes titleShine { to { background-position: 260% 0; } }
+@keyframes cursorBlink { 50% { opacity: 0; } }
 @keyframes pulseStar { 50% { transform: rotate(20deg) scale(1.2); } }
-@keyframes badgeFloat { 50% { transform: translateY(-12px) rotate(3deg); } }
+@keyframes badgeFloat { 50% { transform: translateY(-10px) rotate(3deg); } }
 @keyframes scrollArrow { 50% { transform: translateY(6px); } }
 
 @media (max-width: 1100px) {
     .hero-modern .hero-bg-image {
+        width: 70%;
         background-position: 82% center;
-        background-size: auto 100%;
+        background-size: auto 94%;
     }
+
+    .hero-modern .hero-modern-content { width: 62%; }
+
     .hero-modern .hero-overlay {
         background:
-            linear-gradient(90deg, rgba(13,17,23,.94) 0%, rgba(13,17,23,.70) 28%, rgba(13,17,23,.25) 50%, rgba(13,17,23,.04) 100%),
-            linear-gradient(180deg, rgba(13,17,23,.45), rgba(13,17,23,0) 30%, rgba(13,17,23,.5) 100%);
+            linear-gradient(90deg, rgba(13,17,23,1) 0%, rgba(13,17,23,.93) 27%, rgba(13,17,23,.58) 48%, rgba(13,17,23,.08) 72%, rgba(13,17,23,0) 100%),
+            linear-gradient(180deg, rgba(13,17,23,.72), rgba(13,17,23,0) 35%, rgba(13,17,23,.7) 100%);
     }
 }
 
 @media (max-width: 768px) {
-    .hero.hero-modern { min-height: 100svh; padding: 115px 0 55px; }
+    .hero.hero-modern { min-height: 100svh; padding: 110px 0 52px; }
 
     .hero-modern .hero-bg-image {
-        background-position: 70% center;
+        width: 100%;
+        height: 68%;
+        top: auto;
+        bottom: 0;
+        background-position: 68% bottom;
         background-size: auto 100%;
-        opacity: 1;
+        -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,.45) 18%, #000 48%, #000 100%);
+        mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,.45) 18%, #000 48%, #000 100%);
     }
 
     .hero-modern .hero-overlay {
         background:
-            linear-gradient(90deg, rgba(13,17,23,.82) 0%, rgba(13,17,23,.48) 48%, rgba(13,17,23,.12) 100%),
-            linear-gradient(180deg, rgba(13,17,23,.55), rgba(13,17,23,.05) 38%, rgba(13,17,23,.58) 100%);
+            linear-gradient(180deg, rgba(13,17,23,1) 0%, rgba(13,17,23,.9) 36%, rgba(13,17,23,.25) 64%, rgba(13,17,23,.38) 100%),
+            linear-gradient(90deg, rgba(13,17,23,.78), rgba(13,17,23,.15));
     }
 
-    .hero-modern .hero-modern-content { padding: 20px 0; }
-    .hero-modern .hero-title {
-        font-size: clamp(48px, 14vw, 70px);
-        letter-spacing: -2px;
+    .hero-modern .hero-modern-content {
+        width: 100%;
+        max-width: 720px;
+        padding: 15px 0 120px;
     }
+
+    .hero-modern .hero-title {
+        font-size: clamp(48px, 14vw, 72px);
+        letter-spacing: -2.5px;
+    }
+
     .hero-modern .hero-description { font-size: 16px; }
     .hero-modern .hero-highlights { gap: 8px; }
     .hero-modern .hero-highlight { font-size: 12px; padding: 9px 12px; }
     .hero-modern .hero-side-badge { display: none; }
-    .hero-modern .hero-scroll { margin-top: 28px; }
+    .hero-modern .hero-scroll { margin-top: 24px; }
 }
 
 @media (max-width: 480px) {
-    .hero-modern .hero-bg-image { background-position: 68% center; }
-    .hero-modern .hero-title { font-size: 45px; }
-    .hero-modern .hero-kicker { font-size: 11px; letter-spacing: 1.4px; }
+    .hero-modern .hero-bg-image {
+        height: 64%;
+        background-position: 66% bottom;
+    }
+
+    .hero-modern .hero-title { font-size: 44px; }
+    .hero-modern .hero-kicker { font-size: 10px; letter-spacing: 1.2px; }
+    .hero-modern .hero-role-line { font-size: 17px; }
     .hero-modern .hero-description { line-height: 1.7; }
     .hero-modern .hero-highlights { display: grid; grid-template-columns: 1fr 1fr; }
     .hero-modern .hero-highlight { justify-content: center; }
