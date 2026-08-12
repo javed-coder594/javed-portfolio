@@ -56,7 +56,8 @@ jobs:
               html = re.sub(r'<header class="header">.*?</header>', header, html, count=1, flags=re.S)
               html = re.sub(r'<footer class="footer">.*?</footer>', footer, html, count=1, flags=re.S)
 
-              html = re.sub(r'<figure class="(?:heroimg|featured|blog-hero|blog-consistency-hero)">.*?</figure>', '', html, count=1, flags=re.S)
+              # Remove every previous hero/featured figure so each article has exactly one consistent image.
+              html = re.sub(r'<figure class="(?:heroimg|featured|blog-hero|blog-consistency-hero)">.*?</figure>', '', html, count=0, flags=re.S)
               title = re.search(r'<h1[^>]*>(.*?)</h1>', html, flags=re.S)
               title_text = re.sub(r'<[^>]+>', '', title.group(1)).strip() if title else label
               alt = f'{label} visual related to {title_text}'
