@@ -1,11 +1,10 @@
-// Home-page bootstrap: use the same site-wide navigation, footer/blog links,
-// hero enhancements, and Achievements section used across the blog pages.
-// Keeping one implementation prevents the home page from drifting out of sync.
+// Home-page bootstrap: keep the original hero markup while using the shared
+// navigation, footer/blog links, and Achievements section across the site.
 document.addEventListener('DOMContentLoaded', function () {
     const script = document.createElement('script');
     script.src = '/js/script.js';
     script.onload = function () {
-        if (typeof setupHeroRedesign === 'function') setupHeroRedesign();
+        // Intentionally do not call setupHeroRedesign(): the original home hero is restored.
         if (typeof setupMobileMenu === 'function') setupMobileMenu();
         if (typeof setupBlogsFooter === 'function') setupBlogsFooter();
         if (typeof setupBlogArticleVisuals === 'function') setupBlogArticleVisuals();
