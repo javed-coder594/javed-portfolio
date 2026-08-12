@@ -1,29 +1,20 @@
+// Home-page bootstrap: use the same site-wide navigation, footer/blog links,
+// hero enhancements, and Achievements section used across the blog pages.
+// Keeping one implementation prevents the home page from drifting out of sync.
 document.addEventListener('DOMContentLoaded', function () {
-    const servicesHeading = Array.from(document.querySelectorAll('.footer .footer-col h3'))
-        .find(function (heading) { return heading.textContent.trim().toLowerCase() === 'services'; });
-
-    if (servicesHeading) {
-        const column = servicesHeading.closest('.footer-col');
-        if (column) {
-            column.innerHTML = `
-                <h3>Blogs</h3>
-                <ul>
-                    <li><a href="/blog/technical-seo/">Technical SEO</a></li>
-                    <li><a href="/blog/on-page-seo/">On-Page SEO</a></li>
-                    <li><a href="/blog/off-page-seo/">Off-Page SEO</a></li>
-                    <li><a href="/blog/local-seo/">Local SEO</a></li>
-                    <li><a href="/blog/wordpress-seo/">WordPress SEO</a></li>
-                    <li><a href="/blog/web-development/">Web Development</a></li>
-                </ul>`;
-        }
-    }
-
-    const menu = document.querySelector('.menu-toggle');
-    const navbar = document.querySelector('.navbar');
-    if (menu && navbar) {
-        menu.addEventListener('click', function () {
-            navbar.classList.toggle('active');
-            menu.classList.toggle('active');
-        });
-    }
+    const script = document.createElement('script');
+    script.src = '/js/script.js';
+    script.onload = function () {
+        if (typeof setupHeroRedesign === 'function') setupHeroRedesign();
+        if (typeof setupMobileMenu === 'function') setupMobileMenu();
+        if (typeof setupBlogsFooter === 'function') setupBlogsFooter();
+        if (typeof setupBlogArticleVisuals === 'function') setupBlogArticleVisuals();
+        if (typeof setupAchievementsNavigation === 'function') setupAchievementsNavigation();
+        if (typeof setupAchievementsSection === 'function') setupAchievementsSection();
+        if (typeof startTyping === 'function') startTyping();
+    };
+    script.onerror = function () {
+        console.error('Unable to load shared site script.');
+    };
+    document.head.appendChild(script);
 });
