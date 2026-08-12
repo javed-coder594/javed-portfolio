@@ -136,9 +136,54 @@ function setupBlogsFooter() {
     });
 }
 
+function setupBlogArticleVisuals() {
+    const article = document.querySelector(".blog-article article");
+    if (!article || article.dataset.visualsReady === "true") return;
+    article.dataset.visualsReady = "true";
+
+    const path = window.location.pathname.toLowerCase();
+    const visualMap = [
+        { match: "/technical-seo/", image: "/assests/images/blog-technical-seo.svg", title: "Technical SEO Audit Checklist – Website Optimization", alt: "Technical SEO audit checklist visual showing website structure, crawlability and search analysis", caption: "Technical SEO audit checklist: a visual overview of crawlability, indexing and website analysis." },
+        { match: "/on-page-seo/", image: "/assests/images/blog-on-page-seo.svg", title: "On-Page SEO Checklist – Page Optimization", alt: "On-page SEO checklist visual showing webpage content, headings and search optimization", caption: "On-page SEO checklist: a visual representation of page content, headings and optimization." },
+        { match: "/off-page-seo/", image: "/assests/images/blog-off-page-seo.svg", title: "Link Building Strategies – Off-Page SEO", alt: "Link building strategies visual showing connected links and authority signals", caption: "Link building strategies: a visual representation of relevant connections and off-page SEO." },
+        { match: "/local-seo/", image: "/assests/images/blog-local-seo.svg", title: "Local SEO – Local Search Visibility", alt: "Local SEO visual showing a business location marker and local search signals", caption: "Local SEO: a visual representation of local search, business information and location visibility." },
+        { match: "/wordpress-seo/", image: "/assests/images/blog-wordpress-seo.svg", title: "WordPress SEO – Website Optimization", alt: "WordPress SEO visual showing a website interface and optimization settings", caption: "WordPress SEO: a visual representation of website structure, content and optimization." },
+        { match: "/web-development/", image: "/assests/images/blog-web-development.svg", title: "SEO-Friendly Website Development – Modern Web Structure", alt: "SEO-friendly website development visual showing code, browser structure and responsive web design", caption: "SEO-friendly website development: a visual representation of code, browser structure and performance." }
+    ];
+
+    const visual = visualMap.find(item => path.includes(item.match));
+    if (!visual) return;
+
+    const existing = article.querySelector(".blog-hero");
+    if (existing) existing.remove();
+
+    const figure = document.createElement("figure");
+    figure.className = "blog-hero";
+    figure.innerHTML = `<img src="${visual.image}" width="1200" height="650" loading="eager" decoding="async" fetchpriority="high" title="${visual.title}" alt="${visual.alt}"><figcaption>${visual.caption}</figcaption>`;
+
+    const firstParagraph = article.querySelector("p");
+    if (firstParagraph) firstParagraph.insertAdjacentElement("afterend", figure);
+    else article.prepend(figure);
+
+    let css = document.querySelector('link[data-blog-article-css="true"]');
+    if (!css) {
+        css = document.createElement("link");
+        css.rel = "stylesheet";
+        css.href = "/css/blog-article.css";
+        css.dataset.blogArticleCss = "true";
+        document.head.appendChild(css);
+    }
+
+    const metaImage = document.querySelector('meta[property="og:image"]') || document.createElement("meta");
+    metaImage.setAttribute("property", "og:image");
+    metaImage.setAttribute("content", new URL(visual.image, window.location.origin).href);
+    if (!metaImage.parentElement) document.head.appendChild(metaImage);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     setupHeroRedesign();
     setupMobileMenu();
     setupBlogsFooter();
+    setupBlogArticleVisuals();
     startTyping();
 });
