@@ -90,7 +90,7 @@ function setupBlogsFooter() {
         footer.className = "footer";
         footer.innerHTML = `<div class="container"><div class="footer-grid">
             <div class="footer-col"><a href="/" class="footer-logo"><span>J</span>aved</a><p>SEO Executive and WordPress Developer helping businesses improve online visibility, website performance, and organic growth.</p></div>
-            <div class="footer-col"><h3>Quick Links</h3><ul><li><a href="/#home">Home</a></li><li><a href="/#about">About</a></li><li><a href="/#experience">Experience</a></li><li><a href="/#skills">Skills</a></li><li><a href="/#projects">Projects</a></li><li><a href="/#contact">Contact</a></li></ul></div>
+            <div class="footer-col"><h3>Quick Links</h3><ul><li><a href="/#home">Home</a></li><li><a href="/#about">About</a></li><li><a href="/#experience">Experience</a></li><li><a href="/#skills">Skills</a></li><li><a href="/#projects">Projects</a></li><li><a href="/#achievements">Achievements</a></li><li><a href="/blog/">Blog</a></li><li><a href="/#contact">Contact</a></li></ul></div>
             <div class="footer-col"><h3><a href="/blog/">Blogs</a></h3><ul></ul></div>
             <div class="footer-col"><h3>Contact</h3><ul><li><i class="fas fa-envelope"></i> javedchaudhary594@gmail.com</li><li><i class="fas fa-phone"></i> +91 9390988594</li><li><i class="fas fa-location-dot"></i> Hyderabad, India</li></ul></div>
         </div><div class="footer-bottom"><p>© 2026 <span>Javed Chaudhary</span>. All Rights Reserved.</p></div></div>`;
@@ -180,10 +180,140 @@ function setupBlogArticleVisuals() {
     if (!metaImage.parentElement) document.head.appendChild(metaImage);
 }
 
+function setupAchievementsNavigation() {
+    const navLinks = document.querySelectorAll(".nav-links");
+    navLinks.forEach(nav => {
+        if (nav.querySelector('a[href="#achievements"], a[href="/#achievements"]')) return;
+        const li = document.createElement("li");
+        li.innerHTML = '<a href="/#achievements">Achievements</a>';
+        const projectLink = Array.from(nav.querySelectorAll("a")).find(a => /projects/i.test(a.textContent));
+        const contactLink = Array.from(nav.querySelectorAll("a")).find(a => /contact/i.test(a.textContent));
+        if (contactLink && contactLink.parentElement) contactLink.parentElement.before(li);
+        else if (projectLink && projectLink.parentElement) projectLink.parentElement.after(li);
+        else nav.appendChild(li);
+    });
+
+    document.querySelectorAll("footer.footer").forEach(footer => {
+        const quick = Array.from(footer.querySelectorAll(".footer-col")).find(col => {
+            const h = col.querySelector("h3");
+            return h && /quick links/i.test(h.textContent);
+        });
+        if (!quick) return;
+        const list = quick.querySelector("ul");
+        if (!list || list.querySelector('a[href="#achievements"], a[href="/#achievements"]')) return;
+        const li = document.createElement("li");
+        li.innerHTML = '<a href="/#achievements">Achievements</a>';
+        const contact = Array.from(list.querySelectorAll("a")).find(a => /contact/i.test(a.textContent));
+        if (contact && contact.parentElement) contact.parentElement.before(li);
+        else list.appendChild(li);
+    });
+}
+
+function setupAchievementsSection() {
+    const home = document.querySelector("#home.hero, .hero#home");
+    const contact = document.querySelector("#contact");
+    if (!home || !contact || document.querySelector("#achievements")) return;
+
+    const section = document.createElement("section");
+    section.className = "achievements-section";
+    section.id = "achievements";
+    section.innerHTML = `
+        <div class="container">
+            <div class="section-title">
+                <span class="achievements-eyebrow">Selected Performance Snapshots</span>
+                <h2>SEO <span>Achievements</span></h2>
+                <p>Four anonymized Google Search Console snapshots highlighting clicks, impressions and search performance.</p>
+            </div>
+            <div class="achievements-note">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Website identities are intentionally hidden. These are anonymized performance snapshots and are not presented as verified results for this portfolio.</span>
+            </div>
+            <div class="achievements-slider" aria-label="SEO performance snapshots">
+                <div class="achievements-track">
+                    <article class="achievement-slide is-active">
+                        <div class="achievement-meta"><span>Google News</span><strong>Last 3 Months</strong></div>
+                        <div class="achievement-image achievement-image-1" role="img" aria-label="Anonymized Google Search Console performance snapshot showing 1.47K clicks, 25.8K impressions and 5.7 percent CTR" title="Google Search Console performance – last 3 months"></div>
+                        <div class="achievement-caption"><strong>1.47K clicks</strong><span>25.8K impressions</span><span>5.7% CTR</span></div>
+                    </article>
+                    <article class="achievement-slide">
+                        <div class="achievement-meta"><span>Web Search</span><strong>Last 3 Months</strong></div>
+                        <div class="achievement-image achievement-image-2" role="img" aria-label="Anonymized Google Search Console performance snapshot showing 4.29K clicks, 73.7K impressions, 5.8 percent CTR and 4.8 average position" title="Google Search Console web search performance – last 3 months"></div>
+                        <div class="achievement-caption"><strong>4.29K clicks</strong><span>73.7K impressions</span><span>5.8% CTR</span><span>Avg. position 4.8</span></div>
+                    </article>
+                    <article class="achievement-slide">
+                        <div class="achievement-meta"><span>Search Performance</span><strong>Last 3 Months</strong></div>
+                        <div class="achievement-image achievement-image-3" role="img" aria-label="Anonymized Google Search Console performance snapshot showing 56 clicks, 7.67K impressions, 0.7 percent CTR and average position 74" title="Google Search Console search performance snapshot – last 3 months"></div>
+                        <div class="achievement-caption"><strong>56 clicks</strong><span>7.67K impressions</span><span>0.7% CTR</span><span>Avg. position 74</span></div>
+                    </article>
+                    <article class="achievement-slide">
+                        <div class="achievement-meta"><span>Google News</span><strong>Last 28 Days</strong></div>
+                        <div class="achievement-image achievement-image-4" role="img" aria-label="Anonymized Google Search Console performance snapshot showing 10.5K clicks, 255K impressions and 4.1 percent CTR" title="Google Search Console performance – last 28 days"></div>
+                        <div class="achievement-caption"><strong>10.5K clicks</strong><span>255K impressions</span><span>4.1% CTR</span></div>
+                    </article>
+                </div>
+                <button class="achievement-control achievement-prev" type="button" aria-label="Previous performance snapshot"><i class="fa-solid fa-arrow-left"></i></button>
+                <button class="achievement-control achievement-next" type="button" aria-label="Next performance snapshot"><i class="fa-solid fa-arrow-right"></i></button>
+                <div class="achievement-dots" role="tablist" aria-label="Choose performance snapshot">
+                    <button type="button" class="is-active" aria-label="Show snapshot 1"></button>
+                    <button type="button" aria-label="Show snapshot 2"></button>
+                    <button type="button" aria-label="Show snapshot 3"></button>
+                    <button type="button" aria-label="Show snapshot 4"></button>
+                </div>
+            </div>
+        </div>`;
+
+    contact.before(section);
+
+    const css = document.createElement("link");
+    css.rel = "stylesheet";
+    css.href = "/css/achievements.css";
+    document.head.appendChild(css);
+
+    const slides = Array.from(section.querySelectorAll(".achievement-slide"));
+    const dots = Array.from(section.querySelectorAll(".achievement-dots button"));
+    let index = 0;
+    let timer;
+
+    function show(next) {
+        index = (next + slides.length) % slides.length;
+        slides.forEach((slide, i) => slide.classList.toggle("is-active", i === index));
+        dots.forEach((dot, i) => {
+            dot.classList.toggle("is-active", i === index);
+            dot.setAttribute("aria-selected", i === index ? "true" : "false");
+        });
+    }
+
+    function restart() {
+        clearInterval(timer);
+        timer = setInterval(() => show(index + 1), 5500);
+    }
+
+    section.querySelector(".achievement-prev").addEventListener("click", () => {
+        show(index - 1);
+        restart();
+    });
+    section.querySelector(".achievement-next").addEventListener("click", () => {
+        show(index + 1);
+        restart();
+    });
+    dots.forEach((dot, i) => dot.addEventListener("click", () => {
+        show(i);
+        restart();
+    }));
+    section.addEventListener("mouseenter", () => clearInterval(timer));
+    section.addEventListener("mouseleave", restart);
+    section.addEventListener("focusin", () => clearInterval(timer));
+    section.addEventListener("focusout", restart);
+    show(0);
+    restart();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     setupHeroRedesign();
     setupMobileMenu();
     setupBlogsFooter();
     setupBlogArticleVisuals();
+    setupAchievementsNavigation();
+    setupAchievementsSection();
     startTyping();
 });
