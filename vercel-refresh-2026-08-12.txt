@@ -1,0 +1,1 @@
+Production refresh marker for the current blog template normalization.
