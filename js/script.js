@@ -118,8 +118,93 @@ function setupHeroRedesign() {
     document.head.appendChild(referenceCss);
 }
 
+function setupBlogsFooter() {
+    const blogCategories = [
+        ["Technical SEO", "/blog/technical-seo/"],
+        ["On-Page SEO", "/blog/on-page-seo/"],
+        ["Off-Page SEO", "/blog/off-page-seo/"],
+        ["Local SEO", "/blog/local-seo/"],
+        ["WordPress SEO", "/blog/wordpress-seo/"],
+        ["Web Development", "/blog/web-development/"]
+    ];
+
+    let footer = document.querySelector("footer.footer");
+
+    // Add the same footer to blog category/article pages that do not already have one.
+    if (!footer) {
+        footer = document.createElement("footer");
+        footer.className = "footer";
+        footer.innerHTML = `
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <a href="/" class="footer-logo"><span>J</span>aved</a>
+                        <p>SEO Executive and WordPress Developer helping businesses improve online visibility, website performance, and organic growth.</p>
+                    </div>
+                    <div class="footer-col">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="/#home">Home</a></li>
+                            <li><a href="/#about">About</a></li>
+                            <li><a href="/#experience">Experience</a></li>
+                            <li><a href="/#skills">Skills</a></li>
+                            <li><a href="/#projects">Projects</a></li>
+                            <li><a href="/#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h3><a href="/blog/">Blogs</a></h3>
+                        <ul></ul>
+                    </div>
+                    <div class="footer-col">
+                        <h3>Contact</h3>
+                        <ul>
+                            <li><i class="fas fa-envelope"></i> javedchaudhary594@gmail.com</li>
+                            <li><i class="fas fa-phone"></i> +91 9390988594</li>
+                            <li><i class="fas fa-location-dot"></i> Hyderabad, India</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom"><p>© 2026 <span>Javed Chaudhary</span>. All Rights Reserved.</p></div>
+            </div>`;
+        document.body.appendChild(footer);
+    }
+
+    const columns = Array.from(footer.querySelectorAll(".footer-col"));
+    let blogsColumn = columns.find(col => {
+        const heading = col.querySelector("h3");
+        return heading && /^(services|blogs)$/i.test(heading.textContent.trim());
+    });
+
+    if (!blogsColumn) {
+        blogsColumn = document.createElement("div");
+        blogsColumn.className = "footer-col";
+        footer.querySelector(".footer-grid")?.appendChild(blogsColumn);
+    }
+
+    const heading = blogsColumn.querySelector("h3") || document.createElement("h3");
+    heading.innerHTML = '<a href="/blog/">Blogs</a>';
+    if (!heading.parentElement) blogsColumn.appendChild(heading);
+
+    let list = blogsColumn.querySelector("ul");
+    if (!list) {
+        list = document.createElement("ul");
+        blogsColumn.appendChild(list);
+    }
+
+    list.innerHTML = blogCategories.map(([name, url]) => `<li><a href="${url}">${name}</a></li>`).join("");
+
+    // Make every footer Blog/Blogs label point to the main blog page.
+    footer.querySelectorAll("a").forEach(link => {
+        if (/^blogs?$/i.test(link.textContent.trim())) {
+            link.href = "/blog/";
+        }
+    });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     setupHeroRedesign();
     setupMobileMenu();
+    setupBlogsFooter();
     startTyping();
 });
