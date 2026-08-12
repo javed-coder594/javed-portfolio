@@ -86,16 +86,15 @@
     aspect-ratio: 2 / 1;
     border-radius: 18px;
     background-color: #fff;
-    background-image: url("/assests/images/gsc-performance-sprite.svg");
     background-repeat: no-repeat;
-    background-size: 100% 400%;
+    background-size: 100% 100%;
     box-shadow: 0 18px 50px rgba(0, 0, 0, .22);
 }
 
-.achievement-image-1 { background-position: 0 0; }
-.achievement-image-2 { background-position: 0 33.333333%; }
-.achievement-image-3 { background-position: 0 66.666667%; }
-.achievement-image-4 { background-position: 0 100%; }
+.achievement-image-1 { background-image: url("/assests/images/gsc-snapshot-1.svg"); }
+.achievement-image-2 { background-image: url("/assests/images/gsc-snapshot-2.svg"); }
+.achievement-image-3 { background-image: url("/assests/images/gsc-snapshot-3.svg"); }
+.achievement-image-4 { background-image: url("/assests/images/gsc-snapshot-4.svg"); }
 
 .achievement-caption {
     display: flex;
