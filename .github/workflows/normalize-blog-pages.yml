@@ -1,0 +1,92 @@
+name: Normalize Blog Pages
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  normalize:
+    if: ${{ !contains(github.event.head_commit.message, '[blog-normalized]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Normalize article pages
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          root = Path('.')
+          categories = {
+              'technical-seo': ('/assests/images/blog-technical-seo.svg', 'Technical SEO'),
+              'on-page-seo': ('/assests/images/blog-on-page-seo.svg', 'On-Page SEO'),
+              'off-page-seo': ('/assests/images/blog-off-page-seo.svg', 'Off-Page SEO'),
+              'local-seo': ('/assests/images/blog-local-seo.svg', 'Local SEO'),
+              'wordpress-seo': ('/assests/images/blog-wordpress-seo.svg', 'WordPress SEO'),
+              'web-development': ('/assests/images/blog-web-development.svg', 'Web Development'),
+          }
+
+          quick_links = '''<div class="footer-col"><h3>Quick Links</h3><ul><li><a href="/#home">Home</a></li><li><a href="/#about">About</a></li><li><a href="/#experience">Experience</a></li><li><a href="/#skills">Skills</a></li><li><a href="/#projects">Projects</a></li><li><a href="/#achievements">Achievements</a></li><li><a href="/blog/">Blog</a></li><li><a href="/#contact">Contact</a></li></ul></div>'''
+          blog_links = '''<div class="footer-col"><h3><a href="/blog/">Blogs</a></h3><ul><li><a href="/blog/technical-seo/">Technical SEO</a></li><li><a href="/blog/on-page-seo/">On-Page SEO</a></li><li><a href="/blog/off-page-seo/">Off-Page SEO</a></li><li><a href="/blog/local-seo/">Local SEO</a></li><li><a href="/blog/wordpress-seo/">WordPress SEO</a></li><li><a href="/blog/web-development/">Web Development</a></li></ul></div>'''
+          contact = '''<div class="footer-col"><h3>Contact</h3><ul><li><i class="fas fa-envelope"></i> javedchaudhary594@gmail.com</li><li><i class="fas fa-phone"></i> +91 9390988594</li><li><i class="fas fa-location-dot"></i> Hyderabad, India</li></ul></div>'''
+          brand = '''<div class="footer-col"><a href="/" class="footer-logo"><span>J</span>aved</a><p>SEO Executive and WordPress Developer helping businesses improve online visibility, website performance, and organic growth.</p></div>'''
+          footer = '<footer class="footer"><div class="container"><div class="footer-grid">' + brand + quick_links + blog_links + contact + '</div><div class="footer-bottom"><p>© 2026 <span>Javed Chaudhary</span>. All Rights Reserved.</p></div></div></footer>'
+
+          header = '''<header class="header"><div class="container"><a href="/" class="logo"><span>J</span>aved</a><nav class="navbar"><ul class="nav-links"><li><a href="/#home">Home</a></li><li><a href="/#about">About</a></li><li><a href="/#experience">Experience</a></li><li><a href="/#skills">Skills</a></li><li><a href="/#projects">Projects</a></li><li><a href="/blog/">Blogs</a></li><li><a href="/#achievements">Achievements</a></li><li><a href="/#contact">Contact</a></li></ul></nav><a href="/#contact" class="hire-btn">Hire Me</a><div class="menu-toggle"><span></span><span></span><span></span></div></div></header>'''
+
+          common_css = '''<style id="blog-consistency-style">.blog-consistency-hero{margin:28px 0 45px}.blog-consistency-hero img{display:block;width:100%;height:430px;object-fit:cover;object-position:center;border-radius:20px}.blog-consistency-hero figcaption{margin-top:12px;color:var(--text);font-size:14px;line-height:1.6;text-align:center}.footer .footer-col h3 a{color:inherit}.footer .footer-col ul{margin:0;padding:0;list-style:none}.footer .footer-col li{margin:8px 0}@media(max-width:600px){.blog-consistency-hero img{height:260px}}</style>'''
+
+          for path in root.glob('blog/*/*.html'):
+              if path.name == 'index.html':
+                  continue
+              parts = path.parts
+              if len(parts) < 3 or parts[1] not in categories:
+                  continue
+              category = parts[1]
+              image, label = categories[category]
+              html = path.read_text(encoding='utf-8')
+
+              # Shared header/footer consistency.
+              html = re.sub(r'<header class="header">.*?</header>', header, html, count=1, flags=re.S)
+              html = re.sub(r'<footer class="footer">.*?</footer>', footer, html, count=1, flags=re.S)
+
+              # Remove any older blog hero/featured figure and insert the same visual system.
+              html = re.sub(r'<figure class="(?:heroimg|featured|blog-hero)">.*?</figure>', '', html, count=1, flags=re.S)
+              title = re.search(r'<h1[^>]*>(.*?)</h1>', html, flags=re.S)
+              title_text = re.sub(r'<[^>]+>', '', title.group(1)).strip() if title else label
+              alt = f'{label} visual related to {title_text}'
+              caption = f'{label}: a relevant visual supporting the article topic.'
+              figure = f'<figure class="blog-consistency-hero"><img src="{image}" width="1200" height="650" loading="eager" decoding="async" fetchpriority="high" title="{title_text}" alt="{alt}"><figcaption>{caption}</figcaption></figure>'
+
+              # Place the figure after the article intro/lead paragraph when possible.
+              marker = re.search(r'(<p[^>]*>.*?</p>)', html, flags=re.S)
+              if marker:
+                  pos = marker.end()
+                  html = html[:pos] + figure + html[pos:]
+              else:
+                  html = html.replace('</main>', figure + '</main>', 1)
+
+              # Add common visual CSS once.
+              html = re.sub(r'<style id="blog-consistency-style">.*?</style>', '', html, flags=re.S)
+              html = html.replace('</head>', common_css + '</head>', 1)
+
+              path.write_text(html, encoding='utf-8')
+
+      - name: Commit normalized pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add blog/*/*.html
+          if git diff --cached --quiet; then
+            echo "No blog changes needed."
+          else
+            git commit -m "Normalize blog pages [blog-normalized]"
+            git push
+          fi
