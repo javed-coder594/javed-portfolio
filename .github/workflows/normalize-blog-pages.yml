@@ -64,12 +64,12 @@ jobs:
               doc = doc.replace('</main>', figure+'</main>', 1)
             doc = re.sub(r'(<article\b)(?![^>]*data-visuals-ready)', r'\1 data-visuals-ready="true"', doc, count=1)
 
-            clean_url = 'https://javed-portfolio-jade.vercel.app/' + '/'.join(path.parts[1:]).replace('.html','') + '/'
+            clean_url = 'https://javed-portfolio-jade.vercel.app/blog/' + '/'.join(path.parts[1:]).replace('.html','') + '/'
             doc = re.sub(r'<link rel="canonical" href="[^"]+">', f'<link rel="canonical" href="{clean_url}">', doc, count=1)
 
             doc = re.sub(r'<footer class="footer">.*?</footer>', '', doc, flags=re.S)
+            doc = re.sub(r'<script src="/js/script\.js"></script>', '', doc)
             doc = doc.replace('</body>', footer + '\n<script src="/js/script.js"></script>\n</body>', 1)
-            doc = re.sub(r'(<script src="/js/script\.js"></script>\s*){2,}', '<script src="/js/script.js"></script>\n', doc)
 
             path.write_text(doc, encoding='utf-8')
 
@@ -82,4 +82,4 @@ jobs:
           git commit -m "Standardize blog pages and canonical URLs [blog-normalized]"
           git push
 
-# Triggered intentionally to normalize all existing blog pages.
+# Blog consistency normalization is intentionally applied to every article.
