@@ -64,11 +64,9 @@ jobs:
               doc = doc.replace('</main>', figure+'</main>', 1)
             doc = re.sub(r'(<article\b)(?![^>]*data-visuals-ready)', r'\1 data-visuals-ready="true"', doc, count=1)
 
-            # Use the clean trailing-slash URL consistently as the canonical URL.
             clean_url = 'https://javed-portfolio-jade.vercel.app/' + '/'.join(path.parts[1:]).replace('.html','') + '/'
             doc = re.sub(r'<link rel="canonical" href="[^"]+">', f'<link rel="canonical" href="{clean_url}">', doc, count=1)
 
-            # Every article gets the same footer. Remove any existing footer first to avoid duplicates.
             doc = re.sub(r'<footer class="footer">.*?</footer>', '', doc, flags=re.S)
             doc = doc.replace('</body>', footer + '\n<script src="/js/script.js"></script>\n</body>', 1)
             doc = re.sub(r'(<script src="/js/script\.js"></script>\s*){2,}', '<script src="/js/script.js"></script>\n', doc)
@@ -83,3 +81,5 @@ jobs:
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Standardize blog pages and canonical URLs [blog-normalized]"
           git push
+
+# Triggered intentionally to normalize all existing blog pages.
