@@ -13,25 +13,20 @@
     <link rel="stylesheet" href="/css/animation.css">
     <link rel="icon" type="image/svg+xml" href="/assests/favicon.svg">
     <style>
-        .blog-article { width:100%; }
-        .blog-post-content { width:min(900px, calc(100% - 40px)); margin:0 auto; padding:150px 0 90px; }
-        .blog-post-content h1 { margin:0 0 18px; line-height:1.15; font-size:clamp(32px,4vw,52px); }
-        .blog-post-meta { margin:0 0 28px; line-height:1.6; color:var(--text); }
-        .blog-post-hero { margin:0 0 42px; }
-        .blog-post-hero img { display:block; width:100%; height:auto; aspect-ratio:1200/650; object-fit:cover; border-radius:20px; }
-        .blog-post-hero figcaption { margin-top:10px; text-align:center; font-size:14px; line-height:1.6; color:var(--text); }
-        .blog-post-body > p { margin:0 0 20px; line-height:1.85; }
-        .blog-post-body > h2 { margin:42px 0 16px; line-height:1.3; }
-        .blog-post-body > h3 { margin:28px 0 10px; line-height:1.35; }
-        .blog-post-body img { max-width:100%; height:auto; border-radius:14px; }
-        .blog-post-body ul, .blog-post-body ol { margin:0 0 22px; padding-left:24px; line-height:1.8; }
-        .blog-post-body blockquote { margin:28px 0; padding:20px 24px; border-left:3px solid currentColor; }
-        @media(max-width:600px){
-            .blog-post-content { width:min(100% - 36px, 900px); padding:120px 0 60px; }
-            .blog-post-content h1 { margin-bottom:16px; }
-            .blog-post-hero { margin-bottom:32px; }
-            .blog-post-body > h2 { margin-top:34px; }
-        }
+        .blog-article{width:100%;}
+        .blog-post-content{width:min(900px,calc(100% - 40px));margin:0 auto;padding:150px 0 90px;}
+        .blog-post-content h1{margin:0 0 18px;line-height:1.15;font-size:clamp(32px,4vw,52px);}
+        .blog-post-meta{margin:0 0 28px;line-height:1.6;color:var(--text);}
+        .blog-post-hero{margin:0 0 42px;}
+        .blog-post-hero img{display:block;width:100%;height:auto;aspect-ratio:1200/650;object-fit:cover;border-radius:20px;}
+        .blog-post-hero figcaption{margin-top:10px;text-align:center;font-size:14px;line-height:1.6;color:var(--text);}
+        .blog-post-body>p{margin:0 0 20px;line-height:1.85;}
+        .blog-post-body>h2{margin:42px 0 16px;line-height:1.3;}
+        .blog-post-body>h3{margin:28px 0 10px;line-height:1.35;}
+        .blog-post-body img{max-width:100%;height:auto;border-radius:14px;}
+        .blog-post-body ul,.blog-post-body ol{margin:0 0 22px;padding-left:24px;line-height:1.8;}
+        .blog-post-body blockquote{margin:28px 0;padding:20px 24px;border-left:3px solid currentColor;}
+        @media(max-width:600px){.blog-post-content{width:min(100% - 36px,900px);padding:120px 0 60px;}.blog-post-content h1{margin-bottom:16px;}.blog-post-hero{margin-bottom:32px;}.blog-post-body>h2{margin-top:34px;}}
     </style>
 </head>
 <body>
@@ -50,6 +45,7 @@
     </article>
 </main>
 {{FOOTER}}
+{{SCHEMA}}
 <script src="/js/script.js"></script>
 </body>
 </html>
