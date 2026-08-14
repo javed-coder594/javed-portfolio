@@ -28,7 +28,20 @@ jobs:
             'local-seo':'Local SEO','wordpress-seo':'WordPress SEO','web-development':'Web Development'
           }
 
-          footer = '''<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-col"><a href="/" class="footer-logo"><span>J</span>aved</a><p>SEO Executive and WordPress Developer helping businesses improve online visibility, website performance, and organic growth.</p></div><div class="footer-col"><h3>Quick Links</h3><ul><li><a href="/#home">Home</a></li><li><a href="/#about">About</a></li><li><a href="/#experience">Experience</a></li><li><a href="/#skills">Skills</a></li><li><a href="/#projects">Projects</a></li><li><a href="/#achievements">Achievements</a></li><li><a href="/blog/">Blog</a></li><li><a href="/#contact">Contact</a></li></ul></div><div class="footer-col"><h3><a href="/blog/">Blogs</a></h3><ul><li><a href="/blog/technical-seo/">Technical SEO</a></li><li><a href="/blog/on-page-seo/">On-Page SEO</a></li><li><a href="/blog/off-page-seo/">Off-Page SEO</a></li><li><a href="/blog/local-seo/">Local SEO</a></li><li><a href="/blog/wordpress-seo/">WordPress SEO</a></li><li><a href="/blog/web-development/">Web Development</a></li></ul></div><div class="footer-col"><h3>Contact</h3><ul><li><i class="fas fa-envelope"></i> javedchaudhary594@gmail.com</li><li><i class="fas fa-phone"></i> +91 9390988594</li><li><i class="fas fa-location-dot"></i> Hyderabad, India</li></ul></div></div><div class="footer-bottom"><p>© 2026 <span>Javed Chaudhary</span>. All Rights Reserved.</p></div></div></footer>'''
+          # Keep the portfolio contact number consistent everywhere.
+          contact_files = [
+            root/'index.html', root/'blog.html', root/'blog/index.html',
+            root/'js/main.js', root/'js/script.js', root/'js/blog-shell.js'
+          ] + sorted(root.glob('blog/*/*.html'))
+          for contact_path in contact_files:
+            if contact_path.exists():
+              text = contact_path.read_text(encoding='utf-8')
+              text = text.replace('9390988594', '8459791852')
+              text = text.replace('9390988594', '8459791852')
+              text = text.replace('919390988594', '918459791852')
+              contact_path.write_text(text, encoding='utf-8')
+
+          footer = '''<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-col"><a href="/" class="footer-logo"><span>J</span>aved</a><p>SEO Executive and WordPress Developer helping businesses improve online visibility, website performance, and organic growth.</p></div><div class="footer-col"><h3>Quick Links</h3><ul><li><a href="/#home">Home</a></li><li><a href="/#about">About</a></li><li><a href="/#experience">Experience</a></li><li><a href="/#skills">Skills</a></li><li><a href="/#projects">Projects</a></li><li><a href="/#achievements">Achievements</a></li><li><a href="/blog/">Blog</a></li><li><a href="/#contact">Contact</a></li></ul></div><div class="footer-col"><h3><a href="/blog/">Blogs</a></h3><ul><li><a href="/blog/technical-seo/">Technical SEO</a></li><li><a href="/blog/on-page-seo/">On-Page SEO</a></li><li><a href="/blog/off-page-seo/">Off-Page SEO</a></li><li><a href="/blog/local-seo/">Local SEO</a></li><li><a href="/blog/wordpress-seo/">WordPress SEO</a></li><li><a href="/blog/web-development/">Web Development</a></li></ul></div><div class="footer-col"><h3>Contact</h3><ul><li><i class="fas fa-envelope"></i> javedchaudhary594@gmail.com</li><li><i class="fas fa-phone"></i> +91 8459791852</li><li><i class="fas fa-location-dot"></i> Hyderabad, India</li></ul></div></div><div class="footer-bottom"><p>© 2026 <span>Javed Chaudhary</span>. All Rights Reserved.</p></div></div></footer>'''
 
           def make_svg(path, title, label):
             digest = hashlib.sha256(path.as_posix().encode()).hexdigest()
@@ -77,9 +90,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add blog/*/*.html assests/images/blog-*.svg .github/workflows/normalize-blog-pages.yml
+          git add blog/*/*.html assests/images/blog-*.svg .github/workflows/normalize-blog-pages.yml index.html blog.html blog/index.html js/main.js js/script.js js/blog-shell.js
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "Standardize blog pages and canonical URLs [blog-normalized]"
+          git commit -m "Update contact number site-wide [blog-normalized]"
           git push
 
 # Blog consistency normalization is intentionally applied to every article.
