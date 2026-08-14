@@ -1,20 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Technical SEO Audit Checklist for Websites | Javed Chaudhary</title>
-<meta name="description" content="Use this technical SEO audit checklist to review crawlability, indexing, site speed, sitemaps, robots.txt, canonicals and structured data.">
-<meta name="author" content="Javed Chaudhary">
-<link rel="canonical" href="https://javed-portfolio-jade.vercel.app/blog/technical-seo/technical-seo-audit-checklist/">
-<link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/responsive.css"><link rel="stylesheet" href="/css/animation.css">
-<style id="blog-consistency-style">.blog-article .blog-post-content{max-width:900px;margin:0 auto;padding:150px 20px 90px}.blog-article .blog-post-content>h1{margin:0 0 28px;line-height:1.15;font-size:clamp(32px,4vw,52px)}.blog-article .blog-consistency-hero{margin:0 0 42px}.blog-article .blog-consistency-hero img{display:block;width:100%;height:auto;aspect-ratio:1200/650;object-fit:cover;border-radius:20px}.blog-article .blog-consistency-hero figcaption{margin-top:10px;color:var(--text);font-size:14px;line-height:1.6;text-align:center}.blog-article .blog-consistency-meta{margin:0 0 28px;line-height:1.6}.blog-article .blog-post-content>p{margin:0 0 20px;line-height:1.85}.blog-article .blog-post-content>h2{margin:42px 0 16px;line-height:1.3}.blog-article .blog-post-content>h3{margin:28px 0 10px;line-height:1.35}@media(max-width:600px){.blog-article .blog-post-content{padding:120px 18px 60px}.blog-article .blog-post-content>h1{margin-bottom:22px}.blog-article .blog-post-content>h2{margin-top:34px}.blog-article .blog-consistency-hero{margin-bottom:32px}}</style></head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical SEO Audit Checklist for Websites</title>
+    <meta name="description" content="Use this technical SEO audit checklist to review crawlability, indexing, site speed, sitemaps, robots.txt, canonicals and structured data.">
+    <meta name="author" content="Javed Chaudhary">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://javed-portfolio-jade.vercel.app/blog/technical-seo/technical-seo-audit-checklist/">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="/css/animation.css">
+    <link rel="icon" type="image/svg+xml" href="/assests/favicon.svg">
+    <style>
+        .blog-article{width:100%;}
+        .blog-post-content{width:min(900px,calc(100% - 40px));margin:0 auto;padding:150px 0 90px;}
+        .blog-post-content h1{margin:0 0 18px;line-height:1.15;font-size:clamp(32px,4vw,52px);}
+        .blog-post-meta{margin:0 0 28px;line-height:1.6;color:var(--text);}
+        .blog-post-hero{margin:0 0 42px;}
+        .blog-post-hero img{display:block;width:100%;height:auto;aspect-ratio:1200/650;object-fit:cover;border-radius:20px;}
+        .blog-post-hero figcaption{margin-top:10px;text-align:center;font-size:14px;line-height:1.6;color:var(--text);}
+        .blog-post-body>p{margin:0 0 20px;line-height:1.85;}
+        .blog-post-body>h2{margin:42px 0 16px;line-height:1.3;}
+        .blog-post-body>h3{margin:28px 0 10px;line-height:1.35;}
+        .blog-post-body img{max-width:100%;height:auto;border-radius:14px;}
+        .blog-post-body ul,.blog-post-body ol{margin:0 0 22px;padding-left:24px;line-height:1.8;}
+        .blog-post-body blockquote{margin:28px 0;padding:20px 24px;border-left:3px solid currentColor;}
+        @media(max-width:600px){.blog-post-content{width:min(100% - 36px,900px);padding:120px 0 60px;}.blog-post-content h1{margin-bottom:16px;}.blog-post-hero{margin-bottom:32px;}.blog-post-body>h2{margin-top:34px;}}
+    </style>
+</head>
 <body>
-<header class="header"><div class="container"><a href="/" class="logo"><span>J</span>aved</a><nav class="navbar"><ul class="nav-links"><li><a href="/#home">Home</a></li><li><a href="/#about">About</a></li><li><a href="/#experience">Experience</a></li><li><a href="/#skills">Skills</a></li><li><a href="/#projects">Projects</a></li><li><a href="/blog/">Blogs</a></li><li><a href="/#achievements">Achievements</a></li><li><a href="/#contact">Contact</a></li></ul></nav><a href="/#contact" class="hire-btn">Hire Me</a><div class="menu-toggle"><span></span><span></span><span></span></div></div></header>
-<main class="blog-article"><article class="container blog-post-content" data-visuals-ready="true">
-<h1>Technical SEO Audit Checklist for Websites</h1>
+<!-- Shared Header -->
+<header class="header">
+    <div class="container">
+        <a href="/" class="logo"><span>J</span>aved</a>
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="/#home">Home</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#experience">Experience</a></li>
+                <li><a href="/#skills">Skills</a></li>
+                <li><a href="/#projects">Projects</a></li>
+                <li><a href="/blog/">Blogs</a></li>
+                <li><a href="/#achievements">Achievements</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="/#contact" class="hire-btn">Hire Me</a>
+        <div class="menu-toggle"><span></span><span></span><span></span></div>
+    </div>
+</header>
 
-<p class="blog-consistency-meta"><strong>Technical SEO</strong> · Written by Javed Chaudhary</p><figure class="blog-consistency-hero"><img src="/assests/images/blog-technical-seo-audit-checklist.svg" width="1200" height="650" loading="eager" decoding="async" fetchpriority="high" title="Technical SEO Audit Checklist for Websites" alt="Technical SEO visual related to Technical SEO Audit Checklist for Websites"><figcaption>Technical SEO: a relevant visual supporting the article topic.</figcaption></figure>
+<main class="blog-article">
+    <article class="blog-post-content">
+        <h1>Technical SEO Audit Checklist for Websites</h1>
+        <p class="blog-post-meta"><strong>Technical SEO</strong> · Written by Javed Chaudhary</p>
+        <figure class="blog-post-hero">
+            <img src="/assests/images/blog-technical-seo-audit-checklist.svg" width="1200" height="650" loading="eager" decoding="async" fetchpriority="high" title="Technical SEO Audit Checklist for Websites" alt="Technical SEO visual related to Technical SEO Audit Checklist for Websites">
+            <figcaption>Technical SEO: a relevant visual supporting the article topic.</figcaption>
+        </figure>
+        <div class="blog-post-body">
 <p>A website can have excellent content and still struggle in search if search engines cannot crawl, understand, or index its important pages. A <strong>technical SEO audit</strong> is a practical way to find those problems before they become a bigger visibility issue.</p>
 <p>This checklist focuses on the areas worth checking first: crawlability, indexability, URLs, sitemaps, robots.txt, canonical tags, structured data, mobile experience and performance. The goal is not to make a website technically complicated. It is to remove avoidable barriers between useful pages and search engines.</p>
 <h2>1. Check crawlability first</h2>
@@ -45,23 +90,57 @@
 <h3>Where can I learn more about Google Search guidance?</h3><p>Google Search Central provides official documentation on crawling, indexing, structured data and helpful content.</p>
 <p><strong>Internal links:</strong> Learn more through the <a href="/blog/technical-seo/">Technical SEO category</a>, explore <a href="/blog/on-page-seo/">On-Page SEO guides</a>, or return to the <a href="/">Javed Chaudhary portfolio</a>.</p>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a technical SEO audit?","acceptedAnswer":{"@type":"Answer","text":"It is a structured review of the technical factors that affect crawling, indexing, understanding and page experience."}},{"@type":"Question","name":"How often should a technical SEO audit be done?","acceptedAnswer":{"@type":"Answer","text":"There is no universal schedule. A full review can be useful after major site changes, migrations or recurring technical issues, with lighter monitoring between audits."}},{"@type":"Question","name":"Is an XML sitemap enough for SEO?","acceptedAnswer":{"@type":"Answer","text":"No. A sitemap helps discovery, but strong internal linking, crawlable pages and sound indexation controls are also important."}},{"@type":"Question","name":"Does technical SEO replace content SEO?","acceptedAnswer":{"@type":"Answer","text":"No. Technical SEO helps search engines access and understand a site, while useful content satisfies the searcher's need. Both work together."}},{"@type":"Question","name":"Where can I learn more about Google Search guidance?","acceptedAnswer":{"@type":"Answer","text":"Google Search Central provides official documentation on crawling, indexing, structured data and helpful content."}}]}</script>
-</article></main>
-<!-- blog-template-refresh -->
+        </div>
+    </article>
+</main>
+<!-- Shared Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="/" class="footer-logo"><span>J</span>aved</a>
+                <p>SEO Executive and WordPress Developer helping businesses improve online visibility, website performance, and organic growth.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/#home">Home</a></li>
+                    <li><a href="/#about">About</a></li>
+                    <li><a href="/#experience">Experience</a></li>
+                    <li><a href="/#skills">Skills</a></li>
+                    <li><a href="/#projects">Projects</a></li>
+                    <li><a href="/#achievements">Achievements</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3><a href="/blog/">Blogs</a></h3>
+                <ul>
+                    <li><a href="/blog/technical-seo/">Technical SEO</a></li>
+                    <li><a href="/blog/on-page-seo/">On-Page SEO</a></li>
+                    <li><a href="/blog/off-page-seo/">Off-Page SEO</a></li>
+                    <li><a href="/blog/local-seo/">Local SEO</a></li>
+                    <li><a href="/blog/wordpress-seo/">WordPress SEO</a></li>
+                    <li><a href="/blog/web-development/">Web Development</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact</h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> javedchaudhary594@gmail.com</li>
+                    <li><i class="fas fa-phone"></i> +91 8459791852</li>
+                    <li><i class="fas fa-location-dot"></i> Hyderabad, India</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 <span>Javed Chaudhary</span>. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-col"><a href="/" class="footer-logo"><span>J</span>aved</a><p>SEO Executive and WordPress Developer helping businesses improve online visibility, website performance, and organic growth.</p></div><div class="footer-col"><h3>Quick Links</h3><ul><li><a href="/#home">Home</a></li><li><a href="/#about">About</a></li><li><a href="/#experience">Experience</a></li><li><a href="/#skills">Skills</a></li><li><a href="/#projects">Projects</a></li><li><a href="/#achievements">Achievements</a></li><li><a href="/blog/">Blog</a></li><li><a href="/#contact">Contact</a></li></ul></div><div class="footer-col"><h3><a href="/blog/">Blogs</a></h3><ul><li><a href="/blog/technical-seo/">Technical SEO</a></li><li><a href="/blog/on-page-seo/">On-Page SEO</a></li><li><a href="/blog/off-page-seo/">Off-Page SEO</a></li><li><a href="/blog/local-seo/">Local SEO</a></li><li><a href="/blog/wordpress-seo/">WordPress SEO</a></li><li><a href="/blog/web-development/">Web Development</a></li></ul></div><div class="footer-col"><h3>Contact</h3><ul><li><i class="fas fa-envelope"></i> javedchaudhary594@gmail.com</li><li><i class="fas fa-phone"></i> +91 8459791852</li><li><i class="fas fa-location-dot"></i> Hyderabad, India</li></ul></div></div><div class="footer-bottom"><p>© 2026 <span>Javed Chaudhary</span>. All Rights Reserved.</p></div></div></footer>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a technical SEO audit?","acceptedAnswer":{"@type":"Answer","text":"It is a structured review of the technical factors that affect crawling, indexing, understanding and page experience."}},{"@type":"Question","name":"How often should a technical SEO audit be done?","acceptedAnswer":{"@type":"Answer","text":"There is no universal schedule. A full review can be useful after major site changes, migrations or recurring technical issues, with lighter monitoring between audits."}},{"@type":"Question","name":"Is an XML sitemap enough for SEO?","acceptedAnswer":{"@type":"Answer","text":"No. A sitemap helps discovery, but strong internal linking, crawlable pages and sound indexation controls are also important."}},{"@type":"Question","name":"Does technical SEO replace content SEO?","acceptedAnswer":{"@type":"Answer","text":"No. Technical SEO helps search engines access and understand a site, while useful content satisfies the searcher's need. Both work together."}},{"@type":"Question","name":"Where can I learn more about Google Search guidance?","acceptedAnswer":{"@type":"Answer","text":"Google Search Central provides official documentation on crawling, indexing, structured data and helpful content."}}]}</script>
 <script src="/js/script.js"></script>
-</body></html>
+</body>
+</html>
