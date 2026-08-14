@@ -1,4 +1,4 @@
-name: Normalize Blog Pages
+name: Build Reusable Blog Pages
 
 on:
   push:
@@ -16,83 +16,119 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Fix article visuals and page consistency
+      - name: Build every article from the master template
         shell: python
         run: |
           from pathlib import Path
-          import hashlib, html, re
+          import html, re
 
           root = Path('.')
           labels = {
-            'technical-seo':'Technical SEO','on-page-seo':'On-Page SEO','off-page-seo':'Off-Page SEO',
-            'local-seo':'Local SEO','wordpress-seo':'WordPress SEO','web-development':'Web Development'
+              'technical-seo': 'Technical SEO',
+              'on-page-seo': 'On-Page SEO',
+              'off-page-seo': 'Off-Page SEO',
+              'local-seo': 'Local SEO',
+              'wordpress-seo': 'WordPress SEO',
+              'web-development': 'Web Development'
           }
 
-          # Keep the portfolio contact number consistent everywhere.
-          contact_files = [
-            root/'index.html', root/'blog.html', root/'blog/index.html',
-            root/'js/main.js', root/'js/script.js', root/'js/blog-shell.js'
-          ] + sorted(root.glob('blog/*/*.html'))
-          for contact_path in contact_files:
-            if contact_path.exists():
-              text = contact_path.read_text(encoding='utf-8')
-              text = text.replace('9390988594', '8459791852')
-              text = text.replace('9390988594', '8459791852')
-              text = text.replace('919390988594', '918459791852')
-              contact_path.write_text(text, encoding='utf-8')
+          template = (root / 'templates' / 'blog-post.html').read_text(encoding='utf-8')
+          header = (root / 'components' / 'header.html').read_text(encoding='utf-8')
+          footer = (root / 'components' / 'footer.html').read_text(encoding='utf-8')
 
-          footer = '''<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-col"><a href="/" class="footer-logo"><span>J</span>aved</a><p>SEO Executive and WordPress Developer helping businesses improve online visibility, website performance, and organic growth.</p></div><div class="footer-col"><h3>Quick Links</h3><ul><li><a href="/#home">Home</a></li><li><a href="/#about">About</a></li><li><a href="/#experience">Experience</a></li><li><a href="/#skills">Skills</a></li><li><a href="/#projects">Projects</a></li><li><a href="/#achievements">Achievements</a></li><li><a href="/blog/">Blog</a></li><li><a href="/#contact">Contact</a></li></ul></div><div class="footer-col"><h3><a href="/blog/">Blogs</a></h3><ul><li><a href="/blog/technical-seo/">Technical SEO</a></li><li><a href="/blog/on-page-seo/">On-Page SEO</a></li><li><a href="/blog/off-page-seo/">Off-Page SEO</a></li><li><a href="/blog/local-seo/">Local SEO</a></li><li><a href="/blog/wordpress-seo/">WordPress SEO</a></li><li><a href="/blog/web-development/">Web Development</a></li></ul></div><div class="footer-col"><h3>Contact</h3><ul><li><i class="fas fa-envelope"></i> javedchaudhary594@gmail.com</li><li><i class="fas fa-phone"></i> +91 8459791852</li><li><i class="fas fa-location-dot"></i> Hyderabad, India</li></ul></div></div><div class="footer-bottom"><p>© 2026 <span>Javed Chaudhary</span>. All Rights Reserved.</p></div></div></footer>'''
+          def meta(doc, name):
+              m = re.search(r'<meta[^>]+name=["\']' + re.escape(name) + r'["\'][^>]+content=["\']([^"\']*)["\']', doc, re.I)
+              if not m:
+                  m = re.search(r'<meta[^>]+content=["\']([^"\']*)["\'][^>]+name=["\']' + re.escape(name) + r'["\']', doc, re.I)
+              return html.unescape(m.group(1).strip()) if m else ''
 
-          def make_svg(path, title, label):
-            digest = hashlib.sha256(path.as_posix().encode()).hexdigest()
-            accent = ['#FFD400','#4C9AFF','#7EE787','#C084FC'][int(digest[:2],16)%4]
-            variant = int(digest[2:4],16)%4
-            motifs = [
-              f'<path d="M735 405 L805 330 L865 365 L945 250 L1020 300" fill="none" stroke="{accent}" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><circle cx="1020" cy="300" r="13" fill="{accent}"/>',
-              f'<circle cx="880" cy="315" r="92" fill="none" stroke="#2A3442" stroke-width="24"/><path d="M880 315 L945 250" stroke="{accent}" stroke-width="14" stroke-linecap="round"/><circle cx="880" cy="315" r="14" fill="{accent}"/>',
-              f'<circle cx="785" cy="300" r="34" fill="{accent}"/><circle cx="1010" cy="245" r="28" fill="{accent}"/><circle cx="900" cy="390" r="30" fill="#9AA9BD"/><path d="M810 300 L875 375 L980 250" fill="none" stroke="#E8EEF6" stroke-width="8"/>',
-              f'<rect x="750" y="210" width="260" height="150" rx="16" fill="none" stroke="{accent}" stroke-width="10"/><path d="M790 410 H970" stroke="#9AA9BD" stroke-width="10" stroke-linecap="round"/><path d="M820 255 H940 M820 290 H900" stroke="#E8EEF6" stroke-width="10" stroke-linecap="round"/>'
-            ][variant]
-            title = html.escape(title[:58]); label = html.escape(label.upper())
-            svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 650"><defs><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0D1117"/><stop offset="1" stop-color="#111925"/></linearGradient><radialGradient id="g"><stop stop-color="{accent}" stop-opacity=".16"/><stop offset="1" stop-color="{accent}" stop-opacity="0"/></radialGradient></defs><rect width="1200" height="650" rx="28" fill="url(#b)"/><rect width="1200" height="650" rx="28" fill="url(#g)"/><circle cx="88" cy="92" r="9" fill="{accent}"/><text x="115" y="102" fill="{accent}" font-family="Arial" font-size="24" font-weight="700" letter-spacing="3">{label}</text><text x="80" y="205" fill="#F5F7FA" font-family="Arial" font-size="52" font-weight="700">SEO</text><text x="80" y="270" fill="#F5F7FA" font-family="Arial" font-size="52" font-weight="700">INSIGHT</text><rect x="80" y="315" width="430" height="6" rx="3" fill="{accent}"/><text x="80" y="375" fill="#9AA9BD" font-family="Arial" font-size="23">{html.escape(label)} · article visual</text><text x="80" y="420" fill="#DDE5EF" font-family="Arial" font-size="20">{title}</text><rect x="700" y="155" width="360" height="300" rx="24" fill="#151C26" stroke="#2A3442"/>{motifs}<text x="80" y="575" fill="#65758A" font-family="Arial" font-size="16">JAVED CHAUDHARY · SEO &amp; WEBSITE GROWTH</text></svg>'''
-            filename = 'blog-' + path.stem + '.svg'
-            asset = root/'assests'/'images'/filename
-            asset.write_text(svg, encoding='utf-8')
-            return '/assests/images/' + filename
+          def title_text(doc, path):
+              m = re.search(r'<h1[^>]*>(.*?)</h1>', doc, re.S | re.I)
+              if m:
+                  return re.sub(r'<[^>]+>', '', m.group(1)).strip()
+              m = re.search(r'<title>(.*?)</title>', doc, re.S | re.I)
+              if m:
+                  value = re.sub(r'\s*\|\s*Javed Chaudhary.*$', '', re.sub(r'<[^>]+>', '', m.group(1)).strip())
+                  return html.unescape(value)
+              return path.stem.replace('-', ' ').title()
+
+          def extract_content(doc):
+              body = re.search(r'<div class="blog-post-body">(.*?)</div>\s*</article>', doc, re.S | re.I)
+              if body:
+                  content = body.group(1).strip()
+              else:
+                  article = re.search(r'<article\b[^>]*>(.*?)</article>', doc, re.S | re.I)
+                  content = article.group(1).strip() if article else ''
+                  content = re.sub(r'<h1[^>]*>.*?</h1>', '', content, count=1, flags=re.S | re.I)
+                  content = re.sub(r'<p[^>]*class=["\'][^"\']*blog-(?:consistency-)?meta[^"\']*["\'][^>]*>.*?</p>', '', content, count=1, flags=re.S | re.I)
+                  content = re.sub(r'<figure[^>]*class=["\'][^"\']*(?:blog-post-hero|blog-consistency-hero|heroimg|featured|blog-hero)[^"\']*["\'][^>]*>.*?</figure>', '', content, count=1, flags=re.S | re.I)
+              return content.strip()
+
+          def extract_schema(doc):
+              scripts = re.findall(r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>.*?</script>', doc, re.S | re.I)
+              return '\n'.join(scripts).strip()
+
+          def extract_image(doc, path, title, category):
+              m = re.search(r'<img[^>]+src=["\']([^"\']+)["\'][^>]*>', doc, re.S | re.I)
+              if m and '/assests/images/' in m.group(1):
+                  return m.group(1)
+              image = '/assests/images/blog-' + path.stem + '.svg'
+              if not (root / image.lstrip('/')).exists():
+                  image_path = root / 'assests' / 'images' / ('blog-' + path.stem + '.svg')
+                  image_path.write_text(
+                      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 650"><rect width="1200" height="650" fill="#0D1117"/><text x="80" y="210" fill="#F5F7FA" font-family="Arial" font-size="52" font-weight="700">SEO INSIGHT</text><text x="80" y="290" fill="#4C9AFF" font-family="Arial" font-size="25">' + html.escape(category.upper()) + '</text><text x="80" y="380" fill="#DDE5EF" font-family="Arial" font-size="22">' + html.escape(title[:65]) + '</text></svg>',
+                      encoding='utf-8'
+                  )
+              return image
+
+          # Keep the current contact number consistent in all source pages/scripts.
+          for p in [root/'index.html', root/'blog.html', root/'blog/index.html', root/'js/main.js', root/'js/script.js', root/'js/blog-shell.js']:
+              if p.exists():
+                  text = p.read_text(encoding='utf-8').replace('9390988594', '8459791852').replace('919390988594', '918459791852')
+                  p.write_text(text, encoding='utf-8')
 
           for path in sorted(root.glob('blog/*/*.html')):
-            if path.name == 'index.html' or len(path.parts) < 3 or path.parts[1] not in labels:
-              continue
-            label = labels[path.parts[1]]
-            doc = path.read_text(encoding='utf-8')
-            h1 = re.search(r'<h1[^>]*>(.*?)</h1>', doc, re.S)
-            title = re.sub(r'<[^>]+>', '', h1.group(1)).strip() if h1 else path.stem.replace('-',' ')
-            image = make_svg(path, title, label)
-            figure = f'<figure class="blog-consistency-hero"><img src="{image}" width="1200" height="650" loading="eager" decoding="async" fetchpriority="high" title="{html.escape(title)}" alt="{html.escape(label + " visual related to " + title)}"><figcaption>{html.escape(label + ": a relevant visual supporting the article topic.")}</figcaption></figure>'
-            doc = re.sub(r'<figure class="(?:heroimg|featured|blog-hero|blog-consistency-hero)">.*?</figure>', '', doc, flags=re.S)
-            m = re.search(r'(<p[^>]*>.*?</p>)', doc, re.S)
-            if m:
-              doc = doc[:m.end()] + figure + doc[m.end():]
-            else:
-              doc = doc.replace('</main>', figure+'</main>', 1)
-            doc = re.sub(r'(<article\b)(?![^>]*data-visuals-ready)', r'\1 data-visuals-ready="true"', doc, count=1)
+              category_key = path.parts[1]
+              if path.name == 'index.html' or category_key not in labels:
+                  continue
 
-            clean_url = 'https://javed-portfolio-jade.vercel.app/blog/' + '/'.join(path.parts[1:]).replace('.html','') + '/'
-            doc = re.sub(r'<link rel="canonical" href="[^"]+">', f'<link rel="canonical" href="{clean_url}">', doc, count=1)
+              doc = path.read_text(encoding='utf-8')
+              title = title_text(doc, path)
+              description = meta(doc, 'description') or f'{title} - SEO guide by Javed Chaudhary.'
+              category = labels[category_key]
+              canonical = 'https://javed-portfolio-jade.vercel.app/' + '/'.join(path.parts[:-1]) + '/' + path.stem + '/'
+              image = extract_image(doc, path, title, category)
+              content = extract_content(doc)
+              schema = extract_schema(doc)
 
-            doc = re.sub(r'<footer class="footer">.*?</footer>', '', doc, flags=re.S)
-            doc = re.sub(r'<script src="/js/script\.js"></script>', '', doc)
-            doc = doc.replace('</body>', footer + '\n<script src="/js/script.js"></script>\n</body>', 1)
+              replacements = {
+                  '{{TITLE}}': html.escape(title, quote=True),
+                  '{{TITLE_TEXT}}': html.escape(title),
+                  '{{DESCRIPTION}}': html.escape(description, quote=True),
+                  '{{CANONICAL}}': canonical,
+                  '{{CATEGORY}}': html.escape(category),
+                  '{{IMAGE}}': html.escape(image, quote=True),
+                  '{{IMAGE_ALT}}': html.escape(category + ' visual related to ' + title, quote=True),
+                  '{{HEADER}}': header,
+                  '{{FOOTER}}': footer,
+                  '{{CONTENT}}': content,
+                  '{{SCHEMA}}': schema
+              }
 
-            path.write_text(doc, encoding='utf-8')
+              output = template
+              for key, value in replacements.items():
+                  output = output.replace(key, value)
+              path.write_text(output, encoding='utf-8')
 
-      - name: Commit fixes
+      - name: Commit normalized pages
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add blog/*/*.html assests/images/blog-*.svg .github/workflows/normalize-blog-pages.yml index.html blog.html blog/index.html js/main.js js/script.js js/blog-shell.js
+          git add blog/*/*.html assests/images/blog-*.svg components/ templates/ .github/workflows/normalize-blog-pages.yml index.html blog.html blog/index.html js/main.js js/script.js js/blog-shell.js
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "Update contact number site-wide [blog-normalized]"
+          git commit -m "Build reusable blog templates and shared components [blog-normalized]"
           git push
 
-# Blog consistency normalization is intentionally applied to every article.
+# All article pages are generated from templates/blog-post.html.
+# Header source: components/header.html
+# Footer source: components/footer.html
