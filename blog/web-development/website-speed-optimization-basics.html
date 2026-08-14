@@ -23,10 +23,15 @@
         .blog-post-body>p{margin:0 0 20px;line-height:1.85;}
         .blog-post-body>h2{margin:42px 0 16px;line-height:1.3;}
         .blog-post-body>h3{margin:28px 0 10px;line-height:1.35;}
-        .blog-post-body img{max-width:100%;height:auto;border-radius:14px;}
+        .blog-post-body img,.blog-post-body figure{display:none;}
         .blog-post-body ul,.blog-post-body ol{margin:0 0 22px;padding-left:24px;line-height:1.8;}
         .blog-post-body blockquote{margin:28px 0;padding:20px 24px;border-left:3px solid currentColor;}
-        @media(max-width:600px){.blog-post-content{width:min(100% - 36px,900px);padding:120px 0 60px;}.blog-post-content h1{margin-bottom:16px;}.blog-post-hero{margin-bottom:32px;}.blog-post-body>h2{margin-top:34px;}}
+        .blog-faq{margin-top:48px;}
+        .blog-faq h2{margin:0 0 22px;line-height:1.3;}
+        .blog-faq-item{margin:0 0 26px;}
+        .blog-faq-item h3{margin:0 0 9px;line-height:1.4;}
+        .blog-faq-item p{margin:0;line-height:1.8;}
+        @media(max-width:600px){.blog-post-content{width:min(100% - 36px,900px);padding:120px 0 60px;}.blog-post-content h1{margin-bottom:16px;}.blog-post-hero{margin-bottom:32px;}.blog-post-body>h2{margin-top:34px;}.blog-faq{margin-top:40px;}}
     </style>
 </head>
 <body>
@@ -61,6 +66,10 @@
         </figure>
         <div class="blog-post-body">
 <p>A website can look polished and still feel slow. Heavy images, unnecessary JavaScript, third-party widgets and inefficient assets can all increase the work a browser needs to do. <strong>Website speed optimization basics</strong> give developers a practical starting point before they move into more advanced performance work.</p><h2>Measure before changing</h2><p>Start with representative pages instead of optimizing a single homepage in isolation. Check the pages that receive meaningful traffic and use more than one testing method when possible. The goal is to identify the resources and interactions that create real user friction.</p><h2>Optimize images first</h2><p>Images are often among the largest assets on a page. Resize images to a sensible display size, compress them and use an appropriate format. A high-resolution source should not be downloaded when a much smaller image is displayed on a phone.</p><h2>Reduce unnecessary JavaScript</h2><p>Review scripts that are loaded on every page. If a feature is only needed on one template, avoid loading its code site-wide. Remove obsolete libraries and third-party tools that no longer provide meaningful value. Smaller script workloads can also make interaction feel more responsive.</p><h2>Load fonts carefully</h2><p>Multiple font families, weights and external requests can add overhead. Keep the font system focused and load only the weights the design actually uses. Where appropriate, consider how fallback fonts affect the initial rendering experience.</p><h2>Use caching and efficient delivery</h2><p>Static assets can often benefit from browser and server caching. A good deployment strategy should avoid forcing visitors to download unchanged files repeatedly. Compression and efficient delivery can also reduce transfer size.</p><h2>Keep third-party tools under control</h2><p>Analytics, chat widgets, social embeds and advertising scripts can add network requests and execution work. Review whether every third-party feature is necessary and understand what it adds to the page before including it.</p><h2>Think about mobile users</h2><p>A page that feels fast on a powerful desktop connection may behave differently on a mobile device. Test real layouts and interactions at smaller widths. Keep large media and unnecessary scripts from becoming a bottleneck on slower connections.</p><h2>Connect performance with SEO</h2><p>Performance is one part of a broader technical foundation. Developers should also maintain crawlable links, clear HTML, useful metadata and stable page structure. The <a href="/blog/web-development/">Web Development category</a> provides the broader development context, while the <a href="/blog/technical-seo/technical-seo-crawlability-checklist.html">Technical SEO crawlability checklist</a> covers discovery and access.</p><h2>Simple performance checklist</h2><ul><li>Measure representative pages before changes.</li><li>Resize and compress important images.</li><li>Remove unused scripts and libraries.</li><li>Limit unnecessary font requests.</li><li>Use sensible caching and compression.</li><li>Review third-party resources.</li><li>Test mobile performance after major changes.</li></ul><section class="faq"><h2>Frequently Asked Questions</h2><div><h3>What is website speed optimization?</h3><p>It is the process of reducing unnecessary work and resource weight so pages load and respond more efficiently.</p></div><div><h3>Which website asset should be optimized first?</h3><p>Start with the largest or most impactful resources identified by measurement, often images or heavy scripts.</p></div><div><h3>Can too many third-party scripts slow a website?</h3><p>Yes. Third-party tools can create extra network requests and browser work.</p></div><div><h3>Should speed be tested only on desktop?</h3><p>No. Mobile conditions are important because devices and network speeds vary significantly.</p></div></section><a class="back" href="/blog/web-development/">← Back to Web Development</a>
+            <section class="blog-faq" aria-labelledby="blog-faq-title">
+                <h2 id="blog-faq-title">Frequently Asked Questions</h2>
+{{FAQ}}
+            </section>
         </div>
     </article>
 </main>

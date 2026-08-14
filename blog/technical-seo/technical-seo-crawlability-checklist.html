@@ -23,10 +23,15 @@
         .blog-post-body>p{margin:0 0 20px;line-height:1.85;}
         .blog-post-body>h2{margin:42px 0 16px;line-height:1.3;}
         .blog-post-body>h3{margin:28px 0 10px;line-height:1.35;}
-        .blog-post-body img{max-width:100%;height:auto;border-radius:14px;}
+        .blog-post-body img,.blog-post-body figure{display:none;}
         .blog-post-body ul,.blog-post-body ol{margin:0 0 22px;padding-left:24px;line-height:1.8;}
         .blog-post-body blockquote{margin:28px 0;padding:20px 24px;border-left:3px solid currentColor;}
-        @media(max-width:600px){.blog-post-content{width:min(100% - 36px,900px);padding:120px 0 60px;}.blog-post-content h1{margin-bottom:16px;}.blog-post-hero{margin-bottom:32px;}.blog-post-body>h2{margin-top:34px;}}
+        .blog-faq{margin-top:48px;}
+        .blog-faq h2{margin:0 0 22px;line-height:1.3;}
+        .blog-faq-item{margin:0 0 26px;}
+        .blog-faq-item h3{margin:0 0 9px;line-height:1.4;}
+        .blog-faq-item p{margin:0;line-height:1.8;}
+        @media(max-width:600px){.blog-post-content{width:min(100% - 36px,900px);padding:120px 0 60px;}.blog-post-content h1{margin-bottom:16px;}.blog-post-hero{margin-bottom:32px;}.blog-post-body>h2{margin-top:34px;}.blog-faq{margin-top:40px;}}
     </style>
 </head>
 <body>
@@ -81,6 +86,10 @@
 <ul><li>Important pages are not accidentally blocked.</li><li>The XML sitemap contains clean, canonical URLs.</li><li>Important pages have internal links.</li><li>Broken links and unnecessary redirect chains are addressed.</li><li>Canonical URLs are consistent with the site structure.</li><li>Important pages work well on mobile.</li><li>Search Console is used to validate representative URLs.</li></ul>
 <section class="faq"><h2>Frequently Asked Questions</h2><div class="faq-item"><h3>What is the main goal of a Technical SEO crawlability checklist?</h3><p>It helps confirm that important pages can be discovered and accessed while unnecessary URLs are controlled.</p></div><div class="faq-item"><h3>Does an XML sitemap guarantee indexing?</h3><p>No. It helps with URL discovery, but indexing depends on several quality and technical signals.</p></div><div class="faq-item"><h3>Can robots.txt remove a page from Google?</h3><p>Robots.txt primarily controls crawling. It should not be treated as a guaranteed removal mechanism for search results.</p></div><div class="faq-item"><h3>Why are internal links important for crawlability?</h3><p>Internal links provide discoverable paths between related pages and help search engines understand site structure.</p></div></section>
 <a class="back" href="/blog/technical-seo/">← Back to Technical SEO</a>
+            <section class="blog-faq" aria-labelledby="blog-faq-title">
+                <h2 id="blog-faq-title">Frequently Asked Questions</h2>
+{{FAQ}}
+            </section>
         </div>
     </article>
 </main>
