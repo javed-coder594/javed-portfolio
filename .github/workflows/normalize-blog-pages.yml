@@ -24,101 +24,81 @@ jobs:
 
           root = Path('.')
           labels = {
-              'technical-seo': 'Technical SEO',
-              'on-page-seo': 'On-Page SEO',
-              'off-page-seo': 'Off-Page SEO',
-              'local-seo': 'Local SEO',
-              'wordpress-seo': 'WordPress SEO',
-              'web-development': 'Web Development'
+              'technical-seo': 'Technical SEO', 'on-page-seo': 'On-Page SEO',
+              'off-page-seo': 'Off-Page SEO', 'local-seo': 'Local SEO',
+              'wordpress-seo': 'WordPress SEO', 'web-development': 'Web Development'
           }
 
-          template = (root / 'templates' / 'blog-post.html').read_text(encoding='utf-8')
-          header = (root / 'components' / 'header.html').read_text(encoding='utf-8')
-          footer = (root / 'components' / 'footer.html').read_text(encoding='utf-8')
+          template = (root/'templates/blog-post.html').read_text(encoding='utf-8')
+          header = (root/'components/header.html').read_text(encoding='utf-8')
+          footer = (root/'components/footer.html').read_text(encoding='utf-8')
 
           def meta(doc, name):
-              m = re.search(r'<meta[^>]+name=["\']' + re.escape(name) + r'["\'][^>]+content=["\']([^"\']*)["\']', doc, re.I)
+              m = re.search(r'<meta[^>]+name=["\']'+re.escape(name)+r'["\'][^>]+content=["\']([^"\']*)["\']', doc, re.I)
               if not m:
-                  m = re.search(r'<meta[^>]+content=["\']([^"\']*)["\'][^>]+name=["\']' + re.escape(name) + r'["\']', doc, re.I)
+                  m = re.search(r'<meta[^>]+content=["\']([^"\']*)["\'][^>]+name=["\']'+re.escape(name)+r'["\']', doc, re.I)
               return html.unescape(m.group(1).strip()) if m else ''
 
           def title_text(doc, path):
-              m = re.search(r'<h1[^>]*>(.*?)</h1>', doc, re.S | re.I)
-              if m:
-                  return re.sub(r'<[^>]+>', '', m.group(1)).strip()
-              m = re.search(r'<title>(.*?)</title>', doc, re.S | re.I)
-              if m:
-                  value = re.sub(r'\s*\|\s*Javed Chaudhary.*$', '', re.sub(r'<[^>]+>', '', m.group(1)).strip())
-                  return html.unescape(value)
+              m = re.search(r'<h1[^>]*>(.*?)</h1>', doc, re.S|re.I)
+              if m: return re.sub(r'<[^>]+>', '', m.group(1)).strip()
+              m = re.search(r'<title>(.*?)</title>', doc, re.S|re.I)
+              if m: return re.sub(r'\s*\|\s*Javed Chaudhary.*$', '', re.sub(r'<[^>]+>', '', m.group(1)).strip())
               return path.stem.replace('-', ' ').title()
 
           def extract_content(doc):
-              body = re.search(r'<div class="blog-post-body">(.*?)</div>\s*</article>', doc, re.S | re.I)
+              body = re.search(r'<div class="blog-post-body">(.*?)</div>\s*</article>', doc, re.S|re.I)
               if body:
                   content = body.group(1).strip()
               else:
-                  article = re.search(r'<article\b[^>]*>(.*?)</article>', doc, re.S | re.I)
+                  article = re.search(r'<article\b[^>]*>(.*?)</article>', doc, re.S|re.I)
                   content = article.group(1).strip() if article else ''
-                  content = re.sub(r'<h1[^>]*>.*?</h1>', '', content, count=1, flags=re.S | re.I)
-                  content = re.sub(r'<p[^>]*class=["\'][^"\']*blog-(?:consistency-)?meta[^"\']*["\'][^>]*>.*?</p>', '', content, count=1, flags=re.S | re.I)
-                  content = re.sub(r'<figure[^>]*class=["\'][^"\']*(?:blog-post-hero|blog-consistency-hero|heroimg|featured|blog-hero)[^"\']*["\'][^>]*>.*?</figure>', '', content, count=1, flags=re.S | re.I)
+                  content = re.sub(r'<h1[^>]*>.*?</h1>', '', content, count=1, flags=re.S|re.I)
+                  content = re.sub(r'<p[^>]*class=["\'][^"\']*blog-(?:consistency-)?meta[^"\']*["\'][^>]*>.*?</p>', '', content, count=1, flags=re.S|re.I)
+                  content = re.sub(r'<figure[^>]*class=["\'][^"\']*(?:blog-post-hero|blog-consistency-hero|heroimg|featured|blog-hero)[^"\']*["\'][^>]*>.*?</figure>', '', content, count=1, flags=re.S|re.I)
+              # Never place JSON-LD inside the visible article body.
+              content = re.sub(r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>.*?</script>', '', content, flags=re.S|re.I)
               return content.strip()
 
           def extract_schema(doc):
-              scripts = re.findall(r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>.*?</script>', doc, re.S | re.I)
+              scripts = re.findall(r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>.*?</script>', doc, re.S|re.I)
               return '\n'.join(scripts).strip()
 
           def extract_image(doc, path, title, category):
-              m = re.search(r'<img[^>]+src=["\']([^"\']+)["\'][^>]*>', doc, re.S | re.I)
-              if m and '/assests/images/' in m.group(1):
-                  return m.group(1)
-              image = '/assests/images/blog-' + path.stem + '.svg'
-              if not (root / image.lstrip('/')).exists():
-                  image_path = root / 'assests' / 'images' / ('blog-' + path.stem + '.svg')
-                  image_path.write_text(
-                      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 650"><rect width="1200" height="650" fill="#0D1117"/><text x="80" y="210" fill="#F5F7FA" font-family="Arial" font-size="52" font-weight="700">SEO INSIGHT</text><text x="80" y="290" fill="#4C9AFF" font-family="Arial" font-size="25">' + html.escape(category.upper()) + '</text><text x="80" y="380" fill="#DDE5EF" font-family="Arial" font-size="22">' + html.escape(title[:65]) + '</text></svg>',
-                      encoding='utf-8'
-                  )
+              m = re.search(r'<img[^>]+src=["\']([^"\']+)["\'][^>]*>', doc, re.S|re.I)
+              if m and '/assests/images/' in m.group(1): return m.group(1)
+              image = '/assests/images/blog-'+path.stem+'.svg'
+              asset = root/image.lstrip('/')
+              if not asset.exists():
+                  asset.write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 650"><rect width="1200" height="650" fill="#0D1117"/><text x="80" y="210" fill="#F5F7FA" font-family="Arial" font-size="52" font-weight="700">SEO INSIGHT</text><text x="80" y="290" fill="#4C9AFF" font-family="Arial" font-size="25">'+html.escape(category.upper())+'</text><text x="80" y="380" fill="#DDE5EF" font-family="Arial" font-size="22">'+html.escape(title[:65])+'</text></svg>', encoding='utf-8')
               return image
 
-          # Keep the current contact number consistent in all source pages/scripts.
-          for p in [root/'index.html', root/'blog.html', root/'blog/index.html', root/'js/main.js', root/'js/script.js', root/'js/blog-shell.js']:
+          # Keep the current contact number consistent in source pages/scripts.
+          for p in [root/'index.html',root/'blog.html',root/'blog/index.html',root/'js/main.js',root/'js/script.js',root/'js/blog-shell.js']:
               if p.exists():
-                  text = p.read_text(encoding='utf-8').replace('9390988594', '8459791852').replace('919390988594', '918459791852')
-                  p.write_text(text, encoding='utf-8')
+                  p.write_text(p.read_text(encoding='utf-8').replace('9390988594','8459791852').replace('919390988594','918459791852'), encoding='utf-8')
 
           for path in sorted(root.glob('blog/*/*.html')):
               category_key = path.parts[1]
-              if path.name == 'index.html' or category_key not in labels:
-                  continue
-
+              if path.name == 'index.html' or category_key not in labels: continue
               doc = path.read_text(encoding='utf-8')
               title = title_text(doc, path)
-              description = meta(doc, 'description') or f'{title} - SEO guide by Javed Chaudhary.'
+              description = meta(doc,'description') or f'{title} - SEO guide by Javed Chaudhary.'
               category = labels[category_key]
-              canonical = 'https://javed-portfolio-jade.vercel.app/' + '/'.join(path.parts[:-1]) + '/' + path.stem + '/'
-              image = extract_image(doc, path, title, category)
+              canonical = 'https://javed-portfolio-jade.vercel.app/'+'/'.join(path.parts[:-1])+'/'+path.stem+'/'
+              image = extract_image(doc,path,title,category)
               content = extract_content(doc)
               schema = extract_schema(doc)
-
               replacements = {
-                  '{{TITLE}}': html.escape(title, quote=True),
-                  '{{TITLE_TEXT}}': html.escape(title),
-                  '{{DESCRIPTION}}': html.escape(description, quote=True),
-                  '{{CANONICAL}}': canonical,
-                  '{{CATEGORY}}': html.escape(category),
-                  '{{IMAGE}}': html.escape(image, quote=True),
-                  '{{IMAGE_ALT}}': html.escape(category + ' visual related to ' + title, quote=True),
-                  '{{HEADER}}': header,
-                  '{{FOOTER}}': footer,
-                  '{{CONTENT}}': content,
-                  '{{SCHEMA}}': schema
+                  '{{TITLE}}':html.escape(title,quote=True),'{{TITLE_TEXT}}':html.escape(title),
+                  '{{DESCRIPTION}}':html.escape(description,quote=True),'{{CANONICAL}}':canonical,
+                  '{{CATEGORY}}':html.escape(category),'{{IMAGE}}':html.escape(image,quote=True),
+                  '{{IMAGE_ALT}}':html.escape(category+' visual related to '+title,quote=True),
+                  '{{HEADER}}':header,'{{FOOTER}}':footer,'{{CONTENT}}':content,'{{SCHEMA}}':schema
               }
-
               output = template
-              for key, value in replacements.items():
-                  output = output.replace(key, value)
-              path.write_text(output, encoding='utf-8')
+              for key,value in replacements.items(): output = output.replace(key,value)
+              path.write_text(output,encoding='utf-8')
 
       - name: Commit normalized pages
         run: |
