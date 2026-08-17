@@ -54,12 +54,9 @@ jobs:
                   content = article.group(1).strip() if article else ''
                   content = re.sub(r'<h1[^>]*>.*?</h1>', '', content, count=1, flags=re.S|re.I)
                   content = re.sub(r'<p[^>]*class=["\'][^"\']*blog-(?:consistency-)?meta[^"\']*["\'][^>]*>.*?</p>', '', content, count=1, flags=re.S|re.I)
-              # Keep exactly one featured image: all images/figures inside article content are removed.
               content = re.sub(r'<figure\b[^>]*>.*?</figure>', '', content, flags=re.S|re.I)
               content = re.sub(r'<img\b[^>]*>', '', content, flags=re.S|re.I)
-              # Remove old FAQ blocks; the master template renders the FAQ uniformly.
               content = re.sub(r'<h2[^>]*>\s*(?:Frequently Asked Questions|FAQs?)\s*</h2>.*?(?=<h2\b|$)', '', content, flags=re.S|re.I)
-              # Remove old JSON-LD and any generated FAQ section accidentally left in content.
               content = re.sub(r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>.*?</script>', '', content, flags=re.S|re.I)
               content = re.sub(r'<section[^>]*class=["\'][^"\']*blog-faq[^"\']*["\'][^>]*>.*?</section>', '', content, flags=re.S|re.I)
               return content.strip()
@@ -71,17 +68,15 @@ jobs:
               m = re.search(r'<h2[^>]*>\s*(?:Frequently Asked Questions|FAQs?)\s*</h2>(.*?)(?=<h2\b|$)', source, re.S|re.I)
               items = []
               if m:
-                  block = m.group(1)
-                  pairs = re.findall(r'<h3[^>]*>(.*?)</h3>\s*<p[^>]*>(.*?)</p>', block, re.S|re.I)
+                  pairs = re.findall(r'<h3[^>]*>(.*?)</h3>\s*<p[^>]*>(.*?)</p>', m.group(1), re.S|re.I)
                   for q,a in pairs[:5]:
-                      q = re.sub(r'<[^>]+>','',q).strip()
-                      a = re.sub(r'<[^>]+>','',a).strip()
+                      q = re.sub(r'<[^>]+>','',q).strip(); a = re.sub(r'<[^>]+>','',a).strip()
                       if q and a: items.append((q,a))
               if len(items) < 5:
                   items = [
                       (f'What is {title}?', f'{title} is an important part of {category.lower()} and focuses on practical improvements that help users and search engines understand a website.'),
                       (f'Why is {category} important for this topic?', f'{category} helps create a clearer, more useful and technically sound website experience when it is applied to {title.lower()}.'),
-                      (f'How should I get started with {title}?', f'Start by reviewing the current website, identifying the highest-impact issues and applying the recommendations that are most relevant to your goals.'),
+                      (f'How should I get started with {title}?', 'Start by reviewing the current website, identifying the highest-impact issues and applying the recommendations that are most relevant to your goals.'),
                       ('What are common mistakes to avoid?', 'Avoid keyword stuffing, duplicate or thin content, inconsistent page structures and changes that are made without checking their effect on users and search engines.'),
                       ('How often should this be reviewed?', 'Review it after major website, content or SEO changes and periodically as part of ongoing website maintenance.')
                   ]
@@ -95,10 +90,8 @@ jobs:
               return '<script type="application/ld+json">'+json.dumps(data, ensure_ascii=False, separators=(',',':'))+'</script>'
 
           def extract_image(doc, path, title, category):
-              m = re.search(r'<figure[^>]*class=["\'][^"\']*blog-post-hero[^"\']*["\'][^>]*>.*?<img[^>]+src=["\']([^"\']+)["\']', doc, re.S|re.I)
-              if not m:
-                  m = re.search(r'<img[^>]+src=["\']([^"\']+)["\']', doc, re.S|re.I)
-              if m and '/assests/images/' in m.group(1): return m.group(1)
+              # Every article gets its own deterministic hero asset based on its unique slug.
+              # Never reuse a category-level image or another article's image.
               image = '/assests/images/blog-'+path.stem+'.svg'
               asset = root/image.lstrip('/')
               if not asset.exists():
@@ -106,7 +99,6 @@ jobs:
                   asset.write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 650"><rect width="1200" height="650" fill="#0D1117"/><text x="80" y="210" fill="#F5F7FA" font-family="Arial" font-size="52" font-weight="700">SEO INSIGHT</text><text x="80" y="290" fill="#4C9AFF" font-family="Arial" font-size="25">'+html.escape(category.upper())+'</text><text x="80" y="380" fill="#DDE5EF" font-family="Arial" font-size="22">'+html.escape(title[:65])+'</text></svg>', encoding='utf-8')
               return image
 
-          # Keep site-wide contact details consistent.
           for p in [root/'index.html',root/'blog.html',root/'blog/index.html',root/'js/main.js',root/'js/script.js',root/'js/blog-shell.js']:
               if p.exists():
                   p.write_text(p.read_text(encoding='utf-8').replace('9390988594','8459791852').replace('919390988594','918459791852'), encoding='utf-8')
@@ -140,11 +132,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add blog/*/*.html assests/images/blog-*.svg components/ templates/ .github/workflows/normalize-blog-pages.yml index.html blog.html blog/index.html js/main.js js/script.js js/blog-shell.js
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "Standardize all blog articles, FAQ and footer [blog-normalized]"
+          git commit -m "Standardize all blog articles, unique images and FAQ [blog-normalized]"
           git push
-
-# Single sources of truth:
-# Header: components/header.html
-# Footer: components/footer.html
-# Article: templates/blog-post.html
-# Every article gets exactly one featured image and one FAQ section.
