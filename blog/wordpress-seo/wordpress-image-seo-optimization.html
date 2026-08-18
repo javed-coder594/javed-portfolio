@@ -15,23 +15,23 @@
     <style>
         .blog-article{width:100%;}
         .blog-post-content{width:min(900px,calc(100% - 40px));margin:0 auto;padding:150px 0 90px;}
-        .blog-post-content h1{margin:0 0 18px;line-height:1.15;font-size:clamp(32px,4vw,52px);}
-        .blog-post-meta{margin:0 0 28px;line-height:1.6;color:var(--text);}
-        .blog-post-hero{margin:0 0 42px;}
+        .blog-post-content h1{margin:0 0 28px;line-height:1.15;font-size:clamp(32px,4vw,52px);}
+        .blog-post-hero{margin:0 0 24px;}
         .blog-post-hero img{display:block;width:100%;height:auto;aspect-ratio:1200/650;object-fit:cover;border-radius:20px;}
         .blog-post-hero figcaption{margin-top:10px;text-align:center;font-size:14px;line-height:1.6;color:var(--text);}
+        .blog-post-meta{margin:0 0 38px;line-height:1.6;color:var(--text);}
         .blog-post-body>p{margin:0 0 20px;line-height:1.85;}
         .blog-post-body>h2{margin:42px 0 16px;line-height:1.3;}
         .blog-post-body>h3{margin:28px 0 10px;line-height:1.35;}
-        .blog-post-body img,.blog-post-body figure{display:none;}
+        .blog-post-body img,.blog-post-body figure,.blog-post-content .blog-post-body .blog-post-hero{display:none!important;}
         .blog-post-body ul,.blog-post-body ol{margin:0 0 22px;padding-left:24px;line-height:1.8;}
         .blog-post-body blockquote{margin:28px 0;padding:20px 24px;border-left:3px solid currentColor;}
-        .blog-faq{margin-top:48px;}
+        .blog-faq{margin-top:48px;padding-top:8px;}
         .blog-faq h2{margin:0 0 22px;line-height:1.3;}
         .blog-faq-item{margin:0 0 26px;}
         .blog-faq-item h3{margin:0 0 9px;line-height:1.4;}
         .blog-faq-item p{margin:0;line-height:1.8;}
-        @media(max-width:600px){.blog-post-content{width:min(100% - 36px,900px);padding:120px 0 60px;}.blog-post-content h1{margin-bottom:16px;}.blog-post-hero{margin-bottom:32px;}.blog-post-body>h2{margin-top:34px;}.blog-faq{margin-top:40px;}}
+        @media(max-width:600px){.blog-post-content{width:min(calc(100% - 36px),900px);padding:120px 0 60px;}.blog-post-content h1{margin-bottom:22px;}.blog-post-hero{margin-bottom:20px;}.blog-post-meta{margin-bottom:30px;}.blog-post-body>h2{margin-top:34px;}.blog-faq{margin-top:40px;}}
     </style>
 </head>
 <body>
@@ -59,11 +59,11 @@
 <main class="blog-article">
     <article class="blog-post-content">
         <h1>WordPress Image SEO Optimization: A Practical Guide</h1>
-        <p class="blog-post-meta"><strong>WordPress SEO</strong> · Written by Javed Chaudhary</p>
         <figure class="blog-post-hero">
             <img src="/assests/images/blog-wordpress-image-seo-optimization.svg" width="1200" height="650" loading="eager" decoding="async" fetchpriority="high" title="WordPress Image SEO Optimization: A Practical Guide" alt="WordPress SEO visual related to WordPress Image SEO Optimization: A Practical Guide">
             <figcaption>WordPress SEO: a relevant visual supporting the article topic.</figcaption>
         </figure>
+        <p class="blog-post-meta"><strong>WordPress SEO</strong> · Written by Javed Chaudhary</p>
         <div class="blog-post-body">
 
 <p>Images can improve a page when they explain a concept, demonstrate a product or make information easier to scan. They can also create unnecessary weight and accessibility problems when they are uploaded without planning. <strong>WordPress image SEO optimization</strong> is about balancing relevance, accessibility, clarity and performance.</p><h2>Choose a useful filename</h2><p>Before uploading an image, use a descriptive filename that reflects what the image actually shows. A name such as technical-seo-dashboard.jpg is more useful to humans managing a media library than an automatically generated camera filename. Keep filenames concise and avoid stuffing several unrelated keywords into them.</p><h2>Write meaningful alt text</h2><p>Alt text should describe the meaningful information conveyed by the image. If the image is decorative, it may not need descriptive text. For informative images, explain what a user would need to know. Do not repeat a keyword simply because you want it in the alt attribute.</p><h2>Use captions when they add context</h2><p>A caption is visible page content, so it should provide useful context rather than repeat the alt text word for word. Captions are especially helpful for charts, screenshots, examples and images where the relationship between the visual and the article needs explanation.</p><h2>Compress images before they slow the page</h2><p>Large images can increase page weight and make a page feel slow, particularly on mobile connections. Choose dimensions that match the displayed size and use modern formats when your workflow supports them. Compression should reduce unnecessary bytes without making important images visibly poor.</p><h2>Serve responsive images</h2><p>Users on different screens do not need the same image dimensions. WordPress can generate multiple image sizes for many common workflows. Use responsive image behavior so the browser can select a suitable resource instead of downloading a much larger image than necessary.</p><h2>Keep images relevant to the content</h2><p>A decorative image should not distract from the article. Use visuals that support the topic or help explain a point. For example, an article about WordPress image optimization should use a relevant website or media-management visual rather than an unrelated generic photograph.</p><h2>Check lazy loading carefully</h2><p>Below-the-fold images can often benefit from lazy loading, while a prominent hero image may need to load earlier. The goal is not to lazy-load everything automatically. Consider where the image appears and how important it is to the initial page experience.</p><h2>Connect image SEO with the wider page</h2><p>Image optimization works best alongside good headings, useful copy, descriptive URLs and internal links. Use the <a href="/blog/wordpress-seo/">WordPress SEO category</a> as the broader topic hub and connect to relevant technical or content guides when they genuinely help the reader.</p><h2>Quick image SEO checklist</h2><ul><li>Use a descriptive filename.</li><li>Write useful alt text for informative images.</li><li>Add a caption when it provides context.</li><li>Resize and compress images appropriately.</li><li>Use responsive image behavior.</li><li>Keep visuals relevant to the article.</li><li>Review hero-image loading and mobile performance.</li></ul><section class="faq">

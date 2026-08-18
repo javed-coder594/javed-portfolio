@@ -15,23 +15,23 @@
     <style>
         .blog-article{width:100%;}
         .blog-post-content{width:min(900px,calc(100% - 40px));margin:0 auto;padding:150px 0 90px;}
-        .blog-post-content h1{margin:0 0 18px;line-height:1.15;font-size:clamp(32px,4vw,52px);}
-        .blog-post-meta{margin:0 0 28px;line-height:1.6;color:var(--text);}
-        .blog-post-hero{margin:0 0 42px;}
+        .blog-post-content h1{margin:0 0 28px;line-height:1.15;font-size:clamp(32px,4vw,52px);}
+        .blog-post-hero{margin:0 0 24px;}
         .blog-post-hero img{display:block;width:100%;height:auto;aspect-ratio:1200/650;object-fit:cover;border-radius:20px;}
         .blog-post-hero figcaption{margin-top:10px;text-align:center;font-size:14px;line-height:1.6;color:var(--text);}
+        .blog-post-meta{margin:0 0 38px;line-height:1.6;color:var(--text);}
         .blog-post-body>p{margin:0 0 20px;line-height:1.85;}
         .blog-post-body>h2{margin:42px 0 16px;line-height:1.3;}
         .blog-post-body>h3{margin:28px 0 10px;line-height:1.35;}
-        .blog-post-body img,.blog-post-body figure{display:none;}
+        .blog-post-body img,.blog-post-body figure,.blog-post-content .blog-post-body .blog-post-hero{display:none!important;}
         .blog-post-body ul,.blog-post-body ol{margin:0 0 22px;padding-left:24px;line-height:1.8;}
         .blog-post-body blockquote{margin:28px 0;padding:20px 24px;border-left:3px solid currentColor;}
-        .blog-faq{margin-top:48px;}
+        .blog-faq{margin-top:48px;padding-top:8px;}
         .blog-faq h2{margin:0 0 22px;line-height:1.3;}
         .blog-faq-item{margin:0 0 26px;}
         .blog-faq-item h3{margin:0 0 9px;line-height:1.4;}
         .blog-faq-item p{margin:0;line-height:1.8;}
-        @media(max-width:600px){.blog-post-content{width:min(100% - 36px,900px);padding:120px 0 60px;}.blog-post-content h1{margin-bottom:16px;}.blog-post-hero{margin-bottom:32px;}.blog-post-body>h2{margin-top:34px;}.blog-faq{margin-top:40px;}}
+        @media(max-width:600px){.blog-post-content{width:min(calc(100% - 36px),900px);padding:120px 0 60px;}.blog-post-content h1{margin-bottom:22px;}.blog-post-hero{margin-bottom:20px;}.blog-post-meta{margin-bottom:30px;}.blog-post-body>h2{margin-top:34px;}.blog-faq{margin-top:40px;}}
     </style>
 </head>
 <body>
@@ -59,11 +59,11 @@
 <main class="blog-article">
     <article class="blog-post-content">
         <h1>Technical SEO Audit Checklist for Websites</h1>
-        <p class="blog-post-meta"><strong>Technical SEO</strong> · Written by Javed Chaudhary</p>
         <figure class="blog-post-hero">
             <img src="/assests/images/blog-technical-seo-audit-checklist.svg" width="1200" height="650" loading="eager" decoding="async" fetchpriority="high" title="Technical SEO Audit Checklist for Websites" alt="Technical SEO visual related to Technical SEO Audit Checklist for Websites">
             <figcaption>Technical SEO: a relevant visual supporting the article topic.</figcaption>
         </figure>
+        <p class="blog-post-meta"><strong>Technical SEO</strong> · Written by Javed Chaudhary</p>
         <div class="blog-post-body">
 
 <p>A website can have excellent content and still struggle in search if search engines cannot crawl, understand, or index its important pages. A <strong>technical SEO audit</strong> is a practical way to find those problems before they become a bigger visibility issue.</p>
@@ -93,7 +93,7 @@
                 <div class="blog-faq-item"><h3>What is a technical SEO audit?</h3><p>It is a structured review of the technical factors that affect crawling, indexing, understanding and page experience.</p></div>
                 <div class="blog-faq-item"><h3>How often should a technical SEO audit be done?</h3><p>There is no universal schedule. A full review can be useful after major site changes, migrations or recurring technical issues, with lighter monitoring between audits.</p></div>
                 <div class="blog-faq-item"><h3>Is an XML sitemap enough for SEO?</h3><p>No. A sitemap helps discovery, but strong internal linking, crawlable pages and sound indexation controls are also important.</p></div>
-                <div class="blog-faq-item"><h3>Does technical SEO replace content SEO?</h3><p>No. Technical SEO helps search engines access and understand a site, while useful content satisfies the searcher&amp;amp;amp;#x27;s need. Both work together.</p></div>
+                <div class="blog-faq-item"><h3>Does technical SEO replace content SEO?</h3><p>No. Technical SEO helps search engines access and understand a site, while useful content satisfies the searcher&amp;amp;amp;amp;#x27;s need. Both work together.</p></div>
                 <div class="blog-faq-item"><h3>Where can I learn more about Google Search guidance?</h3><p>Google Search Central provides official documentation on crawling, indexing, structured data and helpful content.</p></div>
             </section>
         </div>
@@ -146,7 +146,7 @@
     </div>
 </footer>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a technical SEO audit?","acceptedAnswer":{"@type":"Answer","text":"It is a structured review of the technical factors that affect crawling, indexing, understanding and page experience."}},{"@type":"Question","name":"How often should a technical SEO audit be done?","acceptedAnswer":{"@type":"Answer","text":"There is no universal schedule. A full review can be useful after major site changes, migrations or recurring technical issues, with lighter monitoring between audits."}},{"@type":"Question","name":"Is an XML sitemap enough for SEO?","acceptedAnswer":{"@type":"Answer","text":"No. A sitemap helps discovery, but strong internal linking, crawlable pages and sound indexation controls are also important."}},{"@type":"Question","name":"Does technical SEO replace content SEO?","acceptedAnswer":{"@type":"Answer","text":"No. Technical SEO helps search engines access and understand a site, while useful content satisfies the searcher&amp;amp;#x27;s need. Both work together."}},{"@type":"Question","name":"Where can I learn more about Google Search guidance?","acceptedAnswer":{"@type":"Answer","text":"Google Search Central provides official documentation on crawling, indexing, structured data and helpful content."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a technical SEO audit?","acceptedAnswer":{"@type":"Answer","text":"It is a structured review of the technical factors that affect crawling, indexing, understanding and page experience."}},{"@type":"Question","name":"How often should a technical SEO audit be done?","acceptedAnswer":{"@type":"Answer","text":"There is no universal schedule. A full review can be useful after major site changes, migrations or recurring technical issues, with lighter monitoring between audits."}},{"@type":"Question","name":"Is an XML sitemap enough for SEO?","acceptedAnswer":{"@type":"Answer","text":"No. A sitemap helps discovery, but strong internal linking, crawlable pages and sound indexation controls are also important."}},{"@type":"Question","name":"Does technical SEO replace content SEO?","acceptedAnswer":{"@type":"Answer","text":"No. Technical SEO helps search engines access and understand a site, while useful content satisfies the searcher&amp;amp;amp;#x27;s need. Both work together."}},{"@type":"Question","name":"Where can I learn more about Google Search guidance?","acceptedAnswer":{"@type":"Answer","text":"Google Search Central provides official documentation on crawling, indexing, structured data and helpful content."}}]}</script>
 <script src="/js/script.js"></script>
 </body>
 </html>

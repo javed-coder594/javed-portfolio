@@ -15,23 +15,23 @@
     <style>
         .blog-article{width:100%;}
         .blog-post-content{width:min(900px,calc(100% - 40px));margin:0 auto;padding:150px 0 90px;}
-        .blog-post-content h1{margin:0 0 18px;line-height:1.15;font-size:clamp(32px,4vw,52px);}
-        .blog-post-meta{margin:0 0 28px;line-height:1.6;color:var(--text);}
-        .blog-post-hero{margin:0 0 42px;}
+        .blog-post-content h1{margin:0 0 28px;line-height:1.15;font-size:clamp(32px,4vw,52px);}
+        .blog-post-hero{margin:0 0 24px;}
         .blog-post-hero img{display:block;width:100%;height:auto;aspect-ratio:1200/650;object-fit:cover;border-radius:20px;}
         .blog-post-hero figcaption{margin-top:10px;text-align:center;font-size:14px;line-height:1.6;color:var(--text);}
+        .blog-post-meta{margin:0 0 38px;line-height:1.6;color:var(--text);}
         .blog-post-body>p{margin:0 0 20px;line-height:1.85;}
         .blog-post-body>h2{margin:42px 0 16px;line-height:1.3;}
         .blog-post-body>h3{margin:28px 0 10px;line-height:1.35;}
-        .blog-post-body img,.blog-post-body figure{display:none;}
+        .blog-post-body img,.blog-post-body figure,.blog-post-content .blog-post-body .blog-post-hero{display:none!important;}
         .blog-post-body ul,.blog-post-body ol{margin:0 0 22px;padding-left:24px;line-height:1.8;}
         .blog-post-body blockquote{margin:28px 0;padding:20px 24px;border-left:3px solid currentColor;}
-        .blog-faq{margin-top:48px;}
+        .blog-faq{margin-top:48px;padding-top:8px;}
         .blog-faq h2{margin:0 0 22px;line-height:1.3;}
         .blog-faq-item{margin:0 0 26px;}
         .blog-faq-item h3{margin:0 0 9px;line-height:1.4;}
         .blog-faq-item p{margin:0;line-height:1.8;}
-        @media(max-width:600px){.blog-post-content{width:min(100% - 36px,900px);padding:120px 0 60px;}.blog-post-content h1{margin-bottom:16px;}.blog-post-hero{margin-bottom:32px;}.blog-post-body>h2{margin-top:34px;}.blog-faq{margin-top:40px;}}
+        @media(max-width:600px){.blog-post-content{width:min(calc(100% - 36px),900px);padding:120px 0 60px;}.blog-post-content h1{margin-bottom:22px;}.blog-post-hero{margin-bottom:20px;}.blog-post-meta{margin-bottom:30px;}.blog-post-body>h2{margin-top:34px;}.blog-faq{margin-top:40px;}}
     </style>
 </head>
 <body>
@@ -59,11 +59,11 @@
 <main class="blog-article">
     <article class="blog-post-content">
         <h1>Technical SEO Crawlability Checklist for a Healthier Website</h1>
-        <p class="blog-post-meta"><strong>Technical SEO</strong> · Written by Javed Chaudhary</p>
         <figure class="blog-post-hero">
             <img src="/assests/images/blog-technical-seo-crawlability-checklist.svg" width="1200" height="650" loading="eager" decoding="async" fetchpriority="high" title="Technical SEO Crawlability Checklist for a Healthier Website" alt="Technical SEO visual related to Technical SEO Crawlability Checklist for a Healthier Website">
             <figcaption>Technical SEO: a relevant visual supporting the article topic.</figcaption>
         </figure>
+        <p class="blog-post-meta"><strong>Technical SEO</strong> · Written by Javed Chaudhary</p>
         <div class="blog-post-body">
 
 <p>A page cannot perform well in organic search if search engines cannot reliably discover or access it. That is why a <strong>Technical SEO crawlability checklist</strong> is useful before and after major website changes. Crawlability is not about making every URL available to crawlers; it is about making the right pages easy to discover while keeping unnecessary or duplicate URLs under control.</p>
