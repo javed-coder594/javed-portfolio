@@ -42,27 +42,36 @@ jobs:
               m = re.search(r'<h1[^>]*>(.*?)</h1>', doc, re.S|re.I)
               if m: return re.sub(r'<[^>]+>', '', m.group(1)).strip()
               m = re.search(r'<title>(.*?)</title>', doc, re.S|re.I)
-              if m: return html.unescape(re.sub(r'\s*\|\s*Javed Chaudhary.*$', '', re.sub(r'<[^>]+>', '', m.group(1)).strip()))
+              if m: return html.unescape(re.sub(r'\s*\|\s*Javed Chaudhary.*$', '', re.sub(r'<[^>]+>', '', m.group(1).strip())))
               return path.stem.replace('-', ' ').title()
 
+          def strip_visuals(content):
+              # The master template owns the only article image. Remove every
+              # legacy inline image/figure so no article can render two images.
+              content = re.sub(r'<figure\b[^>]*>.*?</figure>', '', content, flags=re.S|re.I)
+              content = re.sub(r'<img\b[^>]*>', '', content, flags=re.S|re.I)
+              # Remove empty wrappers left behind by legacy image blocks.
+              content = re.sub(r'<(?:div|p)[^>]*>\s*</(?:div|p)>', '', content, flags=re.S|re.I)
+              return content
+
           def extract_content(doc):
-              body = re.search(r'<div class="blog-post-body">(.*?)</div>\s*</article>', doc, re.S|re.I)
+              # Greedy match is intentional: blog-post-body contains nested
+              # elements, so a non-greedy match can stop at the first inner div.
+              body = re.search(r'<div class="blog-post-body">(.*)</div>\s*</article>', doc, re.S|re.I)
               if body:
                   content = body.group(1).strip()
               else:
-                  article = re.search(r'<article\b[^>]*>(.*?)</article>', doc, re.S|re.I)
+                  article = re.search(r'<article\b[^>]*>(.*)</article>', doc, re.S|re.I)
                   content = article.group(1).strip() if article else ''
                   content = re.sub(r'<h1[^>]*>.*?</h1>', '', content, count=1, flags=re.S|re.I)
                   content = re.sub(r'<p[^>]*class=["\'][^"\']*blog-(?:consistency-)?meta[^"\']*["\'][^>]*>.*?</p>', '', content, count=1, flags=re.S|re.I)
-              content = re.sub(r'<figure\b[^>]*>.*?</figure>', '', content, flags=re.S|re.I)
-              content = re.sub(r'<img\b[^>]*>', '', content, flags=re.S|re.I)
-              content = re.sub(r'<h2[^>]*>\s*(?:Frequently Asked Questions|FAQs?)\s*</h2>.*?(?=<h2\b|$)', '', content, flags=re.S|re.I)
               content = re.sub(r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>.*?</script>', '', content, flags=re.S|re.I)
               content = re.sub(r'<section[^>]*class=["\'][^"\']*blog-faq[^"\']*["\'][^>]*>.*?</section>', '', content, flags=re.S|re.I)
-              return content.strip()
+              content = re.sub(r'<h2[^>]*>\s*(?:Frequently Asked Questions|FAQs?)\s*</h2>.*?(?=<h2\b|$)', '', content, flags=re.S|re.I)
+              return strip_visuals(content).strip()
 
           def extract_faq(doc, title, category):
-              body = re.search(r'<div class="blog-post-body">(.*?)</div>\s*</article>', doc, re.S|re.I)
+              body = re.search(r'<div class="blog-post-body">(.*)</div>\s*</article>', doc, re.S|re.I)
               source = body.group(1) if body else doc
               source = re.sub(r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>.*?</script>', '', source, flags=re.S|re.I)
               m = re.search(r'<h2[^>]*>\s*(?:Frequently Asked Questions|FAQs?)\s*</h2>(.*?)(?=<h2\b|$)', source, re.S|re.I)
@@ -90,8 +99,8 @@ jobs:
               return '<script type="application/ld+json">'+json.dumps(data, ensure_ascii=False, separators=(',',':'))+'</script>'
 
           def extract_image(doc, path, title, category):
-              # Every article gets its own deterministic hero asset based on its unique slug.
-              # Never reuse a category-level image or another article's image.
+              # Every article has a deterministic, slug-specific hero asset.
+              # Category-level fallback images are never used for article pages.
               image = '/assests/images/blog-'+path.stem+'.svg'
               asset = root/image.lstrip('/')
               if not asset.exists():
@@ -103,13 +112,17 @@ jobs:
               if p.exists():
                   p.write_text(p.read_text(encoding='utf-8').replace('9390988594','8459791852').replace('919390988594','918459791852'), encoding='utf-8')
 
+          articles = []
           for path in sorted(root.glob('blog/*/*.html')):
               category_key = path.parts[1]
               if path.name == 'index.html' or category_key not in labels: continue
+              articles.append(path)
+
+          for path in articles:
               doc = path.read_text(encoding='utf-8')
               title = title_text(doc,path)
               description = meta(doc,'description') or f'{title} - SEO guide by Javed Chaudhary.'
-              category = labels[category_key]
+              category = labels[path.parts[1]]
               canonical = 'https://javed-portfolio-jade.vercel.app/'+'/'.join(path.parts[:-1])+'/'+path.stem+'/'
               image = extract_image(doc,path,title,category)
               content = extract_content(doc)
@@ -124,7 +137,25 @@ jobs:
               }
               output = template
               for key,value in replacements.items(): output = output.replace(key,value)
+
+              # Hard validation: every article must contain exactly one image,
+              # and that image must be its own slug-specific hero asset.
+              output = re.sub(r'(<div class="blog-post-body">).*?(?=<section class="blog-faq")', lambda m: m.group(1)+'\n'+strip_visuals(m.group(0)[len(m.group(1)):]), output, flags=re.S|re.I)
+              image_count = len(re.findall(r'<img\b', output, re.I))
+              if image_count != 1:
+                  raise RuntimeError(f'{path}: expected exactly 1 image, found {image_count}')
+              expected_src = re.escape(image)
+              if not re.search(r'<img[^>]+src=["\']'+expected_src+r'["\']', output, re.I):
+                  raise RuntimeError(f'{path}: hero image is not unique to the article slug')
               path.write_text(output,encoding='utf-8')
+
+          if len(articles) != 12:
+              raise RuntimeError(f'Expected 12 article pages, found {len(articles)}')
+
+          # Cross-article validation: all 12 hero paths must be unique.
+          hero_paths = [('/assests/images/blog-'+p.stem+'.svg') for p in articles]
+          if len(set(hero_paths)) != 12:
+              raise RuntimeError('Duplicate hero image assignment detected across the 12 articles')
 
       - name: Commit normalized pages
         run: |
@@ -132,5 +163,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add blog/*/*.html assests/images/blog-*.svg components/ templates/ .github/workflows/normalize-blog-pages.yml index.html blog.html blog/index.html js/main.js js/script.js js/blog-shell.js
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "Standardize all blog articles, unique images and FAQ [blog-normalized]"
+          git commit -m "Standardize all 12 blog articles with unique single heroes [blog-normalized]"
           git push
