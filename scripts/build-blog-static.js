@@ -55,4 +55,25 @@ for (const [category, slug] of pages) {
 }
 
 if (pages.length !== 30) throw new Error(`Expected 30 pages, found ${pages.length}`);
-console.log(`Generated ${pages.length} standardized SEO article pages.`);
+
+const root = process.cwd();
+const publicDir = path.join(root, 'public');
+fs.rmSync(publicDir, { recursive: true, force: true });
+fs.mkdirSync(publicDir, { recursive: true });
+
+function copyTree(src, dest) {
+  for (const entry of fs.readdirSync(src, { withFileTypes: true })) {
+    if (['.git','.vercel','node_modules','public'].includes(entry.name)) continue;
+    const from = path.join(src, entry.name);
+    const to = path.join(dest, entry.name);
+    if (entry.isDirectory()) {
+      fs.mkdirSync(to, { recursive: true });
+      copyTree(from, to);
+    } else {
+      fs.copyFileSync(from, to);
+    }
+  }
+}
+copyTree(root, publicDir);
+
+console.log(`Generated ${pages.length} standardized SEO article pages and copied the site to public/.`);
