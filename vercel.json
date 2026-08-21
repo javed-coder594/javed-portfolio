@@ -12,7 +12,7 @@
     },
     {
       "source": "/blog/:path*",
-      "destination": "/api/blog/:path*"
+      "destination": "/api/blog?slug=:path*"
     }
   ],
   "headers": [
