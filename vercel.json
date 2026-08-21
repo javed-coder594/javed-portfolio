@@ -9,6 +9,10 @@
     {
       "source": "/blog/",
       "destination": "/blog.html"
+    },
+    {
+      "source": "/blog/:path*",
+      "destination": "/api/blog/:path*"
     }
   ],
   "headers": [
