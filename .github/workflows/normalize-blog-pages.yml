@@ -39,7 +39,7 @@ jobs:
           from html import unescape
           root = Path('.')
           categories = {'technical-seo','on-page-seo','off-page-seo','local-seo','wordpress-seo','web-development'}
-          articles = [p for p in root.glob('blog/*/*.html') if p.name != 'index.html' and p.parts[1] in categories]
+          articles = [p for p in root.rglob('*.html') if p.name != 'index.html' and len(p.parts) >= 3 and p.parts[0] == 'blog' and p.parts[1] in categories]
           if len(articles) != 30:
               raise SystemExit(f'Expected 30 articles, found {len(articles)}')
           counts = {c: len([p for p in articles if p.parts[1] == c]) for c in categories}
