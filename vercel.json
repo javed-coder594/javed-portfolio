@@ -1,5 +1,5 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "$schema": "https://openapi.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": true,
   "routes": [
@@ -8,8 +8,8 @@
       "dest": "/blog.html"
     },
     {
-      "src": "/blog/(?<slug>.*)",
-      "dest": "/api/blog.js?slug=$slug"
+      "src": "/blog/(.*)",
+      "dest": "/api/blog.js?slug=$1"
     }
   ],
   "headers": [
