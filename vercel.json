@@ -3,6 +3,7 @@
   "cleanUrls": true,
   "trailingSlash": true,
   "buildCommand": "node scripts/build-blog-static.js",
+  "outputDirectory": "public",
   "rewrites": [
     {
       "source": "/blog",
