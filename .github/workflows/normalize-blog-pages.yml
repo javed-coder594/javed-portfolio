@@ -16,6 +16,18 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Fix builder guards before generation
+        shell: python
+        run: |
+          from pathlib import Path
+          p = Path('scripts/build_blog_library.py')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace("rel = rel[:-10]", "rel = rel[:-11]")
+          s = s.replace("image = ROOT/'assests/images'/f'blog-{path.stem}.svg'", "key = path.stem if path.stem != 'index' else path.parent.name\n    image = ROOT/'assests/images'/f'blog-{key}.svg'")
+          s = s.replace("r'<img\\\\b'", "r'<img\\b'")
+          s = s.replace("r'<h1\\\\b'", "r'<h1\\b'")
+          p.write_text(s, encoding='utf-8')
+
       - name: Build 30 SEO articles from the master template
         run: python scripts/build_blog_library.py
 
@@ -24,22 +36,32 @@ jobs:
         run: |
           from pathlib import Path
           import re
+          from html import unescape
           root = Path('.')
-          articles = []
-          for p in root.glob('blog/*/*.html'):
-              if p.name != 'index.html' and p.parts[1] in {'technical-seo','on-page-seo','off-page-seo','local-seo','wordpress-seo','web-development'}:
-                  articles.append(p)
+          categories = {'technical-seo','on-page-seo','off-page-seo','local-seo','wordpress-seo','web-development'}
+          articles = [p for p in root.glob('blog/*/*.html') if p.name != 'index.html' and p.parts[1] in categories]
           if len(articles) != 30:
               raise SystemExit(f'Expected 30 articles, found {len(articles)}')
+          counts = {c: len([p for p in articles if p.parts[1] == c]) for c in categories}
+          if any(v != 5 for v in counts.values()):
+              raise SystemExit(f'Expected 5 articles per category, found {counts}')
+          focus = []
           for p in articles:
               text = p.read_text(encoding='utf-8')
-              if len(re.findall(r'<h1\\b', text, re.I)) != 1:
+              if len(re.findall(r'<h1\b', text, re.I)) != 1:
                   raise SystemExit(f'{p}: must contain exactly one H1')
-              if len(re.findall(r'<img\\b', text, re.I)) != 1:
+              if len(re.findall(r'<img\b', text, re.I)) != 1:
                   raise SystemExit(f'{p}: must contain exactly one article image')
               if text.count('<div class="blog-faq-item">') != 5:
                   raise SystemExit(f'{p}: must contain exactly five FAQs')
-          print('Validated 30 article pages with one H1, one image and five FAQs each.')
+              words = re.findall(r'\b[\w’\-]+\b', unescape(re.sub(r'<[^>]+>', ' ', text)))
+              if len(words) < 1800:
+                  raise SystemExit(f'{p}: content is below the 1800-word minimum ({len(words)})')
+              m = re.search(r'<strong>([^<]+)</strong>', text)
+              if m: focus.append(m.group(1).strip().lower())
+          if len(set(focus)) != 30:
+              raise SystemExit('Focus keyword duplication detected')
+          print('Validated 30 articles, 5 per category, 1800+ words, one image and five FAQs each.')
 
       - name: Commit generated pages
         run: |
