@@ -1,18 +1,15 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": true,
-  "rewrites": [
+  "routes": [
     {
-      "source": "/blog",
-      "destination": "/blog.html"
+      "src": "/blog/?$",
+      "dest": "/blog.html"
     },
     {
-      "source": "/blog/",
-      "destination": "/blog.html"
-    },
-    {
-      "source": "/blog/:path*",
-      "destination": "/api/blog?slug=:path*"
+      "src": "/blog/(?<slug>.*)",
+      "dest": "/api/blog.js?slug=$slug"
     }
   ],
   "headers": [
