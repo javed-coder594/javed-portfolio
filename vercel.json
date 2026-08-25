@@ -2,7 +2,7 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": true,
-  "buildCommand": "node scripts/build-blog-static.js",
+  "buildCommand": "node scripts/build-blog-static.js && node scripts/patch-blog-ui.js",
   "outputDirectory": "public",
   "rewrites": [
     {
