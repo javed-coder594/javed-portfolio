@@ -15,22 +15,6 @@ function walk(dir) {
   return out;
 }
 
-function patchCategoryCards(html) {
-  if (!html.includes('class="blog-category-page"')) return html;
-
-  return html.replace(/<article class="blog-card">([\s\S]*?)<\/article>/g, (whole, inner) => {
-    if (inner.includes('blog-card-image')) return whole;
-
-    const match = inner.match(/href="\/blog\/([^/]+)\/([^/]+)\//);
-    if (!match) return whole;
-
-    const [, category, slug] = match;
-    const image = `<img class="blog-card-image" src="/assests/images/blog-${slug}.svg" width="1200" height="650" loading="lazy" decoding="async" alt="${slug.replace(/-/g, ' ')}">`;
-
-    return `<article class="blog-card">${image}<div class="blog-card-content">${inner}</div></article>`;
-  });
-}
-
 const files = walk(root);
 let patched = 0;
 
@@ -38,11 +22,18 @@ for (const file of files) {
   let html = fs.readFileSync(file, 'utf8');
   const original = html;
 
+  // Apply the unified blog UI to every generated blog page.
   if (!html.includes('/css/blog-pages.css')) {
     html = html.replace('</head>', `${cssLink}</head>`);
   }
 
-  html = patchCategoryCards(html);
+  // Category pages intentionally do NOT receive feature images.
+  // Article pages keep their single feature image from the master article template.
+  // This keeps all six category indexes clean, compact and visually consistent.
+  if (html.includes('class="blog-category-page"')) {
+    html = html.replace(/<img class="blog-card-image"[^>]*>\s*/g, '');
+    html = html.replace(/<div class="blog-card-content">([\s\S]*?)<\/div>/g, '$1');
+  }
 
   if (html !== original) {
     fs.writeFileSync(file, html, 'utf8');
