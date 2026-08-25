@@ -3,6 +3,7 @@ const path = require('path');
 
 const root = path.join(process.cwd(), 'public');
 const cssLink = '<link rel="stylesheet" href="/css/blog-pages.css">';
+const categoryCssLink = '<link rel="stylesheet" href="/css/blog-category.css">';
 
 function walk(dir) {
   if (!fs.existsSync(dir)) return [];
@@ -27,12 +28,11 @@ for (const file of files) {
     html = html.replace('</head>', `${cssLink}</head>`);
   }
 
-  // Category pages intentionally do NOT receive feature images.
+  // Category pages keep one feature image per article card.
   // Article pages keep their single feature image from the master article template.
-  // This keeps all six category indexes clean, compact and visually consistent.
-  if (html.includes('class="blog-category-page"')) {
-    html = html.replace(/<img class="blog-card-image"[^>]*>\s*/g, '');
-    html = html.replace(/<div class="blog-card-content">([\s\S]*?)<\/div>/g, '$1');
+  // The category-specific stylesheet only makes category images smaller and cleaner.
+  if (html.includes('class="blog-category-page"') && !html.includes('/css/blog-category.css')) {
+    html = html.replace('</head>', `${categoryCssLink}</head>`);
   }
 
   if (html !== original) {
