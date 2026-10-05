@@ -4,6 +4,7 @@ const path = require('path');
 const root = path.join(process.cwd(), 'public');
 const cssLink = '<link rel="stylesheet" href="/css/blog-pages.css">';
 const categoryCssLink = '<link rel="stylesheet" href="/css/blog-category.css">';
+const astraCssLink = '<link rel="stylesheet" href="/css/astra-redesign.css">';
 
 function walk(dir) {
   if (!fs.existsSync(dir)) return [];
