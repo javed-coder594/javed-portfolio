@@ -48,8 +48,10 @@ for (const file of files) {
   let html = fs.readFileSync(file, 'utf8');
   const original = html;
 
-  // Apply the unified blog UI to every generated blog page.
-  if (!html.includes('/css/blog-pages.css')) {
+  const isBlogPage = html.includes('class="blog-index"') || html.includes('class="blog-category-page"') || html.includes('class="blog-article"');
+
+  // Apply the unified blog UI only to blog pages.
+  if (isBlogPage && !html.includes('/css/blog-pages.css')) {
     html = html.replace('</head>', `${cssLink}</head>`);
   }
 
@@ -60,6 +62,10 @@ for (const file of files) {
     if (!html.includes('/css/blog-category.css')) {
       html = html.replace('</head>', `${categoryCssLink}</head>`);
     }
+  }
+
+  if (isBlogPage && !html.includes('/css/astra-redesign.css')) {
+    html = html.replace('</head>', `${astraCssLink}</head>`);
   }
 
   if (html !== original) {
