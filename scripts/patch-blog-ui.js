@@ -6,6 +6,8 @@ const cssLink = '<link rel="stylesheet" href="/css/blog-pages.css">';
 const themeCssLink = '<link rel="stylesheet" href="/css/astra-redesign.css">';
 const categoryCssLink = '<link rel="stylesheet" href="/css/blog-category.css">';
 const astraCssLink = '<link rel="stylesheet" href="/css/astra-redesign.css">';
+const footerPath = path.join(process.cwd(), 'components', 'footer.html');
+const unifiedFooter = fs.existsSync(footerPath) ? fs.readFileSync(footerPath, 'utf8').trim() : '';
 
 function walk(dir) {
   if (!fs.existsSync(dir)) return [];
@@ -48,6 +50,11 @@ let patched = 0;
 for (const file of files) {
   let html = fs.readFileSync(file, 'utf8');
   const original = html;
+
+  // Keep the footer identical across every generated/static HTML page.
+  if (unifiedFooter && /<footer class="footer">[\\s\\S]*?<\\/footer>/i.test(html)) {
+    html = html.replace(/<footer class="footer">[\\s\\S]*?<\\/footer>/i, unifiedFooter);
+  }
 
   const isBlogPage = html.includes('class="blog-index"') || html.includes('class="blog-category-page"') || html.includes('class="blog-article"');
 
