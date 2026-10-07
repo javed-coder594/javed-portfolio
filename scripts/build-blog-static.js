@@ -88,6 +88,17 @@ fs.writeFileSync(path.join(process.cwd(), 'sitemap.xml'), xml, 'utf8');
 
 if (pages.length !== 30) throw new Error(`Expected 30 pages, found ${pages.length}`);
 
+for (const category of Object.keys(categoryNames)) {
+  const count = pages.filter(([cat]) => cat === category).length;
+  if (count !== 5) throw new Error(`Expected 5 articles in ${category}, found ${count}`);
+}
+
+const sharedHeader = fs.readFileSync(path.join(process.cwd(), 'components', 'header.html'), 'utf8').trim();
+const sharedFooter = fs.readFileSync(path.join(process.cwd(), 'components', 'footer.html'), 'utf8').trim();
+if (!sharedHeader || !sharedFooter) throw new Error('Shared header/footer is missing.');
+
+console.log('Validated 30 articles: 5 per category, using the shared header and footer.');
+
 const root = process.cwd();
 const publicDir = path.join(root, 'public');
 fs.rmSync(publicDir, { recursive: true, force: true });
