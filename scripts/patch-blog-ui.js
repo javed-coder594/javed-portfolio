@@ -52,8 +52,8 @@ for (const file of files) {
   const original = html;
 
   // Keep the footer identical across every generated/static HTML page.
-  if (unifiedFooter && /<footer class="footer">[\\s\\S]*?<\\/footer>/i.test(html)) {
-    html = html.replace(/<footer class="footer">[\\s\\S]*?<\\/footer>/i, unifiedFooter);
+  if (unifiedFooter && /<footer class="footer">[\s\S]*?<\/footer>/i.test(html)) {
+    html = html.replace(/<footer class="footer">[\s\S]*?<\/footer>/i, unifiedFooter);
   }
 
   const isBlogPage = html.includes('class="blog-index"') || html.includes('class="blog-category-page"') || html.includes('class="blog-article"');
