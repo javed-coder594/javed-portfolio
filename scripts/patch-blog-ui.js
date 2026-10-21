@@ -5,6 +5,14 @@ const root = path.join(process.cwd(), 'public');
 const cssLink = '<link rel="stylesheet" href="/css/blog-pages.css">';
 const themeCssLink = '<link rel="stylesheet" href="/css/astra-redesign.css">';
 const categoryCssLink = '<link rel="stylesheet" href="/css/blog-category.css">';
+const gaTag = `<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L4GMMN05E6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L4GMMN05E6');
+</script>`;
 const astraCssLink = '<link rel="stylesheet" href="/css/astra-redesign.css">';
 const footerPath = path.join(process.cwd(), 'components', 'footer.html');
 const unifiedFooter = fs.existsSync(footerPath) ? fs.readFileSync(footerPath, 'utf8').trim() : '';
@@ -50,6 +58,12 @@ let patched = 0;
 for (const file of files) {
   let html = fs.readFileSync(file, 'utf8');
   const original = html;
+
+  // Add GA4 tracking to every generated static HTML page once.
+  if (!html.includes('G-L4GMMN05E6')) {
+    html = html.replace('</head>', `${gaTag}\\n</head>`);
+  }
+
 
   // Keep the footer identical across every generated/static HTML page.
   if (unifiedFooter && /<footer class="footer">[\s\S]*?<\/footer>/i.test(html)) {
