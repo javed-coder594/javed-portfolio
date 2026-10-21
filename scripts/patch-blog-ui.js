@@ -61,7 +61,7 @@ for (const file of files) {
 
   // Add GA4 tracking to every generated static HTML page once.
   if (!html.includes('G-L4GMMN05E6')) {
-    html = html.replace('</head>', `${gaTag}\\n</head>`);
+    html = html.replace('</head>', `${gaTag}\n</head>`);
   }
 
 
