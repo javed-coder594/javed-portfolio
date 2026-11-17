@@ -72,8 +72,7 @@ function initPortfolioMotion(reduced) {
 }
 
 function runCinematicOpening(){
-  if(!document.querySelector('.cinematic-hero')||sessionStorage.getItem('javed-vfx-intro-seen'))return;
-  sessionStorage.setItem('javed-vfx-intro-seen','1');
+  if(!document.querySelector('.cinematic-hero'))return;
   const intro=document.createElement('div');intro.className='vfx-intro';intro.setAttribute('aria-hidden','true');
   intro.innerHTML='<canvas></canvas><div class="vfx-intro-flash"></div><div class="vfx-intro-name">Javed <span>Chaudhary.</span></div><div class="vfx-intro-label">SEO STRATEGY · AEO · GEO · SEARCH EXPERIENCE</div>';
   document.body.appendChild(intro);
