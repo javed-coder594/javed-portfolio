@@ -356,3 +356,16 @@ body{
 .blog-card-content>a,.blog-card>a{background:rgba(242,118,69,.12)!important;border-color:rgba(242,118,69,.42)!important;color:#FFB18A!important}
 .blog-card-content>a:hover,.blog-card>a:hover{background:linear-gradient(100deg,#F27645,#F5A45B)!important;color:#1B120D!important}
 ::selection{background:rgba(242,118,69,.35);color:#fff}
+
+/* MOISEZ-INSPIRED MOTION LAYER */
+body::after{content:"";position:fixed;inset:0;z-index:50;pointer-events:none;opacity:.055;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E")}
+.hero-orbit-one{animation:orbit-drift 18s ease-in-out infinite alternate}.hero-orbit-two{animation:orbit-drift 24s ease-in-out infinite alternate-reverse}
+@keyframes orbit-drift{from{transform:translate3d(-12px,8px,0) rotate(-4deg)}to{transform:translate3d(18px,-16px,0) rotate(5deg)}}
+.moisez-reveal{opacity:0;transform:translateY(28px);transition:opacity .75s cubic-bezier(.2,.7,.2,1),transform .75s cubic-bezier(.2,.7,.2,1);transition-delay:var(--reveal-delay,0ms)}
+.moisez-reveal.is-visible{opacity:1;transform:translateY(0)}
+.experience-card,.expertise-card,.project-card{transition:transform .45s cubic-bezier(.2,.7,.2,1),border-color .35s ease,box-shadow .35s ease!important}
+.experience-card:hover,.expertise-card:hover,.project-card:hover{transform:translateY(-7px)!important}
+.footer{position:relative;isolation:isolate;overflow:hidden}
+.footer::before{content:"";position:absolute;z-index:-1;inset:0;background:radial-gradient(ellipse at 50% 110%,rgba(242,118,69,.13),transparent 58%);transform:translateY(12%);transition:transform .7s ease}
+.footer:hover::before{transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){.moisez-reveal{opacity:1;transform:none;transition:none}.hero-orbit-one,.hero-orbit-two{animation:none}}
