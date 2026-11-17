@@ -1,55 +1,6 @@
-/* Interactive editorial motion: drawn grid, scroll reveals and touch-reactive star orbs */
-(() => {
- const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
- const hero=document.querySelector('.hero');
- if(hero&&!hero.querySelector('.editorial-draw-lines')){
-   const lines=document.createElement('div');lines.className='editorial-draw-lines';lines.setAttribute('aria-hidden','true');
-   for(let i=0;i<6;i++)lines.appendChild(document.createElement('i'));
-   hero.prepend(lines);
- }
- const sections=[...document.querySelectorAll('main section')];
- sections.forEach((section,i)=>{
-   const targets=section.querySelectorAll('.section-kicker,h2,.experience-card,.expertise-card,.project-card,.achievement-list>div,.contact-cta>div');
-   targets.forEach((el,j)=>{if(!el.classList.contains('editorial-reveal'))el.classList.add('editorial-reveal');el.style.transitionDelay=Math.min(j*55,330)+'ms';});
- });
- if(!reduced&&'IntersectionObserver'in window){
-   const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target)}}),{threshold:.12});
-   document.querySelectorAll('.editorial-reveal').forEach(el=>io.observe(el));
- }else document.querySelectorAll('.editorial-reveal').forEach(el=>el.classList.add('is-visible'));
- const field=document.createElement('div');field.className='editorial-orb-field';field.setAttribute('aria-label','Interactive floating star shapes');
- const count=window.innerWidth<700?12:20,orbs=[];
- for(let i=0;i<count;i++){
-   const orb=document.createElement('button');orb.type='button';orb.className='editorial-orb';orb.setAttribute('aria-label','Interactive star, tap to animate');
-   const x=4+Math.random()*92,y=8+Math.random()*82;
-   orb.style.left=x+'%';orb.style.top=y+'%';orb.style.animationDelay=(Math.random()*2)+'s';
-   field.appendChild(orb);orbs.push({el:orb,x,y,phase:Math.random()*Math.PI*2,active:false});
-   const activate=()=>{orb.classList.add('is-active');setTimeout(()=>orb.classList.remove('is-active'),850)};
-   orb.addEventListener('click',activate);orb.addEventListener('touchstart',activate,{passive:true});
- }
- const contact=document.querySelector('#contact')||document.querySelector('footer');
- if(contact){contact.style.position='relative';contact.style.overflow='hidden';contact.appendChild(field);}
- let pointer={x:-1000,y:-1000};
- const move=e=>{pointer.x=e.clientX;pointer.y=e.clientY};
- window.addEventListener('pointermove',move,{passive:true});
- function animate(t){
-   const rect=field.getBoundingClientRect();
-   orbs.forEach((o,i)=>{
-     const px=rect.left+rect.width*o.x/100,py=rect.top+rect.height*o.y/100;
-     const dx=pointer.x-px,dy=pointer.y-py,d=Math.hypot(dx,dy);
-     let tx=Math.sin(t*.0007+o.phase)*7,ty=Math.cos(t*.0008+o.phase)*8;
-     if(d<150&&d>0){const force=(150-d)/150;tx-=dx/d*force*48;ty-=dy/d*force*48;o.el.classList.add('is-active')}
-     else o.el.classList.remove('is-active');
-     o.el.style.transform='translate3d('+tx+'px,'+ty+'px,0) rotate('+(Math.sin(t*.0006+o.phase)*18)+'deg)';
-   });
-   requestAnimationFrame(animate);
- }
- if(!reduced)requestAnimationFrame(animate);
- // Soft marquee echoes the reference's editorial ticker without replacing portfolio copy.
- if(hero&&!hero.querySelector('.editorial-marquee')){
-   const m=document.createElement('div');m.className='editorial-marquee';
-   const track=document.createElement('div');track.className='editorial-marquee-track';
-   const words='SEO STRATEGY  ✳  SEARCH VISIBILITY  ✳  AEO / GEO  ✳  TECHNICAL SEO  ✳  CONTENT THAT CONNECTS  ✳  ';
-   track.innerHTML='<span>'+words+'</span><span>'+words+'</span>';
-   m.appendChild(track);hero.appendChild(m);
- }
-})();
+/* Hero intro: animated grid draw, interactive particles and subtle 3D pointer tilt */
+(()=>{const hero=document.querySelector('.cinematic-hero');if(!hero)return;const grid=hero.querySelector('.hero-grid-lines');for(let i=0;i<12;i++){const line=document.createElement('i');grid.appendChild(line)}
+const canvas=hero.querySelector('.hero-particle-canvas'),ctx=canvas.getContext('2d');let w=0,h=0,particles=[],pointer={x:-999,y:-999},raf=0;const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function resize(){const r=hero.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,1.7);w=r.width;h=r.height;canvas.width=w*d;canvas.height=h*d;ctx.setTransform(d,0,0,d,0,0);particles=Array.from({length:Math.min(65,Math.floor(w/13))},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.24,vy:(Math.random()-.5)*.24,r:Math.random()*1.6+.4}))}
+function draw(){ctx.clearRect(0,0,w,h);for(let i=0;i<particles.length;i++){const p=particles[i],dx=pointer.x-p.x,dy=pointer.y-p.y,dist=Math.hypot(dx,dy);if(!reduced){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;if(dist<125&&dist>0){p.x-=dx/dist*.35;p.y-=dy/dist*.35}}ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(40,127,168,.42)';ctx.fill();for(let j=i+1;j<particles.length;j++){const q=particles[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<92){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle='rgba(240,75,63,'+(1-d/92)*.13+')';ctx.lineWidth=.7;ctx.stroke()}}}if(!reduced)raf=requestAnimationFrame(draw)}
+hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect();pointer.x=e.clientX-r.left;pointer.y=e.clientY-r.top;const stage=hero.querySelector('.hero-stage');if(stage&&innerWidth>900){const b=stage.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;stage.style.transform='perspective(1100px) rotateY('+(x*5)+'deg) rotateX('+(-y*4)+'deg)'}});hero.addEventListener('pointerleave',()=>{pointer={x:-999,y:-999};const s=hero.querySelector('.hero-stage');if(s)s.style.transform=''});resize();draw();addEventListener('resize',resize,{passive:true});document.addEventListener('visibilitychange',()=>{if(document.hidden)cancelAnimationFrame(raf);else if(!reduced)draw()});})();
