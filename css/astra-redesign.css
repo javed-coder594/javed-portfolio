@@ -131,3 +131,98 @@ section{padding:110px 0!important}
 @media(max-width:680px){
  section{padding:80px 0!important}.container{width:min(100% - 28px,1180px)!important}.header{height:74px!important}.hire-btn{display:none!important}.astra-hero{min-height:auto;padding:112px 0 75px!important}.hero-grid{gap:40px}.hero-text .eyebrow{max-width:100%;white-space:normal;line-height:1.5;letter-spacing:.1em;margin-bottom:4px}.hero-visual{order:-1}.profile-frame{max-width:330px}.profile-badge{right:-5px}.hero-proof{gap:8px}.hero-proof i{display:none}.about-facts,.expertise-grid,.projects-grid,.blog-category-grid,.footer-grid{grid-template-columns:1fr!important}.experience-card{grid-template-columns:35px 1fr;padding:22px}.experience-card h3{font-size:21px}.section-heading-row h2,.section-copy h2,.achievement-layout h2{font-size:39px!important}.contact-cta{padding:28px}.contact-cta h2{font-size:42px}.blog-index,.blog-category-page,.blog-article{padding:120px 0 70px!important}.blog-article>article{width:min(100% - 28px,820px)!important}.blog-card .blog-card-image{aspect-ratio:16/9!important}
 }
+
+
+/* =========================================================
+   RED + BLUE PORTFOLIO THEME — global visual system
+   ========================================================= */
+:root{
+  --primary:#F12B35;
+  --primary-hover:#FF5961;
+  --accent:#168BD2;
+  --accent-soft:rgba(22,139,210,.14);
+  --violet-soft:rgba(241,43,53,.12);
+  --red:#F12B35;
+  --blue:#087CC1;
+}
+body{
+  background:
+    radial-gradient(ellipse at 88% 10%,rgba(8,124,193,.16),transparent 32rem),
+    radial-gradient(ellipse at 8% 46%,rgba(241,43,53,.10),transparent 30rem),
+    var(--bg)!important;
+}
+.logo span:first-child,.footer-logo span:first-child{color:var(--red)!important}
+.logo-dot{color:var(--blue)!important}
+.nav-links a::after{background:linear-gradient(90deg,var(--red),var(--blue))!important}
+.hire-btn{border-color:rgba(241,43,53,.42)!important;background:rgba(241,43,53,.10)!important}
+.hire-btn:hover{background:var(--red)!important}
+.eyebrow-dot{background:var(--red)!important;box-shadow:0 0 14px rgba(241,43,53,.8)!important}
+.hero-text h1 span,.section-heading-row h2 span,.section-copy h2 span,.achievement-layout h2 span,.contact-cta h2 span{
+  background:linear-gradient(100deg,var(--red),var(--blue))!important;
+  -webkit-background-clip:text!important;background-clip:text!important
+}
+.btn{background:linear-gradient(105deg,var(--red),#D91F48 52%,var(--blue))!important;color:#fff!important}
+.btn:hover{background:linear-gradient(105deg,#FF5961,var(--blue))!important}
+.outline-btn:hover{background:rgba(8,124,193,.14)!important;border-color:rgba(8,124,193,.5)!important}
+.profile-frame{background:linear-gradient(135deg,rgba(241,43,53,.62),rgba(8,124,193,.48) 55%,rgba(255,255,255,.05))!important}
+.profile-glow{background:radial-gradient(circle,var(--blue),transparent 68%)!important}
+.profile-badge>span,.profile-badge small{color:#55B9F0!important}
+.hero-orbit{border-color:rgba(241,43,53,.16)!important}
+.hero-orbit-two{border-color:rgba(8,124,193,.2)!important}
+.tag-row span,.project-tags span,.tools-strip span{border-color:rgba(8,124,193,.25)!important;background:rgba(8,124,193,.08)!important}
+.expertise-card:hover{border-color:rgba(8,124,193,.55)!important}
+.expertise-card i,.project-top i,.blog-category-card b,.text-link:hover{color:#39A9E8!important}
+.project-card:hover,.blog-category-card:hover{border-color:rgba(8,124,193,.48)!important}
+.project-category,.achievement-list strong,.footer-bottom span{color:var(--red)!important}
+.contact-cta{border-color:rgba(241,43,53,.28)!important;background:radial-gradient(circle at 82% 18%,rgba(8,124,193,.17),transparent 38%),radial-gradient(circle at 8% 95%,rgba(241,43,53,.12),transparent 36%),rgba(255,255,255,.025)!important}
+.sticky-contact a,.call-btn{background:var(--red)!important;color:#fff!important}
+.blog-card-content>a,.blog-card>a{border-color:rgba(8,124,193,.38)!important;background:rgba(8,124,193,.10)!important;color:#55B9F0!important}
+.blog-card-content>a:hover,.blog-card>a:hover{background:var(--blue)!important;color:#fff!important}
+.blog-article .blog-post-meta,.blog-article .blog-post-body a{color:#55B9F0!important}
+.footer-col ul li i,.footer-col ul li a:hover{color:#55B9F0!important}
+
+/* Experience: connected route / milestone timeline */
+.experience{position:relative;overflow:hidden!important;background:
+  radial-gradient(ellipse at 78% 48%,rgba(8,124,193,.13),transparent 38rem),
+  linear-gradient(180deg,#070A12,#091323)!important}
+.experience::before{
+  content:"";position:absolute;left:max(calc((100% - 1180px)/2 + 34px),34px);top:245px;bottom:115px;width:2px;
+  background:linear-gradient(180deg,var(--red),rgba(241,43,53,.55) 38%,var(--blue));
+  box-shadow:0 0 18px rgba(241,43,53,.35),0 0 26px rgba(8,124,193,.25);opacity:.9
+}
+.experience-list{position:relative;display:grid;gap:22px;padding-left:0!important}
+.experience-card{
+  position:relative;isolation:isolate;grid-template-columns:70px 1fr!important;
+  border:1px solid rgba(22,139,210,.22)!important;
+  background:linear-gradient(110deg,rgba(8,124,193,.10),rgba(255,255,255,.025) 42%,rgba(241,43,53,.035))!important;
+  box-shadow:0 14px 45px rgba(0,0,0,.16);overflow:visible!important
+}
+.experience-card::before{
+  content:"";position:absolute;left:23px;top:34px;width:16px;height:16px;border-radius:50%;
+  background:#081321;border:3px solid var(--red);
+  box-shadow:0 0 0 6px rgba(241,43,53,.12),0 0 20px rgba(241,43,53,.55);z-index:3
+}
+.experience-card::after{
+  content:"";position:absolute;left:39px;top:41px;width:25px;height:2px;
+  background:linear-gradient(90deg,var(--red),var(--blue));opacity:.8
+}
+.experience-index{color:#55B9F0!important;font-weight:800!important;padding-left:5px}
+.experience-card:hover,.experience-card.featured{
+  border-color:rgba(241,43,53,.48)!important;transform:translateX(5px);
+  box-shadow:0 16px 48px rgba(8,124,193,.10),0 0 24px rgba(241,43,53,.06)
+}
+.experience-top>span:first-child{color:#55B9F0!important}
+.experience-status{color:#FF5961!important}
+.experience-card h3{color:#F7F9FF!important}
+.experience-card h4{color:#69BCEB!important}
+.experience-card p{color:#B5C2D4!important}
+.experience-card .tag-row span{border-color:rgba(8,124,193,.35)!important;background:rgba(8,124,193,.10)!important;color:#9AD7F5!important}
+@media(max-width:768px){
+  .experience::before{left:31px;top:225px;bottom:100px}
+  .experience-card{grid-template-columns:34px 1fr!important;gap:12px!important;padding:22px 16px!important}
+  .experience-card::before{left:16px;top:29px;width:14px;height:14px}
+  .experience-card::after{left:30px;top:36px;width:17px}
+  .experience-index{font-size:11px!important;padding-left:0}
+  .experience-card h3{font-size:19px!important;line-height:1.3}
+  .experience-top{gap:8px;flex-wrap:wrap;font-size:10px!important}
+}
