@@ -1588,9 +1588,19 @@ COMPACT FOOTER
     font-size:13px;
 }
 @media(max-width:900px) {
-    .footer { overflow-x:auto; }
-    .footer-row { justify-content:flex-start; gap:20px; padding:0 18px; }
-    .footer-links { gap:15px; }
+    .footer { overflow:visible; }
+    .footer-row {
+        min-width:0;
+        white-space:normal;
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:18px 22px;
+        padding:28px 18px;
+        text-align:center;
+    }
+    .footer-links { flex-wrap:wrap; justify-content:center; gap:12px 16px; }
+    .footer-social { justify-content:center; }
+    .footer-copy { flex:0 0 100%; }
 }
 /*==================================
 STICKY CONTACT
