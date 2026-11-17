@@ -2,27 +2,16 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": true,
-  "buildCommand": "node scripts/build-blog-static.js && node scripts/patch-blog-ui.js",
-  "outputDirectory": "public",
-  "rewrites": [
+  "redirects": [
     {
       "source": "/blog",
-      "destination": "/blog.html"
+      "destination": "/",
+      "permanent": true
     },
     {
-      "source": "/blog/",
-      "destination": "/blog.html"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/blog/",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "no-cache, no-store, must-revalidate"
-        }
-      ]
+      "source": "/blog/:path*",
+      "destination": "/",
+      "permanent": true
     }
   ]
 }
