@@ -226,3 +226,97 @@ body{
   .experience-card h3{font-size:19px!important;line-height:1.3}
   .experience-top{gap:8px;flex-wrap:wrap;font-size:10px!important}
 }
+
+
+/* Experience motion: animated route, reveal cards and interactive milestones */
+.experience::before{
+  background-size:100% 220%;
+  animation:experience-route-flow 5s linear infinite;
+}
+@keyframes experience-route-flow{
+  0%{background-position:0 0}
+  100%{background-position:0 100%}
+}
+.experience-card{
+  opacity:0;
+  animation:experience-card-enter .75s cubic-bezier(.2,.75,.25,1) forwards;
+  will-change:transform,opacity;
+}
+.experience-card:nth-child(1){animation-delay:.08s}
+.experience-card:nth-child(2){animation-delay:.22s}
+.experience-card:nth-child(3){animation-delay:.36s}
+.experience-card:nth-child(4){animation-delay:.5s}
+@keyframes experience-card-enter{
+  from{opacity:0;transform:translate3d(0,34px,0) scale(.985);filter:blur(5px)}
+  to{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}
+}
+.experience-card::before{
+  animation:experience-marker-pulse 2.8s ease-in-out infinite;
+}
+.experience-card:nth-child(2)::before{animation-delay:.45s}
+.experience-card:nth-child(3)::before{animation-delay:.9s}
+.experience-card:nth-child(4)::before{animation-delay:1.35s}
+@keyframes experience-marker-pulse{
+  0%,100%{box-shadow:0 0 0 5px rgba(241,43,53,.10),0 0 12px rgba(241,43,53,.35)}
+  50%{box-shadow:0 0 0 9px rgba(8,124,193,.12),0 0 24px rgba(8,124,193,.55)}
+}
+.experience-card:hover{
+  transform:translate3d(7px,-3px,0)!important;
+  border-color:rgba(241,43,53,.65)!important;
+  box-shadow:0 18px 52px rgba(8,124,193,.18),0 0 26px rgba(241,43,53,.10)!important;
+}
+.experience-card:hover::before{
+  background:var(--blue);border-color:#fff;
+  box-shadow:0 0 0 8px rgba(8,124,193,.16),0 0 25px rgba(8,124,193,.8);
+}
+.experience-card .experience-main{transition:transform .35s ease}
+.experience-card:hover .experience-main{transform:translateX(3px)}
+
+/* Consistent red/blue accents across blog index, category and article pages */
+.blog-index-hero h1,.blog-category-hero h1,
+.blog-article .blog-post-content>h1,
+.blog-article .blog-post-body>h2,.blog-faq>h2{
+  background:linear-gradient(105deg,#F12B35 0%,#FF5961 42%,#168BD2 100%)!important;
+  -webkit-background-clip:text!important;background-clip:text!important;
+  -webkit-text-fill-color:transparent!important;color:transparent!important;
+}
+.blog-category-block h2 a,
+.blog-category-block li a,
+.blog-card h2 a,
+.blog-article .blog-post-body>h3,
+.blog-faq-item h3{
+  transition:color .25s ease,border-color .25s ease,transform .25s ease;
+}
+.blog-category-block h2 a:hover,
+.blog-card h2 a:hover,
+.blog-article .blog-post-body a:hover,
+.blog-faq-item h3:hover{color:#168BD2!important}
+.blog-category-block li a:hover{
+  color:#FF5961!important;border-color:rgba(241,43,53,.55)!important;
+  background:linear-gradient(100deg,rgba(241,43,53,.09),rgba(8,124,193,.10))!important;
+  transform:translateX(4px);
+}
+.blog-card:hover{
+  border-color:rgba(8,124,193,.62)!important;
+  box-shadow:0 18px 50px rgba(8,124,193,.12),0 0 22px rgba(241,43,53,.07)!important;
+}
+.blog-card h2 a:hover{color:#168BD2!important}
+.blog-card-content>a,.blog-card>a{
+  background:linear-gradient(100deg,rgba(241,43,53,.13),rgba(8,124,193,.16))!important;
+  border-color:rgba(8,124,193,.45)!important;color:#75C9F3!important;
+  transition:transform .25s ease,background .25s ease,box-shadow .25s ease!important;
+}
+.blog-card-content>a:hover,.blog-card>a:hover{
+  background:linear-gradient(100deg,#F12B35,#087CC1)!important;
+  border-color:transparent!important;color:#fff!important;
+  transform:translateY(-2px);box-shadow:0 8px 24px rgba(8,124,193,.25)!important;
+}
+.blog-category-block li a:focus-visible,.blog-card a:focus-visible,
+.blog-category-block h2 a:focus-visible{
+  outline:2px solid #168BD2;outline-offset:3px;
+}
+@media(prefers-reduced-motion:reduce){
+  .experience::before,.experience-card,.experience-card::before{animation:none!important}
+  .experience-card{opacity:1!important;filter:none!important}
+  .experience-card,.experience-card:hover{transition:none!important}
+}
