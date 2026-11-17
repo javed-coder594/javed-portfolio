@@ -114,7 +114,7 @@ function initHeroParticleField(){
       p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>width)p.vx*=-1;if(p.y<0||p.y>height)p.vy*=-1;
       const dx=p.x-pointer.x,dy=p.y-pointer.y,dist=Math.hypot(dx,dy);if(dist<125&&dist>0){p.x+=dx/dist*1.1;p.y+=dy/dist*1.1;}
       ctx.beginPath();ctx.arc(p.x,p.y,p.r*(.7+p.z),0,Math.PI*2);ctx.fillStyle=i%5===0?'rgba(240,68,62,.8)':'rgba(91,190,235,.72)';ctx.fill();
-      for(let j=i+1;j<particles.length;j++){const q=particles[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<mobile?72:112){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle='rgba(77,157,196,'+((1-d/(mobile?72:112))*.22)+')';ctx.lineWidth=.65;ctx.stroke();}}
+      for(let j=i+1;j<particles.length;j++){const q=particles[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<(mobile?72:112)){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle='rgba(77,157,196,'+((1-d/(mobile?72:112))*.22)+')';ctx.lineWidth=.65;ctx.stroke();}}
     });
     frame=requestAnimationFrame(draw);
   };
