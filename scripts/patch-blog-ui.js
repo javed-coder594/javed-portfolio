@@ -14,7 +14,9 @@ const gaTag = `<!-- Google tag (gtag.js) -->
   gtag('config', 'G-L4GMMN05E6');
 </script>`;
 const astraCssLink = '<link rel="stylesheet" href="/css/astra-redesign.css">';
+const headerPath = path.join(process.cwd(), 'components', 'header.html');
 const footerPath = path.join(process.cwd(), 'components', 'footer.html');
+const unifiedHeader = fs.existsSync(headerPath) ? fs.readFileSync(headerPath, 'utf8').trim() : '';
 const unifiedFooter = fs.existsSync(footerPath) ? fs.readFileSync(footerPath, 'utf8').trim() : '';
 
 function walk(dir) {
@@ -65,7 +67,10 @@ for (const file of files) {
   }
 
 
-  // Keep the footer identical across every generated/static HTML page.
+  // Keep the shared navigation and footer identical across every generated/static HTML page.
+  if (unifiedHeader && /<header class="header">[\s\S]*?<\/header>/i.test(html)) {
+    html = html.replace(/<header class="header">[\s\S]*?<\/header>/i, unifiedHeader);
+  }
   if (unifiedFooter && /<footer class="footer">[\s\S]*?<\/footer>/i.test(html)) {
     html = html.replace(/<footer class="footer">[\s\S]*?<\/footer>/i, unifiedFooter);
   }
