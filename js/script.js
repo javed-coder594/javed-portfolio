@@ -311,7 +311,7 @@ function setupAchievementsSection() {
 document.addEventListener("DOMContentLoaded", () => {
     setupHeroRedesign();
     setupMobileMenu();
-    setupBlogsFooter();
+
     setupBlogArticleVisuals();
     setupAchievementsNavigation();
     setupAchievementsSection();
