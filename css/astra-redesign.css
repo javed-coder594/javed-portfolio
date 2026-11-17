@@ -5,20 +5,20 @@
    templates without changing their content structure.
    ========================================================= */
 :root{
-  --bg:#070A12;
-  --bg-2:#0B1020;
-  --card:#10172A;
-  --card-2:#0D1425;
-  --white:#F7F9FF;
-  --text:#A9B4C9;
-  --muted:#71809B;
-  --border:rgba(255,255,255,.09);
-  --primary:#9B7CFF;
-  --primary-hover:#B9A5FF;
-  --accent:#35D7FF;
-  --accent-soft:rgba(53,215,255,.12);
-  --violet-soft:rgba(155,124,255,.14);
-  --shadow:0 24px 70px rgba(0,0,0,.34);
+  --bg:#111111;
+  --bg-2:#191817;
+  --card:#201F1D;
+  --card-2:#181716;
+  --white:#F5F0E7;
+  --text:#C5BFB5;
+  --muted:#918A80;
+  --border:rgba(245,240,231,.12);
+  --primary:#F27645;
+  --primary-hover:#FF9468;
+  --accent:#F5A45B;
+  --accent-soft:rgba(242,118,69,.14);
+  --violet-soft:rgba(242,118,69,.12);
+  --shadow:0 24px 70px rgba(0,0,0,.38);
   --radius:22px;
   --transition:.28s ease;
 }
@@ -320,3 +320,39 @@ body{
   .experience-card{opacity:1!important;filter:none!important}
   .experience-card,.experience-card:hover{transition:none!important}
 }
+
+
+/* CODEFORGE-INSPIRED WARM CHARCOAL + ORANGE THEME */
+body{
+  background:
+    radial-gradient(circle at 82% 12%,rgba(242,118,69,.13),transparent 30rem),
+    radial-gradient(circle at 10% 58%,rgba(245,164,91,.07),transparent 28rem),
+    var(--bg)!important;
+  color:var(--white)!important;
+}
+.header{background:rgba(17,17,17,.88)!important}
+.logo span:first-child,.footer-logo span:first-child{color:var(--primary)!important}
+.logo-dot,.eyebrow-dot,.profile-badge>span{color:var(--accent)!important;background-color:var(--accent)!important}
+.nav-links a::after{background:linear-gradient(90deg,var(--primary),var(--accent))!important}
+.hire-btn{border-color:rgba(242,118,69,.42)!important;background:rgba(242,118,69,.10)!important}
+.hire-btn:hover{background:var(--primary)!important;color:#17110D!important}
+.hero-text h1 span,.section-heading-row h2 span,.section-copy h2 span,.achievement-layout h2 span,.contact-cta h2 span,
+.blog-index-hero h1,.blog-category-hero h1,.blog-article .blog-post-content>h1{
+  background:linear-gradient(105deg,#F5F0E7 0%,#F27645 58%,#F5A45B 100%)!important;
+  -webkit-background-clip:text!important;background-clip:text!important;
+  -webkit-text-fill-color:transparent!important;color:transparent!important;
+}
+.btn{background:linear-gradient(105deg,#F27645,#F5A45B)!important;color:#1B120D!important}
+.btn:hover{background:linear-gradient(105deg,#FF9468,#FFC078)!important}
+.outline-btn:hover,.blog-category-block li a:hover{border-color:rgba(242,118,69,.55)!important;background:rgba(242,118,69,.12)!important}
+.profile-frame{background:linear-gradient(135deg,rgba(242,118,69,.55),rgba(245,164,91,.18) 55%,rgba(255,255,255,.05))!important}
+.profile-glow{background:radial-gradient(circle,var(--primary),transparent 68%)!important}
+.experience-card:hover{border-color:rgba(242,118,69,.65)!important;box-shadow:0 18px 52px rgba(242,118,69,.14)!important}
+.experience-card::before{background:var(--primary)!important}
+.experience-card:hover::before{background:var(--accent)!important;box-shadow:0 0 0 8px rgba(242,118,69,.16),0 0 25px rgba(245,164,91,.65)!important}
+.blog-category-block h2 a:hover,.blog-category-block li a:hover,.blog-card h2 a:hover,
+.blog-article .blog-post-body a:hover,.blog-faq-item h3:hover{color:var(--accent)!important}
+.blog-card:hover{border-color:rgba(242,118,69,.55)!important;box-shadow:0 18px 50px rgba(242,118,69,.12)!important}
+.blog-card-content>a,.blog-card>a{background:rgba(242,118,69,.12)!important;border-color:rgba(242,118,69,.42)!important;color:#FFB18A!important}
+.blog-card-content>a:hover,.blog-card>a:hover{background:linear-gradient(100deg,#F27645,#F5A45B)!important;color:#1B120D!important}
+::selection{background:rgba(242,118,69,.35);color:#fff}
