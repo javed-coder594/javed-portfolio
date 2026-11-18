@@ -116,3 +116,10 @@
 @media(prefers-reduced-motion:reduce){
  .train-smoke,.train-experience .route-stop-current:after{animation:none!important}
 }
+
+/* Locomotive travels from the departure platform and brakes at the current station */
+.train-experience .route-train.railway-locomotive{transition:top 4.8s cubic-bezier(.16,.72,.18,1)!important}
+.train-experience .railway-locomotive.train-arrived{filter:drop-shadow(0 8px 12px #ef4c4340)}
+.train-experience .railway-active .route-stop-current{animation:stationArrivalGlow 2.2s ease-out 1}
+@keyframes stationArrivalGlow{0%{box-shadow:0 0 0 0 #ef4c4370,0 20px 55px #e94d4515}55%{box-shadow:0 0 0 13px #ef4c4300,0 20px 55px #e94d4528}100%{box-shadow:0 20px 55px #e94d4515}}
+@media(prefers-reduced-motion:reduce){.train-experience .route-train.railway-locomotive{transition:none!important}.train-experience .railway-active .route-stop-current{animation:none!important}}
