@@ -1,159 +1,65 @@
-/* About section — 3D orbiting discipline cards */
-.about-orbit{
-  --about-red:#f0443b;
-  --about-blue:#287fa8;
-  --about-ink:#f4f6f8;
-  --about-muted:#b8c5d2;
-  position:relative;
-  isolation:isolate;
-  overflow:hidden;
-  padding:clamp(88px,10vw,140px) 0!important;
-  background:
-    radial-gradient(ellipse at 76% 48%,rgba(40,127,168,.18),transparent 34%),
-    radial-gradient(ellipse at 16% 80%,rgba(240,68,59,.09),transparent 35%),
-    linear-gradient(135deg,#081321 0%,#0b1420 55%,#101b28 100%)!important;
-  color:var(--about-ink)!important;
-}
-.about-orbit:before,.about-orbit:after{
-  content:"";position:absolute;pointer-events:none;z-index:-1;border:1px solid rgba(94,160,190,.12);border-radius:50%;
-}
-.about-orbit:before{width:780px;height:780px;right:-270px;top:-250px}
-.about-orbit:after{width:520px;height:520px;left:-300px;bottom:-320px;border-color:rgba(240,68,59,.12)}
-.about-orbit-layout{
-  display:grid!important;grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);
-  align-items:center;gap:clamp(35px,6vw,90px);position:relative;z-index:1;
-}
-.about-orbit-copy{max-width:590px}
-.about-orbit-copy .section-kicker{color:var(--about-red)!important;margin-bottom:24px}
-.about-orbit-copy h2{
-  color:#f5f7fa!important;font:800 clamp(38px,5vw,68px)/1.04 Manrope,sans-serif;
-  letter-spacing:-.065em;margin:0 0 25px;max-width:650px;
-}
-.about-orbit-copy h2 span{
-  background:linear-gradient(105deg,var(--about-red),#f29a8c 48%,#55a9d1);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-}
-.about-orbit-copy p{color:var(--about-muted)!important;font-size:clamp(14px,1.15vw,16px);line-height:1.9;margin:0 0 15px;max-width:570px}
-.about-orbit-copy .about-orbit-emphasis{color:#eef3f8!important;font-weight:600;margin-top:24px}
-.about-orbit-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:34px}
-.about-orbit-facts>div{
-  min-width:0;padding:17px 15px;border:1px solid rgba(170,195,215,.16);
-  background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
-  border-radius:13px;box-shadow:inset 0 1px rgba(255,255,255,.04)
-}
-.about-orbit-facts strong{display:block;font:800 clamp(22px,2.4vw,30px)/1 Manrope,sans-serif;color:#fff;letter-spacing:-.06em}
-.about-orbit-facts span{display:block;margin-top:8px;color:#aebdca;font-size:10px;line-height:1.45;letter-spacing:.07em;text-transform:uppercase}
-.about-orbit-scene{
-  min-width:0;position:relative;perspective:1100px;isolation:isolate;
-  padding:22px 12px 18px;border:1px solid rgba(151,190,213,.16);border-radius:24px;
-  background:linear-gradient(145deg,rgba(12,28,44,.8),rgba(7,17,29,.64));
-  box-shadow:0 30px 100px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.05);
-}
-.about-orbit-scene:before{
-  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:.42;
-  background-image:linear-gradient(rgba(107,161,190,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(107,161,190,.07) 1px,transparent 1px);
-  background-size:42px 42px;mask-image:linear-gradient(transparent,#000 18%,#000 82%,transparent);
-}
-.about-orbit-meta,.about-orbit-foot{position:relative;z-index:5;display:flex;justify-content:space-between;gap:12px;align-items:center}
-.about-orbit-meta{padding:0 12px;color:#9fb1c1;font:700 9px/1.4 "DM Sans",sans-serif;letter-spacing:.17em;text-transform:uppercase}
-.about-orbit-meta span:last-child{color:var(--about-red)}
-.about-orbit-stage{
-  position:relative;z-index:2;height:clamp(390px,42vw,520px);width:100%;
-  display:grid;place-items:center;transform-style:preserve-3d;overflow:visible;
-}
-.about-orbit-aura{
-  position:absolute;width:clamp(210px,23vw,285px);aspect-ratio:1;border-radius:50%;
-  background:radial-gradient(circle,rgba(40,127,168,.42),rgba(40,127,168,.13) 48%,transparent 72%);
-  filter:blur(13px);animation:aboutAura 4s ease-in-out infinite alternate;
-}
-.about-orbit-core{
-  position:absolute;z-index:2;width:clamp(138px,16vw,194px);aspect-ratio:1;border-radius:50%;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;
-  color:#fff;border:1px solid rgba(181,228,248,.55);
-  background:
-    radial-gradient(circle at 30% 23%,rgba(177,235,255,.9),transparent 19%),
-    radial-gradient(circle at 36% 30%,#56b4d2 0%,#16789e 30%,#0b3552 67%,#071725 100%);
-  box-shadow:inset -20px -24px 42px rgba(0,0,0,.48),inset 9px 8px 20px rgba(255,255,255,.23),0 0 55px rgba(40,127,168,.36),0 25px 60px rgba(0,0,0,.5);
-  transform:translateZ(0);animation:aboutCoreFloat 5s ease-in-out infinite;
-}
-.about-orbit-core:before,.about-orbit-core:after{
-  content:"";position:absolute;inset:10%;border:1px solid rgba(184,232,249,.36);border-radius:50%;transform:rotateX(68deg) rotateZ(-28deg)
-}
-.about-orbit-core:after{inset:4% 25%;transform:rotateY(68deg) rotateZ(18deg);border-color:rgba(240,244,255,.23)}
-.about-orbit-core strong{font:800 clamp(25px,3vw,38px)/1 Manrope,sans-serif;letter-spacing:-.07em;text-shadow:0 3px 15px rgba(0,0,0,.35)}
-.about-orbit-core small{font:700 7px/1 "DM Sans",sans-serif;letter-spacing:.2em;color:#d3eff9}
-.about-orbit-core .about-core-mark{font:800 9px/1 "DM Sans",sans-serif;letter-spacing:.3em;color:#a9e3f4}
-.about-orbit-ring{
-  position:absolute;z-index:1;width:clamp(245px,30vw,360px);height:clamp(110px,13vw,155px);
-  border:1px solid rgba(78,172,207,.55);border-radius:50%;transform:rotate(-24deg);
-  box-shadow:0 0 22px rgba(40,127,168,.12);pointer-events:none
-}
-.about-orbit-ring.ring-two{width:clamp(275px,34vw,410px);height:clamp(125px,16vw,190px);transform:rotate(28deg);border-color:rgba(240,68,59,.5)}
-.about-orbit-ring.ring-three{width:clamp(195px,24vw,290px);height:clamp(295px,34vw,410px);transform:rotate(58deg);border-color:rgba(126,193,220,.22)}
-.about-orbit-track{
-  position:absolute;z-index:4;inset:0;transform-style:preserve-3d;
-  animation:aboutOrbitSpin 12s linear infinite;will-change:transform
-}
-.about-orbit-card{
-  position:absolute;left:50%;top:50%;width:clamp(205px,23vw,270px);min-height:166px;
-  padding:19px 20px 17px;display:flex;flex-direction:column;justify-content:space-between;
-  border:1px solid rgba(180,212,230,.3);border-radius:13px;
-  background:linear-gradient(145deg,rgba(13,29,45,.96),rgba(6,16,28,.91));
-  box-shadow:0 22px 55px rgba(0,0,0,.42),inset 0 1px rgba(255,255,255,.08);
-  backface-visibility:hidden;transform:translate(-50%,-50%) rotateY(var(--card-angle)) translateZ(clamp(155px,18vw,220px)) rotateY(calc(var(--card-angle) * -1));
-  opacity:.52;filter:saturate(.72);transition:opacity .55s ease,filter .55s ease,box-shadow .55s ease,border-color .55s ease;
-}
-.about-orbit-card:before{content:"";position:absolute;right:-1px;top:-1px;width:72px;height:72px;border-radius:0 12px 0 100%;background:radial-gradient(circle at top right,rgba(240,68,59,.23),transparent 70%);pointer-events:none}
-.about-orbit-card.is-active{opacity:1;filter:saturate(1);border-color:rgba(89,178,214,.72);box-shadow:0 28px 70px rgba(0,0,0,.5),0 0 32px rgba(40,127,168,.2),inset 0 1px rgba(255,255,255,.12)}
-.about-card-top,.about-card-bottom{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#9fb4c4;font:700 8px/1.4 "DM Sans",sans-serif;letter-spacing:.15em;text-transform:uppercase}
+/* Cinematic solar-system About section — stable cards, continuous orbital VFX */
+.about-orbit{--about-red:#f0443b;--about-blue:#278bb8;--about-white:#f4f7fb;position:relative;isolation:isolate;overflow:hidden;padding:clamp(78px,8vw,118px) 0!important;color:var(--about-white)!important;background:radial-gradient(ellipse at 50% 36%,rgba(24,105,150,.18),transparent 42%),linear-gradient(145deg,#080d19 0%,#0a1422 52%,#101729 100%)!important}
+.about-orbit:before{content:"";position:absolute;inset:0;z-index:-1;opacity:.22;pointer-events:none;background-image:radial-gradient(1px 1px at 12% 18%,#d7efff 98%,transparent),radial-gradient(1px 1px at 76% 12%,#fff 98%,transparent),radial-gradient(1.5px 1.5px at 89% 62%,#8edcff 98%,transparent),radial-gradient(1px 1px at 24% 78%,#fff 98%,transparent),radial-gradient(1px 1px at 55% 91%,#fff 98%,transparent);background-size:190px 170px,230px 210px,270px 240px,210px 230px,260px 190px}
+.about-orbit-layout{display:flex!important;flex-direction:column;align-items:center;gap:0;position:relative;z-index:1}
+.about-orbit-heading{text-align:center;max-width:790px;margin:0 auto 24px}
+.about-orbit-heading .section-kicker{color:var(--about-red)!important;margin-bottom:16px;font-size:11px;letter-spacing:.2em}
+.about-orbit-heading h2{font:800 clamp(38px,5.5vw,68px)/1.02 Manrope,sans-serif;letter-spacing:-.065em;color:#f6f8fb!important;margin:0 0 14px}
+.about-orbit-heading h2 span{background:linear-gradient(100deg,#f0443b 5%,#f39a8b 48%,#3a9bc6 100%);color:transparent;background-clip:text;-webkit-background-clip:text}
+.about-orbit-heading p{font:400 clamp(14px,1.35vw,17px)/1.7 "DM Sans",sans-serif;color:#b5c4d2!important;margin:0 auto;max-width:580px}
+.about-orbit-scene{width:min(100%,1000px);position:relative;isolation:isolate;border:1px solid rgba(123,177,208,.17);border-radius:24px;padding:18px 22px 14px;background:linear-gradient(145deg,rgba(13,29,48,.65),rgba(5,12,24,.48));box-shadow:0 24px 90px rgba(0,0,0,.25),inset 0 1px rgba(255,255,255,.05)}
+.about-orbit-meta,.about-orbit-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;color:#94aabd;font:700 9px/1.4 "DM Sans",sans-serif;letter-spacing:.17em;text-transform:uppercase}
+.about-orbit-meta span:last-child{color:#f0786e}
+.about-solar-system{position:relative;width:min(100%,760px);height:clamp(330px,40vw,450px);margin:0 auto;display:grid;place-items:center;perspective:1100px;transform-style:preserve-3d}
+.about-space-glow{position:absolute;width:250px;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(38,147,194,.3),rgba(240,68,59,.08) 48%,transparent 72%);filter:blur(18px);animation:solarGlow 5s ease-in-out infinite alternate}
+.about-solar-orbit{position:absolute;left:50%;top:50%;border:1px solid rgba(78,165,207,.42);border-radius:50%;transform-style:preserve-3d;pointer-events:none}
+.about-solar-orbit.orbit-one{width:250px;height:145px;transform:translate(-50%,-50%) rotateX(68deg) rotateZ(-22deg);animation:solarOrbitPulse 7s ease-in-out infinite}
+.about-solar-orbit.orbit-two{width:390px;height:215px;border-color:rgba(240,85,75,.46);transform:translate(-50%,-50%) rotateX(68deg) rotateZ(35deg);animation:solarOrbitPulse 8s ease-in-out infinite reverse}
+.about-solar-orbit.orbit-three{width:530px;height:285px;border-color:rgba(95,181,216,.25);transform:translate(-50%,-50%) rotateX(68deg) rotateZ(-48deg)}
+.about-solar-orbit.orbit-four{width:650px;height:340px;border-color:rgba(240,85,75,.2);transform:translate(-50%,-50%) rotateX(68deg) rotateZ(12deg)}
+.about-sun{position:relative;z-index:3;width:clamp(132px,16vw,180px);aspect-ratio:1;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;color:white;border:1px solid rgba(180,231,250,.65);background:radial-gradient(circle at 31% 22%,#b9f1ff 0%,#51b7d7 13%,#167da5 38%,#0b3859 72%,#061321 100%);box-shadow:inset -22px -24px 40px rgba(0,0,0,.5),inset 8px 7px 18px rgba(255,255,255,.28),0 0 45px rgba(37,150,197,.3),0 0 120px rgba(32,128,180,.16);animation:sunFloat 5s ease-in-out infinite}
+.about-sun:before,.about-sun:after{content:"";position:absolute;inset:9%;border:1px solid rgba(208,245,255,.45);border-radius:50%;transform:rotateX(70deg) rotateZ(-25deg)}
+.about-sun:after{inset:2% 25%;transform:rotateY(70deg) rotateZ(20deg);border-color:rgba(240,250,255,.28)}
+.about-sun>span{font:800 12px/1 Manrope,sans-serif;color:#c6f3ff;letter-spacing:.22em}
+.about-sun strong{font:800 clamp(23px,3vw,34px)/1 Manrope,sans-serif;letter-spacing:-.06em;text-shadow:0 3px 18px #061321}
+.about-sun small{font:700 7px/1 "DM Sans",sans-serif;letter-spacing:.2em;color:#d8f4ff}
+.about-satellite{position:absolute;z-index:4;width:clamp(48px,6vw,66px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;font:800 10px/1 Manrope,sans-serif;letter-spacing:.04em;color:#fff;border:1px solid rgba(193,227,242,.62);box-shadow:0 8px 28px rgba(0,0,0,.45),inset 0 2px 9px rgba(255,255,255,.28);backface-visibility:hidden}
+.about-satellite:after{content:"";position:absolute;inset:-7px;border:1px solid currentColor;border-radius:50%;opacity:.35}
+.satellite-seo{background:radial-gradient(circle at 30% 25%,#ffb0a8,#ed453c 40%,#641c2c 100%);color:#ffd6d1;animation:planetSEO 12s linear infinite}
+.satellite-aeo{background:radial-gradient(circle at 30% 25%,#b5eaff,#258dbd 45%,#102d50 100%);color:#d9f4ff;animation:planetAEO 16s linear infinite}
+.satellite-geo{background:radial-gradient(circle at 30% 25%,#ffc1b7,#e45b55 42%,#45213b 100%);color:#ffe1dc;animation:planetGEO 19s linear infinite}
+.satellite-web{background:radial-gradient(circle at 30% 25%,#a7e9ff,#287ba8 44%,#102b47 100%);color:#dcf7ff;animation:planetWEB 22s linear infinite}
+.about-star{position:absolute;width:5px;height:5px;border-radius:50%;background:#f6a49a;box-shadow:0 0 12px currentColor;animation:starBlink 2.4s ease-in-out infinite alternate}
+.star-a{top:18%;left:20%}.star-b{top:23%;right:17%;background:#7bd6ff;animation-delay:.5s}.star-c{bottom:17%;left:28%;background:#7bd6ff;animation-delay:1s}.star-d{bottom:20%;right:23%;animation-delay:1.4s}
+.about-orbit-foot{padding:4px 3px 0;letter-spacing:.12em}
+.about-orbit-foot strong{color:#fff;font-variant-numeric:tabular-nums}
+.about-orbit-progress{height:2px;background:rgba(173,204,222,.13);margin:13px 3px 0;overflow:hidden}
+.about-orbit-progress span{display:block;width:25%;height:100%;background:linear-gradient(90deg,var(--about-red),var(--about-blue));transition:width .35s ease}
+.about-orbit-cards{width:min(100%,1000px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:22px auto 0}
+.about-orbit-card{position:relative;min-width:0;min-height:156px;padding:17px 17px 14px;border:1px solid rgba(153,189,211,.2);border-radius:14px;background:linear-gradient(145deg,rgba(16,34,53,.92),rgba(7,17,30,.94));box-shadow:0 12px 35px rgba(0,0,0,.2),inset 0 1px rgba(255,255,255,.05);opacity:1;filter:none;transform:translateY(0);transition:border-color .45s,box-shadow .45s,background .45s,transform .45s}
+.about-orbit-card:before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;background:radial-gradient(circle at 100% 0,rgba(240,68,59,.2),transparent 52%);transition:opacity .45s}
+.about-orbit-card.is-active{border-color:rgba(71,169,211,.75);background:linear-gradient(145deg,rgba(19,49,70,.98),rgba(8,21,36,.98));box-shadow:0 16px 40px rgba(0,0,0,.32),0 0 28px rgba(40,139,184,.15),inset 0 1px rgba(255,255,255,.1);transform:translateY(-5px)}
+.about-orbit-card.is-active:before{opacity:1}
+.about-card-top,.about-card-bottom{position:relative;display:flex;align-items:center;justify-content:space-between;gap:8px;color:#91a9ba;font:700 8px/1.4 "DM Sans",sans-serif;letter-spacing:.13em;text-transform:uppercase}
 .about-card-top span:last-child{color:var(--about-red)}
-.about-orbit-card h3{font:800 clamp(30px,3.4vw,42px)/1 Manrope,sans-serif;letter-spacing:-.07em;color:#fff;margin:18px 0 5px}
-.about-orbit-card p{font:600 13px/1.5 "DM Sans",sans-serif;color:#d7e1e9;margin:0}
-.about-card-bottom{margin-top:18px;padding-top:12px;border-top:1px solid rgba(185,211,227,.13);color:#8fa4b5;letter-spacing:.08em}
-.about-card-bottom i{font-style:normal;color:var(--about-blue);font-size:15px}
-.about-orbit-foot{padding:0 12px;color:#91a5b6;font:600 9px/1.5 "DM Sans",sans-serif;letter-spacing:.08em;text-transform:uppercase}
-.about-orbit-foot strong{color:#f2f6f9;font-variant-numeric:tabular-nums}
-.about-orbit-progress{height:2px;position:relative;z-index:5;background:rgba(173,204,222,.13);margin:16px 12px 0;overflow:hidden}
-.about-orbit-progress span{display:block;width:25%;height:100%;background:linear-gradient(90deg,var(--about-red),var(--about-blue));transform-origin:left;transition:width .25s linear}
-.about-orbit-scene.is-paused .about-orbit-track,.about-orbit-scene.is-paused .about-orbit-core,.about-orbit-scene.is-paused .about-orbit-aura{animation-play-state:paused}
-@keyframes aboutOrbitSpin{from{transform:rotateY(0deg)}to{transform:rotateY(-360deg)}}
-@keyframes aboutCoreFloat{0%,100%{translate:0 -5px}50%{translate:0 7px}}
-@keyframes aboutAura{from{opacity:.65;scale:.94}to{opacity:1;scale:1.08}}
-@media(max-width:900px){
-  .about-orbit-layout{grid-template-columns:1fr;gap:35px}
-  .about-orbit-copy{max-width:760px}
-  .about-orbit-scene{max-width:720px;width:100%;margin-inline:auto}
-  .about-orbit-stage{height:440px}
-  .about-orbit-card{width:245px;transform:translate(-50%,-50%) rotateY(var(--card-angle)) translateZ(175px) rotateY(calc(var(--card-angle) * -1))}
-}
-@media(max-width:600px){
-  .about-orbit{padding:75px 0!important}
-  .about-orbit-layout{gap:28px}
-  .about-orbit-copy h2{font-size:clamp(37px,10vw,52px);line-height:1.04}
-  .about-orbit-copy p{font-size:14px;line-height:1.8}
-  .about-orbit-facts{gap:7px;margin-top:25px}
-  .about-orbit-facts>div{padding:13px 10px}
-  .about-orbit-facts strong{font-size:22px}
-  .about-orbit-facts span{font-size:8px;letter-spacing:.04em}
-  .about-orbit-scene{padding:17px 7px 14px;border-radius:18px}
-  .about-orbit-meta,.about-orbit-foot{font-size:7px;padding:0 8px;letter-spacing:.1em}
-  .about-orbit-stage{height:370px}
-  .about-orbit-core{width:130px}
-  .about-orbit-core strong{font-size:27px}
-  .about-orbit-ring{width:235px;height:95px}
-  .about-orbit-ring.ring-two{width:260px;height:105px}
-  .about-orbit-ring.ring-three{width:180px;height:265px}
-  .about-orbit-card{width:205px;min-height:148px;padding:15px 15px 13px;transform:translate(-50%,-50%) rotateY(var(--card-angle)) translateZ(125px) rotateY(calc(var(--card-angle) * -1))}
-  .about-orbit-card h3{font-size:32px;margin:13px 0 4px}
-  .about-orbit-card p{font-size:12px}
-  .about-card-top,.about-card-bottom{font-size:7px}
-  .about-orbit-foot{flex-wrap:wrap}
-}
-@media(prefers-reduced-motion:reduce){
-  .about-orbit-track,.about-orbit-core,.about-orbit-aura{animation:none!important}
-  .about-orbit-card{opacity:1;filter:none}
-  .about-orbit-stage{height:auto;min-height:0;display:block;padding:12px}
-  .about-orbit-core,.about-orbit-ring,.about-orbit-aura{display:none}
-  .about-orbit-track{position:relative;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-  .about-orbit-card{position:relative;left:auto;top:auto;transform:none!important;width:auto;min-height:145px;opacity:1}
-}
+.about-orbit-card h3{position:relative;color:#f6f8fb!important;font:800 clamp(25px,2.5vw,34px)/1 Manrope,sans-serif;letter-spacing:-.06em;margin:17px 0 5px}
+.about-orbit-card p{position:relative;color:#c2d0dc!important;font:500 12px/1.5 "DM Sans",sans-serif;margin:0}
+.about-card-bottom{position:relative;margin-top:15px;padding-top:10px;border-top:1px solid rgba(185,211,227,.13);color:#9bb0c0;letter-spacing:.04em;font-size:7px}
+.about-card-bottom i{font-style:normal;color:#55b6df;font-size:14px}
+.about-orbit-copy{width:min(100%,790px);text-align:center;margin:28px auto 0}
+.about-orbit-copy>p{color:#b7c5d2!important;font:400 15px/1.8 "DM Sans",sans-serif;margin:0 auto;max-width:700px}
+.about-orbit-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:22px auto 0;max-width:650px}
+.about-orbit-facts>div{padding:14px;border:1px solid rgba(170,195,215,.15);background:rgba(255,255,255,.025);border-radius:12px}
+.about-orbit-facts strong{display:block;font:800 26px/1 Manrope,sans-serif;color:#fff;letter-spacing:-.06em}
+.about-orbit-facts span{display:block;margin-top:7px;color:#aebdca;font:600 9px/1.45 "DM Sans",sans-serif;letter-spacing:.08em;text-transform:uppercase}
+@keyframes solarGlow{from{opacity:.65;transform:scale(.92)}to{opacity:1;transform:scale(1.12)}}
+@keyframes sunFloat{0%,100%{translate:0 -5px}50%{translate:0 6px}}
+@keyframes solarOrbitPulse{0%,100%{opacity:.55;filter:drop-shadow(0 0 3px rgba(67,169,210,.1))}50%{opacity:1;filter:drop-shadow(0 0 9px rgba(67,169,210,.25))}}
+@keyframes planetSEO{from{transform:rotate(0deg) translateX(126px) rotate(0deg)}to{transform:rotate(360deg) translateX(126px) rotate(-360deg)}}
+@keyframes planetAEO{from{transform:rotate(90deg) translateX(195px) rotate(-90deg)}to{transform:rotate(450deg) translateX(195px) rotate(-450deg)}}
+@keyframes planetGEO{from{transform:rotate(180deg) translateX(265px) rotate(-180deg)}to{transform:rotate(540deg) translateX(265px) rotate(-540deg)}}
+@keyframes planetWEB{from{transform:rotate(270deg) translateX(325px) rotate(-270deg)}to{transform:rotate(630deg) translateX(325px) rotate(-630deg)}}
+@keyframes starBlink{from{opacity:.2;scale:.7}to{opacity:1;scale:1.5}}
+@media(max-width:900px){.about-orbit-cards{grid-template-columns:repeat(2,minmax(0,1fr));max-width:680px}.about-solar-system{height:390px}.about-solar-orbit.orbit-four{width:580px}.about-solar-orbit.orbit-three{width:470px}@keyframes planetSEO{from{transform:rotate(0deg) translateX(105px)}to{transform:rotate(360deg) translateX(105px)}}@keyframes planetAEO{from{transform:rotate(90deg) translateX(155px)}to{transform:rotate(450deg) translateX(155px)}}@keyframes planetGEO{from{transform:rotate(180deg) translateX(215px)}to{transform:rotate(540deg) translateX(215px)}}@keyframes planetWEB{from{transform:rotate(270deg) translateX(260px)}to{transform:rotate(630deg) translateX(260px)}}}
+@media(max-width:600px){.about-orbit{padding:70px 0!important}.about-orbit-heading h2{font-size:clamp(35px,9vw,48px)}.about-orbit-heading p{font-size:13px;max-width:340px}.about-orbit-scene{padding:15px 10px 12px;border-radius:17px}.about-orbit-meta,.about-orbit-foot{font-size:7px;letter-spacing:.1em}.about-solar-system{height:300px;width:100%;overflow:hidden}.about-solar-orbit.orbit-one{width:190px;height:110px}.about-solar-orbit.orbit-two{width:280px;height:150px}.about-solar-orbit.orbit-three{width:360px;height:190px}.about-solar-orbit.orbit-four{width:430px;height:225px}.about-sun{width:118px}.about-sun strong{font-size:25px}.about-satellite{width:42px;font-size:8px}@keyframes planetSEO{from{transform:rotate(0deg) translateX(80px)}to{transform:rotate(360deg) translateX(80px)}}@keyframes planetAEO{from{transform:rotate(90deg) translateX(120px)}to{transform:rotate(450deg) translateX(120px)}}@keyframes planetGEO{from{transform:rotate(180deg) translateX(155px)}to{transform:rotate(540deg) translateX(155px)}}@keyframes planetWEB{from{transform:rotate(270deg) translateX(190px)}to{transform:rotate(630deg) translateX(190px)}}.about-orbit-cards{gap:9px;margin-top:14px}.about-orbit-card{min-height:137px;padding:13px 12px 11px}.about-card-top{font-size:7px}.about-orbit-card h3{font-size:27px;margin:14px 0 4px}.about-orbit-card p{font-size:11px}.about-card-bottom{font-size:6px;gap:4px}.about-orbit-copy{margin-top:21px}.about-orbit-copy>p{font-size:13px}.about-orbit-facts{gap:7px;margin-top:16px}.about-orbit-facts>div{padding:12px 7px}.about-orbit-facts strong{font-size:21px}.about-orbit-facts span{font-size:7px}}
+@media(prefers-reduced-motion:reduce){.about-sun,.about-space-glow,.about-solar-orbit,.about-satellite,.about-star{animation:none!important}.about-orbit-card,.about-orbit-card.is-active{transform:none;transition:none}}
