@@ -1,0 +1,121 @@
+/* Site-wide contrast, header and mobile layout audit fixes.
+   Loaded after all redesign layers so these accessibility fixes win the cascade. */
+:root{
+  --audit-night:#080d15;
+  --audit-panel:#111a25;
+  --audit-panel-2:#152231;
+  --audit-text:#f4f6f8;
+  --audit-muted:#bdc8d3;
+  --audit-red:#f0443b;
+  --audit-blue:#287fa8;
+}
+
+/* Header remains readable above both the intro and page content. */
+.header{
+  background:rgba(8,13,21,.97)!important;
+  border-bottom:1px solid rgba(255,255,255,.12)!important;
+  box-shadow:0 8px 28px rgba(0,0,0,.16);
+  z-index:10000!important;
+}
+.header .logo,
+.header .logo:visited{color:#f4f6f8!important}
+.header .logo span:first-child,
+.header .logo .logo-dot{color:var(--audit-red)!important}
+.header .logo .logo-dot{color:var(--audit-blue)!important}
+.header .nav-links a{color:#d1d9e2!important}
+.header .nav-links a:hover,
+.header .nav-links a.is-current,
+.header .nav-links .active{color:#ff7168!important}
+.header .hire-btn{color:#fff!important;border-color:rgba(240,68,59,.7)!important;background:rgba(240,68,59,.16)!important}
+.header .hire-btn:hover{background:linear-gradient(100deg,var(--audit-red),var(--audit-blue))!important;color:#fff!important}
+.header .menu-toggle{background:#172230!important;border-color:rgba(255,255,255,.2)!important}
+.header .menu-toggle span{background:#f4f6f8!important}
+
+/* Keep the hero's warm off-white background, but remove the decorative location dot. */
+.hero-location .eyebrow-dot{display:none!important}
+.hero-location{color:#35414d!important}
+
+/* The hero stays light; all following content sections use readable dark surfaces. */
+.about,.experience,.skills,.projects,.achievements,.contact{
+  background:var(--audit-night)!important;
+  color:var(--audit-text)!important;
+}
+.about{background:linear-gradient(135deg,#0a111b,#101b28)!important}
+.experience,.projects{background:#0a1019!important}
+.skills,.achievements{background:#0e1722!important}
+.contact{background:linear-gradient(120deg,#101923,#0b1420)!important}
+.section-copy h2,.section-heading-row h2,.achievement-layout h2,.contact-cta h2,
+.experience-main h3,.expertise-card h3,.project-card h3{
+  color:var(--audit-text)!important;
+}
+.section-copy h2 span,.section-heading-row h2 span,.achievement-layout h2 span,
+.contact-cta h2 span{
+  background:linear-gradient(105deg,var(--audit-red),#f39a88 48%,#55a9d1)!important;
+  -webkit-background-clip:text!important;background-clip:text!important;
+  -webkit-text-fill-color:transparent!important;color:transparent!important;
+}
+.section-copy p,.section-heading-row>p,.achievement-layout>div:first-child>p,
+.contact-cta p,.experience-main p,.expertise-card p,.project-card p,
+.achievement-list p{color:var(--audit-muted)!important}
+.section-kicker,.experience-index,.card-number,.project-top>span{color:#ff7168!important}
+
+/* Cards: avoid dark-on-dark text and preserve the red/blue visual identity. */
+.experience-card,.expertise-card,.project-card{
+  background:linear-gradient(145deg,var(--audit-panel),#0d1621)!important;
+  border:1px solid rgba(154,184,207,.2)!important;
+  color:var(--audit-text)!important;
+}
+.experience-main h4{color:#8fc9e5!important}
+.experience-top>span:first-child{color:#9ac9df!important}
+.experience-card .tag-row span,.project-tags span,.tools-strip span{
+  color:#d5e5ef!important;border-color:rgba(40,127,168,.48)!important;
+  background:rgba(40,127,168,.12)!important;
+}
+.expertise-card>i,.project-top i{color:#59a9d0!important}
+.expertise-card:hover,.project-card:hover,.experience-card:hover{
+  border-color:rgba(40,127,168,.72)!important;
+  box-shadow:0 18px 48px rgba(0,0,0,.28),0 0 24px rgba(240,68,59,.09)!important;
+}
+.about-facts{border-color:rgba(255,255,255,.18)!important}
+.about-facts strong{color:#fff!important}
+.about-facts span{color:#bdc8d3!important}
+.achievement-list,.achievement-list>div{border-color:rgba(255,255,255,.18)!important}
+.contact-cta{border-color:rgba(255,255,255,.18)!important}
+.footer{background:#060a10!important}
+.footer-logo{color:#f4f6f8!important}
+.footer-links a,.footer-phone,.footer-copy{color:#bdc8d3!important}
+.footer-links a:hover,.footer-phone:hover{color:#ff7168!important}
+
+/* Fixed-header clearance: mobile hero must begin below the 78px header. */
+@media(max-width:800px){
+  .header{height:78px!important}
+  .hero.astra-hero{
+    padding-top:calc(78px + 34px)!important;
+    scroll-margin-top:78px;
+  }
+  .hero .container.hero-grid{padding-top:0!important}
+  .hero-text{position:relative;z-index:2}
+  .hero-visual{margin-top:18px!important}
+  .navbar{
+    top:calc(100% + 8px)!important;
+    background:#101a26!important;
+    border-color:rgba(255,255,255,.16)!important;
+  }
+  .navbar .nav-links a{color:#e4ebf1!important}
+  .navbar .nav-links a:hover{color:#ff7168!important}
+}
+@media(max-width:560px){
+  .hero.astra-hero{padding-top:112px!important;padding-bottom:48px!important}
+  .hero-text h1{overflow-wrap:normal;word-break:normal}
+  .hero-location{margin-top:2px}
+  .vfx-visual{min-height:590px!important}
+  .floating-metric{max-width:min(44vw,158px)!important;min-width:0!important}
+  .metric-keywords{left:0!important;top:0!important}
+  .metric-pages{right:0!important;top:0!important}
+  .metric-impressions{right:0!important;top:23%!important}
+  .metric-experience{right:0!important;top:64%!important}
+  .metric-audits{left:0!important;bottom:3%!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .header,.experience-card,.expertise-card,.project-card{transition:none!important}
+}
