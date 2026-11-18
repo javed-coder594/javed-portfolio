@@ -32,6 +32,7 @@
 <link rel="stylesheet" href="css/hero-vfx.css">
 <link rel="stylesheet" href="css/site-audit-fixes.css">
 <link rel="stylesheet" href="css/search-console-showcase.css">
+<link rel="stylesheet" href="css/about-orbit-cards.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -110,18 +111,54 @@
   </div>
 </section>
 
-<section class="about" id="about">
-  <div class="container split-section">
-    <div class="section-kicker">01 / ABOUT</div>
-    <div class="section-copy">
-      <h2>Turning search data into <span>clear action.</span></h2>
-      <p>SEO Executive with hands-on experience across On-Page, Off-Page, Technical, Local SEO, AEO and GEO. My work combines search intent, content quality, technical health and performance measurement to improve discoverability.</p>
-      <p>I work with Google Search Console, GA4, SEMrush, Google Keyword Planner and Lighthouse, while also working across WordPress, HTML, CSS, JavaScript, React.js and Next.js.</p>
-      <div class="about-facts">
+<section class="about about-orbit" id="about" aria-labelledby="about-orbit-title">
+  <div class="container about-orbit-layout">
+    <div class="about-orbit-copy">
+      <div class="section-kicker">01 / ABOUT ME</div>
+      <h2 id="about-orbit-title">Turning search data into <span>clear action.</span></h2>
+      <p>I'm Javed Chaudhary, an SEO Executive focused on making websites easier to discover. I work across search strategy, technical optimization and content, connecting what people are looking for with the experiences businesses publish.</p>
+      <p>My work spans On-Page, Off-Page, Technical and Local SEO, alongside AEO and GEO. I use search data to find opportunities, improve website foundations and shape useful content for traditional search and AI-powered discovery.</p>
+      <p class="about-orbit-emphasis">I believe good SEO is not just about rankings. It's about being found by the right people, at the right moment.</p>
+      <div class="about-orbit-facts" aria-label="Selected SEO experience">
         <div><strong>500+</strong><span>Web pages optimized</span></div>
-        <div><strong>Top 10</strong><span>Competitive keyword rankings</span></div>
-        <div><strong>6+</strong><span>Core SEO disciplines</span></div>
+        <div><strong>200+</strong><span>Keywords optimized</span></div>
+        <div><strong>25+</strong><span>SEO audits</span></div>
       </div>
+    </div>
+
+    <div class="about-orbit-scene" data-about-orbit aria-label="Four SEO disciplines orbiting a central search model">
+      <div class="about-orbit-meta"><span>THE SEARCH MINDSET / 3D SYSTEM</span><span>FOUR DISCIPLINES</span></div>
+      <div class="about-orbit-stage">
+        <div class="about-orbit-aura" aria-hidden="true"></div>
+        <div class="about-orbit-ring" aria-hidden="true"></div>
+        <div class="about-orbit-ring ring-two" aria-hidden="true"></div>
+        <div class="about-orbit-ring ring-three" aria-hidden="true"></div>
+        <div class="about-orbit-core" aria-hidden="true"><span class="about-core-mark">JAVED / SEO</span><strong>SEARCH</strong><small>GROWTH SYSTEM</small></div>
+        <div class="about-orbit-track">
+          <article class="about-orbit-card is-active" data-orbit-card aria-current="true">
+            <div class="about-card-top"><span>01 / DISCIPLINE</span><span>SEO</span></div>
+            <div><h3>SEO</h3><p>Search strategy</p></div>
+            <div class="about-card-bottom"><span>Intent · Keywords · Rankings</span><i>↗</i></div>
+          </article>
+          <article class="about-orbit-card" data-orbit-card aria-current="false">
+            <div class="about-card-top"><span>02 / DISCIPLINE</span><span>AEO</span></div>
+            <div><h3>AEO</h3><p>Answer visibility</p></div>
+            <div class="about-card-bottom"><span>Answers · Structure · Clarity</span><i>↗</i></div>
+          </article>
+          <article class="about-orbit-card" data-orbit-card aria-current="false">
+            <div class="about-card-top"><span>03 / DISCIPLINE</span><span>GEO</span></div>
+            <div><h3>GEO</h3><p>AI search visibility</p></div>
+            <div class="about-card-bottom"><span>AI discovery · Entities · Context</span><i>↗</i></div>
+          </article>
+          <article class="about-orbit-card" data-orbit-card aria-current="false">
+            <div class="about-card-top"><span>04 / DISCIPLINE</span><span>WEB</span></div>
+            <div><h3>WEB</h3><p>Technical foundations</p></div>
+            <div class="about-card-bottom"><span>Speed · Structure · Experience</span><i>↗</i></div>
+          </article>
+        </div>
+      </div>
+      <div class="about-orbit-foot"><span>ORBITING DISCIPLINES</span><span><strong data-orbit-count>01</strong> / 04 · 3 SEC EACH</span></div>
+      <div class="about-orbit-progress" aria-hidden="true"><span data-orbit-progress></span></div>
     </div>
   </div>
 </section>
@@ -240,5 +277,6 @@
 <script src="js/hero-vfx.js" defer></script>
 <script src="js/hero-vfx.js" defer></script>
 <script src="js/search-console-slider.js" defer></script>
+<script src="js/about-orbit-cards.js" defer></script>
 </body>
 </html>
