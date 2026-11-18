@@ -1,8 +1,9 @@
 /* Cinematic hero + lightweight CSS 3D search model */
 :root{--vfx-red:#f0443b;--vfx-blue:#176f9e;--vfx-ink:#121820;--vfx-paper:#f3f2ee}
-.cinematic-intro{display:none;position:fixed;inset:0;z-index:99999;overflow:hidden;place-items:center;background:#080d15;color:#f7f7f4;isolation:isolate}
+.cinematic-intro{display:grid;position:fixed;inset:0;z-index:99999;overflow:hidden;place-items:center;background:#080d15;color:#f7f7f4;isolation:isolate}
 body.intro-active{overflow:hidden}
-body.intro-active .cinematic-intro{display:grid;animation:intro-fade-out .8s ease 5.05s forwards}
+body.intro-active .cinematic-intro{display:grid}
+.cinematic-intro.is-leaving{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .8s ease,visibility .8s ease}
 .intro-grid{position:absolute;inset:-20%;opacity:.34;background-image:linear-gradient(rgba(240,68,59,.2) 1px,transparent 1px),linear-gradient(90deg,rgba(23,111,158,.22) 1px,transparent 1px);background-size:8vw 8vw;transform:perspective(700px) rotateX(62deg) scale(1.5);animation:intro-grid-in 5.5s cubic-bezier(.2,.7,.2,1) both}
 .intro-sweep{position:absolute;width:140vw;height:1px;left:-20vw;background:linear-gradient(90deg,transparent,var(--vfx-red),#fff,var(--vfx-blue),transparent);box-shadow:0 0 22px rgba(240,68,59,.55);transform:rotate(-24deg) scaleX(0);transform-origin:left;animation:intro-sweep 1.5s ease .4s both}
 .intro-sweep-two{top:72%;animation-delay:1.15s;opacity:.65}
