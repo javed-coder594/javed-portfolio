@@ -251,3 +251,68 @@ footer h2,footer h3,.footer h2,.footer h3,.footer-logo{color:#29251F!important}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{scroll-behavior:auto!important}
 }
+
+/* FINAL READABILITY OVERRIDE — enforce solid, high-contrast text */
+html body main,
+html body main section,
+html body main section .container{color:#302820!important}
+html body main section h1,
+html body main section h2,
+html body main section h3,
+html body main section h4,
+html body main section h5,
+html body main section h6,
+html body footer h1,html body footer h2,html body footer h3{
+  color:#26221E!important;
+  -webkit-text-fill-color:#26221E!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}
+html body main section p,
+html body main section li,
+html body main section label,
+html body main section .hero-lead,
+html body main section .section-heading-row>p,
+html body main section .experience-main p,
+html body main section .rope-card p{
+  color:#514940!important;
+  -webkit-text-fill-color:#514940!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}
+html body main section .section-kicker,
+html body main section .eyebrow,
+html body main section .card-number,
+html body main section .route-label{
+  color:#A83F37!important;
+  -webkit-text-fill-color:#A83F37!important;
+  opacity:1!important;
+}
+html body main section a:not(.btn):not(.outline-btn),
+html body footer a{color:#285F75!important;-webkit-text-fill-color:#285F75!important}
+html body main section h1 span,
+html body main section h2 span,
+html body main section .gradient-text{
+  background:none!important;
+  background-image:none!important;
+  color:#B7473F!important;
+  -webkit-text-fill-color:#B7473F!important;
+  -webkit-background-clip:border-box!important;
+  background-clip:border-box!important;
+  opacity:1!important;
+}
+html body main section .btn,
+html body main section .hire-btn,
+html body main section .outline-btn{
+  -webkit-text-fill-color:currentColor!important;opacity:1!important
+}
+html body main section .expertise-card *,
+html body main section .experience-card *,
+html body main section .project-card *,
+html body main section .about-orbit-card *{opacity:1}
+html body main section .rope-card h3,
+html body main section .experience-main h3,
+html body main section .project-content h3{color:#26221E!important;-webkit-text-fill-color:#26221E!important}
+html body main section .rope-card p,
+html body main section .experience-main p,
+html body main section .project-content p{color:#514940!important;-webkit-text-fill-color:#514940!important}
