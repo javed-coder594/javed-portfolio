@@ -1,0 +1,51 @@
+/* Career train experience — scoped to this section */
+.train-experience{position:relative;overflow:hidden;isolation:isolate}
+.train-experience:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.28;background-image:radial-gradient(rgba(24,24,24,.17) .65px,transparent .65px);background-size:7px 7px;mask-image:linear-gradient(90deg,#000,transparent 78%)}
+.train-experience .container{position:relative;z-index:1}
+.career-route{position:relative;margin:58px auto 0;max-width:1050px}
+.career-route:before{content:"ROUTE / 2025—NOW";position:absolute;right:0;top:-34px;font:600 9px/1 'DM Sans',sans-serif;letter-spacing:.2em;color:var(--muted,#85827b)}
+.route-rail{position:absolute;left:25px;top:10px;bottom:30px;width:34px;z-index:3;pointer-events:none}
+.rail-line,.rail-line-inner{position:absolute;top:0;bottom:0;left:10px;width:2px;background:repeating-linear-gradient(to bottom,rgba(25,25,25,.5) 0 8px,transparent 8px 15px)}
+.rail-line-inner{left:19px;opacity:.65}
+.route-train{position:absolute;left:-2px;top:0;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:#f4efe4;border:1px solid rgba(20,20,20,.22);box-shadow:0 7px 24px rgba(0,0,0,.13);font-size:22px;transform:translateY(0) rotate(0);transition:top .12s linear;z-index:4}
+.route-train:after{content:"";position:absolute;inset:-6px;border:1px solid rgba(225,92,44,.35);border-radius:50%;animation:train-pulse 2s ease-out infinite}
+.route-spark{position:absolute;color:#e85b2a;font-size:14px;animation:spark-float 3s ease-in-out infinite}
+.spark-one{left:34px;top:23%}.spark-two{left:-8px;top:72%;animation-delay:1.2s}
+.experience-list{border-top:1px solid var(--line)}
+.train-experience .experience-card{position:relative;display:grid;grid-template-columns:72px minmax(0,1fr);gap:24px;padding:38px 28px 40px 0;border-bottom:1px solid var(--line);background:transparent;border-radius:0;transition:background .35s ease,padding .35s ease}
+.train-experience .experience-card:hover{padding-left:10px;background:rgba(255,255,255,.24);transform:none}
+.train-experience .experience-index{position:relative;display:flex;align-items:flex-start;gap:10px;padding-top:3px;font:600 11px/1 'DM Sans',sans-serif;letter-spacing:.14em;color:#e45b2b}
+.station-pin{position:absolute;left:17px;top:0;width:17px;height:17px;border-radius:50%;background:#f4efe4;border:2px solid #e45b2b;box-shadow:0 0 0 5px rgba(228,91,43,.12);z-index:2}
+.train-experience .experience-main{min-width:0}
+.train-experience .experience-top{display:flex;flex-wrap:wrap;align-items:center;gap:12px;font:600 10px/1.4 'DM Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#85827b}
+.route-label{color:#df5b2d}
+.train-experience .experience-main h3{margin:13px 0 7px;font-size:clamp(24px,3.2vw,39px);line-height:1.05;letter-spacing:-.055em;color:var(--ink,#171717)}
+.train-experience .experience-main h4{font-size:13px;font-weight:600;color:#55534e}
+.train-experience .experience-main p{max-width:760px;margin:14px 0 0;color:#6d6c66;font-size:14px;line-height:1.8}
+.train-experience .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.train-experience .tag-row span{padding:7px 10px;border:1px solid rgba(25,25,25,.15);border-radius:2px;color:#5e5a54;font-size:10px;letter-spacing:.04em}
+.train-experience .route-stop-current{background:linear-gradient(90deg,rgba(231,91,44,.07),transparent 72%)}
+.train-experience .route-stop-current .station-pin{background:#e45b2b;box-shadow:0 0 0 6px rgba(228,91,43,.13),0 0 22px rgba(228,91,43,.38)}
+.train-experience .experience-status{color:#df5b2d}
+.station-arrival{display:flex;align-items:center;gap:9px;margin-top:20px;color:#df5b2d;font:700 9px/1 'DM Sans',sans-serif;letter-spacing:.16em}
+.station-arrival>span:last-child{color:#88847c;font-weight:500}
+.arrival-light{width:7px;height:7px;border-radius:50%;background:#e45b2b;box-shadow:0 0 0 4px rgba(228,91,43,.14);animation:arrival-blink 1.5s ease-in-out infinite}
+@keyframes train-pulse{0%{transform:scale(.85);opacity:.9}100%{transform:scale(1.45);opacity:0}}
+@keyframes spark-float{0%,100%{transform:translateY(0) rotate(0);opacity:.45}50%{transform:translateY(-9px) rotate(25deg);opacity:1}}
+@keyframes arrival-blink{0%,100%{opacity:1}50%{opacity:.35}}
+@media(max-width:700px){
+ .career-route{margin-top:46px}
+ .route-rail{left:4px;width:28px}
+ .rail-line{left:8px}.rail-line-inner{left:15px}
+ .route-train{left:-4px;width:38px;height:38px;font-size:19px}
+ .train-experience .experience-card{grid-template-columns:38px minmax(0,1fr);gap:12px;padding:28px 0 32px}
+ .train-experience .experience-card:hover{padding-left:0}
+ .station-pin{left:0;width:14px;height:14px}
+ .train-experience .experience-index{font-size:9px;padding-top:2px}
+ .train-experience .experience-main h3{font-size:clamp(22px,7vw,30px)}
+ .train-experience .experience-main h4{font-size:12px}
+ .train-experience .experience-main p{font-size:13px;line-height:1.7}
+ .train-experience .tag-row span{font-size:9px}
+ .route-spark{display:none}
+}
+@media(prefers-reduced-motion:reduce){.route-train,.route-train:after,.route-spark,.arrival-light{animation:none!important;transition:none!important}}
