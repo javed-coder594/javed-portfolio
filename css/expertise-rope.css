@@ -128,3 +128,71 @@
 @media(prefers-reduced-motion:reduce){
   #expertise .rope-card{animation:none!important;transform:none!important}
 }
+
+
+/* Reference-matched construction: every card is individually loop-tied
+   over the thick braided jute rope, like the supplied hanging-tag photo. */
+#expertise .expertise-rope{
+  top:0!important;height:34px!important;
+  left:1.5%!important;right:1.5%!important;
+  filter:drop-shadow(0 7px 5px rgba(50,34,20,.22));
+}
+#expertise .expertise-rope:before{
+  top:8px!important;height:21px!important;border-radius:999px!important;
+  background:
+    repeating-linear-gradient(58deg,transparent 0 7px,rgba(255,231,193,.48) 7px 9px,transparent 9px 15px),
+    repeating-linear-gradient(-58deg,transparent 0 7px,rgba(73,45,23,.42) 7px 10px,transparent 10px 15px),
+    linear-gradient(180deg,#e0c49c 0%,#a77c50 22%,#6d4a2e 52%,#b88b5b 76%,#604126 100%)!important;
+  border:1px solid rgba(91,61,35,.45);
+  box-shadow:inset 0 3px 3px rgba(255,245,225,.75),
+    inset 0 -5px 5px rgba(55,35,20,.48),
+    0 2px 1px rgba(255,255,255,.72)!important;
+}
+#expertise .expertise-rope:after{
+  top:6px!important;height:23px!important;
+  border:0!important;border-top:2px solid rgba(255,242,218,.9)!important;
+  border-bottom:2px solid rgba(73,47,27,.35)!important;
+  border-radius:50%!important;opacity:.85!important;
+}
+#expertise .expertise-rope>span{
+  top:14px!important;height:9px!important;
+  background:repeating-linear-gradient(112deg,transparent 0 10px,rgba(255,239,211,.62) 10px 12px,transparent 12px 20px)!important;
+}
+#expertise .rope-card,#expertise .rope-card:nth-child(n){
+  position:relative!important;
+  margin-top:72px!important;
+  transform-origin:50% -70px!important;
+  overflow:visible!important;
+}
+#expertise .rope-suspension{
+  position:absolute;z-index:3;pointer-events:none;
+  left:50%;top:-87px;width:42px;height:88px;
+  transform:translateX(-50%);
+  border-left:3px solid #9b7048;
+  border-right:3px solid #9b7048;
+  border-top:3px solid #c19a6b;
+  border-radius:48% 48% 0 0;
+  background:linear-gradient(90deg,rgba(255,239,211,.42),transparent 25%,rgba(68,45,25,.16) 50%,transparent 76%);
+  filter:drop-shadow(1px 1px 1px rgba(47,32,19,.2));
+}
+#expertise .rope-suspension:before{
+  content:"";position:absolute;left:50%;top:25px;
+  width:13px;height:12px;transform:translateX(-50%) rotate(45deg);
+  border:2px solid #805a37;border-radius:4px 7px 4px 7px;
+  background:linear-gradient(135deg,#e0c49b,#98704a);
+  box-shadow:0 1px 2px rgba(40,25,13,.24);
+}
+#expertise .rope-suspension:after{
+  content:"";position:absolute;left:50%;bottom:0;
+  width:7px;height:14px;transform:translateX(-50%);
+  border-left:2px solid #a17a51;border-right:2px solid #d4b58b;
+  opacity:.9;
+}
+#expertise .rope-card:before,#expertise .rope-card:after{display:none!important}
+@media(max-width:1100px){
+  #expertise .rope-card,#expertise .rope-card:nth-child(n){margin-top:70px!important}
+}
+@media(max-width:600px){
+  #expertise .rope-card,#expertise .rope-card:nth-child(n){margin-top:66px!important}
+  #expertise .rope-suspension{top:-80px;height:81px}
+}
