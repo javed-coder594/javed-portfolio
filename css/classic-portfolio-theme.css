@@ -251,3 +251,111 @@ html body .footer-social a:hover{background:#C96B55!important;border-color:#C96B
   }
 }
 @media(prefers-reduced-motion:reduce){html body *{scroll-behavior:auto!important}}
+
+
+/* =========================================================
+   HERO + ABOUT SCALE / CONTRAST PASS
+   ========================================================= */
+/* Hero SEO orb: larger focal point and legible lettering */
+.hero.astra-hero .model-stage{width:430px;height:430px}
+.hero.astra-hero .seo-core{
+  width:280px;height:280px;
+  border:1px solid rgba(255,255,255,.55);
+  box-shadow:inset -28px -30px 58px rgba(0,0,0,.42),
+    inset 15px 13px 30px rgba(255,255,255,.42),
+    0 28px 75px rgba(14,67,99,.34);
+}
+.hero.astra-hero .seo-core strong{
+  font-size:58px!important;color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  text-shadow:0 3px 18px rgba(0,0,0,.58)!important;
+  letter-spacing:-.055em;
+}
+.hero.astra-hero .seo-core small{
+  font-size:9px!important;color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  text-shadow:0 2px 8px rgba(0,0,0,.55);
+}
+.hero.astra-hero .floating-metric small{
+  color:#E4EDF5!important;-webkit-text-fill-color:#E4EDF5!important;
+  opacity:1!important;font-size:10px!important;
+}
+.hero.astra-hero .floating-metric .metric-label{
+  color:#D6E4EF!important;-webkit-text-fill-color:#D6E4EF!important;
+  opacity:1!important;font-size:9px!important;
+}
+.hero.astra-hero .floating-metric strong{
+  color:#fff!important;-webkit-text-fill-color:#fff!important;
+  font-size:34px!important;
+}
+.hero.astra-hero .floating-metric strong span{
+  color:#FF806D!important;-webkit-text-fill-color:#FF806D!important;
+}
+@media(max-width:1050px){
+  .hero.astra-hero .model-stage{transform:translate(-50%,-50%) scale(.92)}
+  .hero.astra-hero .seo-core{width:260px;height:260px}
+}
+@media(max-width:800px){
+  .hero.astra-hero .model-stage{transform:translate(-50%,-50%) scale(.82)}
+  .hero.astra-hero .seo-core{width:260px;height:260px}
+}
+@media(max-width:560px){
+  .hero.astra-hero .model-stage{transform:translate(-50%,-50%) scale(.70)}
+  .hero.astra-hero .seo-core{width:250px;height:250px}
+  .hero.astra-hero .seo-core strong{font-size:54px!important}
+  .hero.astra-hero .seo-core small{font-size:8px!important}
+  .hero.astra-hero .floating-metric small{font-size:8px!important}
+  .hero.astra-hero .floating-metric .metric-label{font-size:7px!important}
+}
+/* About section: enlarge central search planet and improve labels */
+html body main .about-solar-system{height:clamp(390px,44vw,510px)!important}
+html body main .about-sun{
+  width:clamp(210px,22vw,260px)!important;
+  border-color:rgba(255,255,255,.72)!important;
+  box-shadow:inset -24px -26px 42px rgba(0,0,0,.38),
+    inset 10px 9px 22px rgba(255,255,255,.38),
+    0 0 55px rgba(57,120,135,.30),0 0 130px rgba(57,120,135,.18)!important;
+}
+html body main .about-sun>span{
+  font-size:15px!important;color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+html body main .about-sun strong{
+  font-size:clamp(32px,3.8vw,44px)!important;
+  color:#fff!important;-webkit-text-fill-color:#fff!important;
+  text-shadow:0 3px 16px rgba(0,0,0,.65)!important;
+}
+html body main .about-sun small{
+  font-size:9px!important;color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  text-shadow:0 2px 8px rgba(0,0,0,.55);
+}
+html body main .about-orbit-heading h2{font-size:clamp(44px,6vw,74px)!important}
+html body main .about-orbit-heading p,
+html body main .about-orbit-copy>p{
+  font-size:clamp(16px,1.5vw,19px)!important;
+  color:#354B61!important;-webkit-text-fill-color:#354B61!important;
+}
+html body main .about-orbit-meta,
+html body main .about-orbit-foot,
+html body main .about-card-top,
+html body main .about-card-bottom{
+  color:#40566C!important;-webkit-text-fill-color:#40566C!important;
+  font-size:10px!important;opacity:1!important;
+}
+@media(max-width:900px){
+  html body main .about-solar-system{height:420px!important}
+  html body main .about-sun{width:220px!important}
+}
+@media(max-width:600px){
+  html body main .about-solar-system{height:340px!important}
+  html body main .about-sun{width:165px!important}
+  html body main .about-sun strong{font-size:30px!important}
+  html body main .about-sun>span{font-size:12px!important}
+  html body main .about-sun small{font-size:7px!important}
+  html body main .about-orbit-heading h2{font-size:clamp(36px,9vw,50px)!important}
+  html body main .about-orbit-heading p,
+  html body main .about-orbit-copy>p{font-size:14px!important}
+  html body main .about-orbit-meta,
+  html body main .about-orbit-foot{font-size:7px!important}
+}
