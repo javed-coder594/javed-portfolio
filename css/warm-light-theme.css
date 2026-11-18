@@ -316,3 +316,149 @@ html body main section .project-content h3{color:#26221E!important;-webkit-text-
 html body main section .rope-card p,
 html body main section .experience-main p,
 html body main section .project-content p{color:#514940!important;-webkit-text-fill-color:#514940!important}
+
+
+/* =========================================================
+   JUNIOR10X-INSPIRED PALETTE — navy + coral/orange
+   Applied as a colour-system update; existing layouts and
+   interactions remain unchanged.
+   ========================================================= */
+:root{
+  --bg:#FFFFFF;
+  --bg-2:#FFF7F2;
+  --card:#FFFFFF;
+  --card-2:#FFF8F4;
+  --white:#102844;
+  --text:#52677F;
+  --muted:#71839A;
+  --border:rgba(16,40,68,.13);
+  --primary:#FF604F;
+  --primary-hover:#F04E42;
+  --accent:#FF8738;
+  --accent-soft:rgba(255,96,79,.11);
+  --shadow:0 18px 48px rgba(16,40,68,.08);
+}
+html,body{background:#FFFFFF!important;color:#102844!important}
+body{
+ background:
+  radial-gradient(ellipse at 92% 12%,rgba(255,135,56,.09),transparent 34rem),
+  radial-gradient(ellipse at 5% 65%,rgba(255,96,79,.045),transparent 36rem),
+  #FFFFFF!important;
+ color:#102844!important;
+}
+.header{
+ background:rgba(255,255,255,.94)!important;
+ border-bottom:1px solid rgba(16,40,68,.09)!important;
+ box-shadow:0 8px 28px rgba(16,40,68,.045)!important;
+}
+.logo,.footer-logo{color:#102844!important}
+.logo span:first-child,.logo-dot,.footer-logo span:first-child{color:#FF604F!important}
+.nav-links a{color:#52677F!important}
+.nav-links a:hover,.nav-links .active{color:#FF604F!important}
+.nav-links a::after{background:linear-gradient(90deg,#FF604F,#FF8738)!important}
+.hire-btn{
+ background:#102844!important;color:#FFFFFF!important;
+ box-shadow:0 8px 20px rgba(16,40,68,.14)!important;
+}
+.hire-btn:hover{background:#1A3A5D!important}
+.btn{
+ background:linear-gradient(105deg,#FF604F 0%,#FF8738 100%)!important;
+ color:#FFFFFF!important;border:0!important;
+ box-shadow:0 10px 22px rgba(255,96,79,.20)!important;
+}
+.btn:hover{filter:brightness(.97);color:#FFFFFF!important}
+html body main section h1,html body main section h2,
+html body main section h3,html body main section h4,
+html body main section h5,html body main section h6,
+html body footer h1,html body footer h2,html body footer h3{
+ color:#102844!important;-webkit-text-fill-color:#102844!important;
+}
+html body main section p,html body main section li,
+html body main section label,html body main section .hero-lead,
+html body main section .section-heading-row>p,
+html body main section .experience-main p,
+html body main section .rope-card p{
+ color:#52677F!important;-webkit-text-fill-color:#52677F!important;
+}
+html body main section h1 span,html body main section h2 span,
+html body main section .gradient-text,.typing{
+ background:linear-gradient(100deg,#FF5B50 0%,#FF8738 100%)!important;
+ -webkit-background-clip:text!important;background-clip:text!important;
+ color:transparent!important;-webkit-text-fill-color:transparent!important;
+}
+html body main section .section-kicker,
+html body main section .eyebrow,
+html body main section .card-number,
+html body main section .route-label{
+ color:#F05A48!important;-webkit-text-fill-color:#F05A48!important;
+}
+.eyebrow-dot{background:#FF604F!important;box-shadow:0 0 0 5px rgba(255,96,79,.12)!important}
+.outline-btn{
+ border:1px solid rgba(16,40,68,.24)!important;
+ color:#102844!important;background:#FFFFFF!important;
+}
+.outline-btn:hover{background:#102844!important;color:#FFFFFF!important}
+section,.about,.experience,.skills,.projects,.contact,
+#about,#experience,#expertise,#projects,#contact,#skills,
+.search-console-showcase,.about-orbit{
+ background-color:transparent!important;color:#102844!important;
+}
+section:nth-of-type(even){background-color:#FFF8F4!important}
+.about-orbit{
+ background:radial-gradient(ellipse at 50% 35%,rgba(255,135,56,.075),transparent 42%),linear-gradient(145deg,#FFFFFF,#FFF7F2)!important;
+}
+.about-orbit-scene,.about-orbit-card,.about-orbit-card.is-active,
+.about-orbit-facts>div{
+ background:linear-gradient(145deg,#FFFFFF,#FFF9F5)!important;
+ border-color:rgba(16,40,68,.13)!important;
+}
+.about-orbit-meta,.about-orbit-foot,.about-card-top,.about-card-bottom,
+.about-orbit-facts span{color:#71839A!important}
+.about-orbit-facts strong{color:#102844!important}
+.about-solar-orbit{border-color:rgba(255,96,79,.35)!important}
+.about-solar-orbit.orbit-two,.about-solar-orbit.orbit-four{border-color:rgba(16,40,68,.24)!important}
+.about-space-glow{background:radial-gradient(circle,rgba(255,135,56,.18),rgba(255,96,79,.07) 48%,transparent 72%)!important}
+.about-sun{box-shadow:inset -18px -20px 34px rgba(16,40,68,.32),inset 8px 7px 18px rgba(255,255,255,.38),0 0 42px rgba(255,135,56,.18)!important}
+.experience-card,.expertise-card,.rope-card,.project-card,
+.about-orbit-card,.sc-slide,.sc-side-copy,.info-box,.skill-card,.contact-card{
+ background:#FFFFFF!important;color:#102844!important;
+ border-color:rgba(16,40,68,.13)!important;
+ box-shadow:0 16px 38px rgba(16,40,68,.065)!important;
+}
+.experience-card h3,.rope-card h3,.project-content h3,
+.about-orbit-card h3,.sc-heading h2,.sc-side-copy h3{color:#102844!important}
+.experience-card p,.rope-card p,.project-content p,
+.about-orbit-card p,.sc-heading>p,.sc-side-copy p{color:#52677F!important}
+.tag-row span,.tools span,.tool-chip,.expertise-tool,
+.project-tags span{
+ background:#FFF1E9!important;color:#B84E3C!important;
+ border:1px solid rgba(255,96,79,.17)!important;
+}
+.tag-row span:hover,.tools span:hover,.tool-chip:hover,
+.expertise-tool:hover,.project-tags span:hover{
+ background:linear-gradient(100deg,#FF604F,#FF8738)!important;color:#FFFFFF!important;
+}
+.expertise-rope,.expertise-rope:before,.expertise-rope:after{border-color:#D7C9BC!important}
+.sc-current strong,.sc-side-label{color:#FF604F!important}
+.sc-arrow{background:#FFFFFF!important;color:#102844!important;border-color:rgba(16,40,68,.16)!important}
+.sc-arrow:hover{background:#FF604F!important;color:#FFFFFF!important}
+.sc-dot[aria-current=true]{background:linear-gradient(90deg,#FF604F,#FF8738)!important}
+footer,.footer,.site-footer{background:#102844!important;color:#FFFFFF!important;border-top:0!important}
+footer h2,footer h3,.footer h2,.footer h3,.footer-logo{color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important}
+.footer-links a,.footer-phone,.footer-copy{color:#D5DFEA!important}
+.footer-links a:hover,.footer-phone:hover{color:#FF9A64!important}
+.footer-social a{color:#FFFFFF!important;border-color:rgba(255,255,255,.22)!important}
+.footer-social a:hover{background:#FF604F!important;border-color:#FF604F!important;color:#FFFFFF!important}
+.navbar{background:rgba(255,255,255,.98)!important}
+.menu-toggle span{background:#102844!important}
+.cinematic-intro{
+ background:radial-gradient(ellipse at 50% 44%,rgba(255,135,56,.12),transparent 42%),#FFFFFF!important;
+ color:#102844!important;
+}
+.intro-center h2,.intro-monogram{color:#102844!important}
+.intro-kicker,.intro-role,.intro-coordinate{color:#71839A!important}
+.intro-sweep{background:linear-gradient(90deg,transparent,#FF604F,#FF8738,transparent)!important}
+.intro-skip{color:#102844!important;border-color:rgba(16,40,68,.18)!important}
+::selection{background:rgba(255,96,79,.22);color:#102844}
+::-webkit-scrollbar-track{background:#FFF1E9}
+::-webkit-scrollbar-thumb{background:#FF604F}
