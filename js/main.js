@@ -141,4 +141,35 @@ document.addEventListener('DOMContentLoaded', () => {
       running = true; last = 0; frame = requestAnimationFrame(draw);
     }
   });
+
+  // Railway journey: move the locomotive down the career line and stop at Naresh i Technologies.
+  const careerSection = document.querySelector('.train-experience');
+  const careerTrack = careerSection?.querySelector('.railway-track');
+  const careerTrain = careerTrack?.querySelector('.railway-locomotive');
+  const currentStationPin = careerSection?.querySelector('.route-stop-current .station-pin');
+  if (careerSection && careerTrack && careerTrain && currentStationPin) {
+    const arriveAtCurrentStation = () => {
+      const trackRect = careerTrack.getBoundingClientRect();
+      const stationRect = currentStationPin.getBoundingClientRect();
+      const maxTop = Math.max(0, careerTrack.clientHeight - careerTrain.offsetHeight);
+      const desired = stationRect.top + stationRect.height / 2 - trackRect.top - careerTrain.offsetHeight * .52;
+      careerTrain.style.top = Math.max(0, Math.min(maxTop, desired)) + 'px';
+      careerTrain.classList.add('train-arrived');
+      careerSection.classList.add('railway-active');
+    };
+    if (reduceMotion) {
+      arriveAtCurrentStation();
+    } else {
+      const railwayObserver = new IntersectionObserver(entries => {
+        if (entries.some(entry => entry.isIntersecting)) {
+          requestAnimationFrame(() => requestAnimationFrame(arriveAtCurrentStation));
+          railwayObserver.disconnect();
+        }
+      }, { threshold: .12 });
+      railwayObserver.observe(careerSection);
+    }
+    window.addEventListener('resize', () => {
+      if (careerSection.classList.contains('railway-active')) arriveAtCurrentStation();
+    }, { passive: true });
+  }
 });
