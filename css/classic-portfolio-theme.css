@@ -1,0 +1,253 @@
+/* =========================================================
+   CLASSIC PORTFOLIO COLOUR SYSTEM
+   Deep navy / warm ivory / slate / restrained terracotta.
+   Final authoritative layer: prioritises readable text.
+   ========================================================= */
+:root{
+  color-scheme:light;
+  --bg:#F7F6F2;
+  --bg-2:#EEEDE7;
+  --card:#FFFFFF;
+  --card-2:#F1F2EF;
+  --ink:#172B43;
+  --white:#172B43;
+  --text:#46586B;
+  --muted:#68798A;
+  --border:#D9DEE2;
+  --primary:#C96B55;
+  --primary-hover:#AD5542;
+  --accent:#397887;
+  --accent-soft:#F6EAE5;
+  --shadow:0 18px 48px rgba(23,43,67,.08);
+}
+html,body{background:#F7F6F2!important;color:#172B43!important}
+body{
+  background:
+    radial-gradient(ellipse at 92% 8%,rgba(201,107,85,.055),transparent 34rem),
+    radial-gradient(ellipse at 5% 60%,rgba(57,120,135,.045),transparent 38rem),
+    #F7F6F2!important;
+  color:#172B43!important;
+}
+body,body *{-webkit-tap-highlight-color:rgba(201,107,85,.12)}
+/* Header: explicit solid text colours, no inherited transparency */
+header.header{
+  background:rgba(255,255,255,.97)!important;
+  border-bottom:1px solid #E0E3E5!important;
+  box-shadow:0 5px 22px rgba(23,43,67,.055)!important;
+  backdrop-filter:blur(16px)!important;
+}
+header.header .logo,header.header a.logo{
+  color:#172B43!important;-webkit-text-fill-color:#172B43!important;
+  opacity:1!important;text-shadow:none!important;
+}
+header.header .logo span:first-child,header.header .logo .logo-dot{
+  color:#C96B55!important;-webkit-text-fill-color:#C96B55!important;
+}
+header.header .nav-links a,header.header .navbar a{
+  color:#40546A!important;-webkit-text-fill-color:#40546A!important;
+  opacity:1!important;font-weight:700!important;
+}
+header.header .nav-links a:hover,header.header .nav-links a.active,
+header.header .navbar a:hover{
+  color:#C96B55!important;-webkit-text-fill-color:#C96B55!important;
+}
+header.header .nav-links a:after{background:#C96B55!important}
+header.header .hire-btn{
+  background:#172B43!important;color:#FFFFFF!important;
+  -webkit-text-fill-color:#FFFFFF!important;border:1px solid #172B43!important;
+  box-shadow:0 8px 20px rgba(23,43,67,.14)!important;
+}
+header.header .hire-btn:hover{background:#29445F!important}
+.menu-toggle{background:#fff!important;border:1px solid #D9DEE2!important}
+.menu-toggle span{background:#172B43!important}
+/* Global type reset — prevent washed-out opacity and clipped gradients */
+html body main,html body main section,html body footer{color:#172B43!important}
+html body main section h1,html body main section h2,
+html body main section h3,html body main section h4,
+html body main section h5,html body main section h6,
+html body footer h1,html body footer h2,html body footer h3,
+html body footer h4{
+  color:#172B43!important;-webkit-text-fill-color:#172B43!important;
+  opacity:1!important;text-shadow:none!important;
+  -webkit-background-clip:border-box!important;background-clip:border-box!important;
+  background-image:none!important;
+}
+html body main section p,html body main section li,
+html body main section label,html body main section small,
+html body main section .hero-lead,html body main section .section-heading-row>p,
+html body main section .about-orbit-copy>p,
+html body main section .experience-main p,
+html body main section .rope-card p,
+html body main section .project-content p,
+html body footer p{
+  color:#46586B!important;-webkit-text-fill-color:#46586B!important;
+  opacity:1!important;text-shadow:none!important;
+}
+/* Highlight words stay solid terracotta: never transparent */
+html body main section h1 span,html body main section h2 span,
+html body main section h3 span,html body main section .gradient-text,
+html body main section .typing{
+  background:none!important;background-image:none!important;
+  color:#C96B55!important;-webkit-text-fill-color:#C96B55!important;
+  -webkit-background-clip:border-box!important;background-clip:border-box!important;
+  opacity:1!important;
+}
+html body main section .section-kicker,
+html body main section .eyebrow,
+html body main section .hero-location,
+html body main section .card-number,
+html body main section .route-label,
+html body main section .sc-side-label{
+  color:#A95340!important;-webkit-text-fill-color:#A95340!important;opacity:1!important;
+}
+html body main section a:not(.btn):not(.outline-btn),
+html body footer a{color:#397887!important;-webkit-text-fill-color:#397887!important;opacity:1!important}
+::selection{background:#F0D8CF!important;color:#172B43!important}
+::-webkit-scrollbar-track{background:#E9E8E2!important}
+::-webkit-scrollbar-thumb{background:#C96B55!important}
+/* Buttons */
+html body main section .btn{
+  background:#C96B55!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+  border:1px solid #C96B55!important;box-shadow:0 9px 22px rgba(201,107,85,.19)!important;
+}
+html body main section .btn:hover{background:#AD5542!important}
+html body main section .outline-btn{
+  background:#fff!important;color:#172B43!important;-webkit-text-fill-color:#172B43!important;
+  border:1px solid #AEBBC5!important;
+}
+html body main section .outline-btn:hover{
+  background:#172B43!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+/* Warm alternating surfaces */
+html body main section{background-color:transparent!important}
+html body main section:nth-of-type(even){background-color:#F0F0EB!important}
+html body main section.hero,html body main section.about-orbit,
+html body main section.search-console-showcase{background-color:transparent!important}
+html body main section .container{color:#172B43!important}
+/* Cards and panels */
+html body main section .experience-card,
+html body main section .rope-card,
+html body main section .expertise-card,
+html body main section .project-card,
+html body main section .about-orbit-card,
+html body main section .sc-slide,
+html body main section .sc-side-copy,
+html body main section .info-box,
+html body main section .skill-card,
+html body main section .contact-box,
+html body main section .contact-form{
+  background:#FFFFFF!important;color:#172B43!important;
+  border-color:#D9DEE2!important;
+  box-shadow:0 14px 36px rgba(23,43,67,.075)!important;
+}
+html body main section .experience-card h3,
+html body main section .rope-card h3,
+html body main section .project-card h3,
+html body main section .about-orbit-card h3,
+html body main section .sc-side-copy h3{
+  color:#172B43!important;-webkit-text-fill-color:#172B43!important;
+}
+html body main section .experience-card p,
+html body main section .rope-card p,
+html body main section .project-card p,
+html body main section .about-orbit-card p,
+html body main section .sc-side-copy p{
+  color:#46586B!important;-webkit-text-fill-color:#46586B!important;
+}
+html body main section .tag-row span,
+html body main section .tools-marquee-group span,
+html body main section .tool-chip,
+html body main section .expertise-tool,
+html body main section .project-tags span{
+  background:#F5EAE5!important;color:#96503F!important;
+  -webkit-text-fill-color:#96503F!important;border:1px solid #EAD4CC!important;
+}
+/* About orbital scene */
+html body main .about-orbit{
+  background:radial-gradient(ellipse at 50% 35%,rgba(57,120,135,.075),transparent 43%),#F7F6F2!important;
+}
+html body main .about-orbit-scene{
+  background:linear-gradient(145deg,#FFFFFF,#F0F2F0)!important;
+  border-color:#D9DEE2!important;
+}
+html body main .about-orbit-meta,html body main .about-orbit-foot,
+html body main .about-card-top,html body main .about-card-bottom,
+html body main .about-orbit-facts span{color:#68798A!important}
+html body main .about-solar-orbit{border-color:rgba(57,120,135,.35)!important}
+html body main .about-solar-orbit.orbit-two,
+html body main .about-solar-orbit.orbit-four{border-color:rgba(201,107,85,.32)!important}
+html body main .about-space-glow{background:radial-gradient(circle,rgba(57,120,135,.18),rgba(201,107,85,.06) 48%,transparent 72%)!important}
+/* Search performance */
+html body main .search-console-showcase{
+  background:linear-gradient(145deg,#F7F6F2,#EEF1EF)!important;
+}
+html body main .sc-arrow{
+  background:#fff!important;color:#172B43!important;border:1px solid #D9DEE2!important;
+}
+html body main .sc-arrow:hover{background:#172B43!important;color:#fff!important}
+html body main .sc-dot[aria-current=true]{background:#C96B55!important}
+/* Railway: retain train artwork but align its accent colours */
+html body main .train-experience{
+  background:linear-gradient(180deg,#F0F0EB 0%,#F7F6F2 100%)!important;
+}
+html body main .train-experience .experience-list:before{
+  background:linear-gradient(90deg,#C7D0D5,#F8FAFA 25%,#B9C5CC 50%,#F8FAFA 75%,#C7D0D5)!important;
+}
+html body main .train-experience .experience-list:after{
+  background:repeating-linear-gradient(to bottom,#526B7A 0 2px,transparent 2px 18px)!important;
+}
+html body main .train-experience .experience-index,
+html body main .train-experience .experience-status,
+html body main .train-experience .route-label,
+html body main .train-experience .station-arrival{color:#A95340!important}
+html body main .train-experience .station-pin{border-color:#C96B55!important}
+html body main .train-experience .route-stop-current{
+  background:linear-gradient(110deg,#fff 0%,#FBF4F1 58%,#F0F5F4 100%)!important;
+  border-color:#E3BDB2!important;
+}
+/* Hanging expertise cards and tools ticker */
+html body main #expertise{
+  background:linear-gradient(180deg,#F7F6F2,#EEEFEA)!important;
+}
+html body main .expertise-rope:before{background:linear-gradient(180deg,#87959C,#E8ECEB 35%,#71818A 65%,#C7CECB)!important}
+html body main .expertise-rope:after{border-top-color:#fff!important}
+html body main .rope-card:after{border-color:#C96B55!important;background:#F7F6F2!important}
+html body main .rope-card>i{background:#EAF0F0!important;color:#397887!important}
+html body main .tools-marquee{background:#E9EEED!important;border-color:#D5DEDF!important}
+html body main .tools-marquee:before{background:linear-gradient(90deg,#E9EEED,transparent)!important}
+html body main .tools-marquee:after{background:linear-gradient(270deg,#E9EEED,transparent)!important}
+/* Contact form fields */
+html body main section input,html body main section textarea,
+html body main section select{
+  background:#fff!important;color:#172B43!important;
+  border-color:#CCD5DA!important;
+}
+html body main section input::placeholder,
+html body main section textarea::placeholder{color:#82909B!important;-webkit-text-fill-color:#82909B!important}
+html body main section label{color:#40546A!important}
+/* Footer */
+html body footer,html body .footer,html body .site-footer{
+  background:#172B43!important;color:#F7F6F2!important;border-top:0!important;
+}
+html body footer h1,html body footer h2,html body footer h3,
+html body .footer h2,html body .footer h3,html body .footer-logo{
+  color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important;
+}
+html body footer p,html body footer li,html body .footer-copy,
+html body .footer-links a,html body .footer-phone{
+  color:#D9E1E7!important;-webkit-text-fill-color:#D9E1E7!important;
+}
+html body footer a:hover{color:#E6A08C!important;-webkit-text-fill-color:#E6A08C!important}
+html body .footer-social a{color:#fff!important;border-color:#52677B!important}
+html body .footer-social a:hover{background:#C96B55!important;border-color:#C96B55!important}
+/* Mobile nav */
+@media(max-width:991px){
+  html body header.header .navbar{
+    background:#FFFFFF!important;border:1px solid #D9DEE2!important;
+    box-shadow:0 18px 45px rgba(23,43,67,.13)!important;
+  }
+  html body header.header .navbar .nav-links a{
+    color:#40546A!important;-webkit-text-fill-color:#40546A!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){html body *{scroll-behavior:auto!important}}
