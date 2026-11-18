@@ -1,0 +1,69 @@
+/* VISIBILITY + LAYOUT + PERFORMANCE PATCH — 18 Nov 2026 */
+:root{--red:#f04b43;--blue:#287fa8}
+html,body{overflow-x:clip}
+body{color:#f3f5f8!important;background:#080c15!important}
+.header{background:rgba(8,10,14,.94)!important}
+.cinematic-hero{min-height:calc(100svh - 82px);padding:32px clamp(22px,5vw,76px) 26px!important}
+.hero-inner{width:min(1240px,100%);margin:clamp(35px,6vh,72px) auto 46px;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(28px,4vw,64px);align-items:center}
+.hero-intro{min-width:0}
+.hero-name{display:block!important;overflow:visible!important;font-size:clamp(48px,6.1vw,84px)!important;line-height:1.02!important;letter-spacing:-.075em!important;margin:0 0 24px!important;max-width:100%}
+.hero-name .name-first,.hero-name .name-last{display:block!important;white-space:nowrap!important}
+.hero-name .name-last{animation-delay:.2s}
+.hero-role{max-width:590px;font-size:clamp(25px,3vw,42px)!important;line-height:1.12!important}
+.hero-description{color:#555b63!important;max-width:520px;font-size:clamp(15px,1.15vw,17px)!important}
+.hero-stage{height:clamp(390px,42vw,510px);min-width:0;transform:none!important}
+.stage-globe{width:clamp(175px,18vw,225px);height:clamp(175px,18vw,225px)}
+.stage-orbit.orbit-one{width:min(34vw,380px);height:min(34vw,380px)}
+.stage-orbit.orbit-two{width:min(42vw,470px);height:min(42vw,470px)}
+.stage-orbit.orbit-three{width:min(27vw,300px);height:min(27vw,300px)}
+.stage-node{min-width:130px;padding:12px 14px}
+.stage-node strong{font-size:clamp(21px,2.1vw,27px)}
+/* Consistent high-contrast dark sections */
+.about,.experience,.skills,.projects,.achievements,.contact{background:#080c15!important;color:#f3f5f8!important}
+.section-copy h2,.section-heading-row h2,.achievement-layout h2,.contact-cta h2,
+.experience-main h3,.experience-main h4,.expertise-card h3,.project-card h3{color:#f3f5f8!important}
+.section-copy p,.section-heading-row>p,.achievement-layout>div:first-child>p,
+.contact-cta p,.experience-main p,.expertise-card p,.project-card p,
+.achievement-list p{color:#b8c2ce!important}
+.about-facts strong{color:#f3f5f8!important}
+.about-facts span,.experience-top,.experience-main h4{color:#aab7c5!important}
+.experience-card,.expertise-card,.project-card,.achievement-list>div,.contact-cta{
+ background:linear-gradient(145deg,#121b29,#0d1420)!important;
+ border:1px solid rgba(145,184,207,.2)!important;color:#f3f5f8!important
+}
+.experience-card p,.expertise-card p,.project-card p{color:#b8c2ce!important}
+.tag-row span,.tools-strip span,.project-tags span{color:#c4d0dc!important;border-color:#38566b!important}
+.section-kicker,.experience-index,.card-number,.project-category{color:#ff7166!important}
+.section-copy h2 span,.section-heading-row h2 span,.achievement-layout h2 span,.contact-cta h2 span{background:linear-gradient(100deg,#ff6258,#5bb4d8)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important}
+.footer{background:#05080e!important;color:#f3f5f8!important}
+/* Reveal content immediately; keep subtle transitions without blank sections on script failure */
+.motion-reveal{opacity:1!important;transform:none!important;filter:none!important;will-change:auto!important}
+.motion-reveal.motion-in{opacity:1!important;transform:none!important;filter:none!important}
+.hero-particle-canvas{pointer-events:none}
+@media(max-width:900px){
+ .hero-inner{grid-template-columns:1fr;gap:24px;margin:38px auto 36px}
+ .hero-intro{max-width:760px}
+ .hero-name{font-size:clamp(52px,9vw,82px)!important}
+ .hero-stage{height:390px;width:100%;max-width:650px;margin:0 auto}
+ .stage-orbit.orbit-one{width:300px;height:300px}.stage-orbit.orbit-two{width:370px;height:370px}.stage-orbit.orbit-three{width:235px;height:235px}
+}
+@media(max-width:600px){
+ .cinematic-hero{padding:25px 20px 22px!important}
+ .hero-topline{font-size:8px;letter-spacing:.1em}
+ .hero-inner{margin:36px auto 28px;gap:10px}
+ .hero-name{font-size:clamp(48px,12.5vw,68px)!important;line-height:1.04!important}
+ .hero-role{font-size:clamp(25px,7vw,34px)!important}
+ .hero-description{font-size:14px!important;line-height:1.65!important}
+ .hero-stage{height:315px;overflow:visible}
+ .stage-globe{width:155px;height:155px}
+ .stage-orbit.orbit-one{width:230px;height:230px}.stage-orbit.orbit-two{width:285px;height:285px}.stage-orbit.orbit-three{width:185px;height:185px}
+ .stage-node{min-width:108px;padding:9px 10px}.stage-node small{font-size:7px}.stage-node strong{font-size:19px}
+ .node-a{left:0;top:12%}.node-b{right:0;top:27%}.node-c{left:15%;bottom:7%}
+ .stage-cursor{display:none}
+ .hero-bottomline{font-size:7px;letter-spacing:.08em}
+ .about-facts{flex-wrap:wrap}
+ .about-facts div{min-width:28%}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero-grid-lines i,.stage-orbit,.stage-globe,.stage-node,.hero-name span,.hero-kicker,.hero-role,.hero-description,.hero-actions,.hero-stage{animation:none!important;opacity:1!important;transform:none!important}
+}
