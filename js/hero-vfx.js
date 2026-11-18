@@ -2,20 +2,36 @@
   const boot = () => {
     const intro = document.getElementById('cinematicIntro');
     if (!intro) return;
+
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let alreadySeen = false;
-    try { alreadySeen = sessionStorage.getItem('javedPortfolioIntroSeen') === '1'; } catch (_) {}
-    if (reduced || alreadySeen) { intro.remove(); return; }
+    if (reduced) {
+      intro.remove();
+      return;
+    }
+
+    // The intro is visible from the initial HTML paint and plays on every
+    // fresh page load or refresh. Do not persist a "seen" flag in storage.
     document.body.classList.add('intro-active');
+
+    let finished = false;
     const finish = () => {
+      if (finished) return;
+      finished = true;
       document.body.classList.remove('intro-active');
       intro.remove();
-      try { sessionStorage.setItem('javedPortfolioIntroSeen', '1'); } catch (_) {}
     };
+
     const skip = document.getElementById('introSkip');
     if (skip) skip.addEventListener('click', finish, { once: true });
-    window.setTimeout(finish, 5900);
+
+    // Hold the full-screen opening for 7.2s, then fade it out over 0.8s.
+    window.setTimeout(() => intro.classList.add('is-leaving'), 7200);
+    window.setTimeout(finish, 8000);
   };
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot, { once: true });
-  else boot();
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot, { once: true });
+  } else {
+    boot();
+  }
 })();
