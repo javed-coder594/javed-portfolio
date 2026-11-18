@@ -49,3 +49,70 @@
  .route-spark{display:none}
 }
 @media(prefers-reduced-motion:reduce){.route-train,.route-train:after,.route-spark,.arrival-light{animation:none!important;transition:none!important}}
+
+
+/* ===== RAILWAY JOURNEY EXPERIENCE — isolated to the Experience section ===== */
+.train-experience{background:linear-gradient(180deg,#f4f2ed 0%,#f8f7f3 52%,#eef3f5 100%);color:#151a20}
+.train-experience .section-heading-row h2{color:#101820}
+.train-experience .section-heading-row h2 span{background:linear-gradient(100deg,#f0443b,#e95e54 46%,#2587ad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.train-experience .section-heading-row>p{color:#586875}
+.career-route{max-width:1120px;margin:72px auto 0;padding:22px 0 24px}
+.career-route:before{content:"CAREER LINE  /  2025 — PRESENT";top:-25px;color:#647987;letter-spacing:.2em}
+.train-experience .experience-list{border:0;position:relative;display:grid;gap:22px;padding:0 0 0 82px}
+.train-experience .experience-list:before{content:"";position:absolute;left:28px;top:0;bottom:0;width:38px;border-radius:20px;background:linear-gradient(90deg,#d7dce0,#f9fbfc 25%,#c8d0d5 50%,#f9fbfc 75%,#d7dce0);box-shadow:inset 0 0 0 1px #aeb9c0,0 8px 25px #182a3812}
+.train-experience .experience-list:after{content:"";position:absolute;left:44px;top:0;bottom:0;width:5px;background:repeating-linear-gradient(to bottom,#687984 0 2px,transparent 2px 18px);opacity:.6}
+.train-experience .experience-card{z-index:1;display:grid;grid-template-columns:68px minmax(0,1fr);gap:20px;min-height:220px;padding:28px 30px 30px 20px;border:1px solid #d8e0e4;border-radius:18px;background:linear-gradient(120deg,#ffffff 0%,#f9fbfc 68%,#f0f5f7 100%);box-shadow:0 16px 45px #1b34400d;transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s,border-color .45s}
+.train-experience .experience-card:hover{padding-left:20px;transform:translateX(8px) translateY(-3px);border-color:#91b8c9;box-shadow:0 24px 55px #183b4a18}
+.train-experience .experience-index{color:#e94d45;align-items:flex-start;padding-top:8px;font-size:12px}
+.train-experience .station-pin{left:2px;top:3px;width:16px;height:16px;border:3px solid #f04b43;background:#fff;box-shadow:0 0 0 5px #f0443b18,0 0 18px #f0443b38}
+.train-experience .experience-top{color:#617581;font-size:10px}
+.train-experience .route-label{color:#e64c43}
+.train-experience .experience-main h3{color:#15212a;font-size:clamp(24px,3vw,36px)}
+.train-experience .experience-main h4{color:#257d9e;font-size:14px}
+.train-experience .experience-main p{color:#536571}
+.train-experience .tag-row span{border:1px solid #cbd9df;border-radius:30px;background:#fff;color:#3c5867;padding:7px 12px}
+.train-experience .route-stop-current{border:1px solid #efaaa4;background:linear-gradient(110deg,#fff 0%,#fff8f6 55%,#edf7fa 100%);box-shadow:0 20px 55px #e94d4515}
+.train-experience .route-stop-current:after{content:"";position:absolute;right:22px;top:22px;width:9px;height:9px;border-radius:50%;background:#ef4c43;box-shadow:0 0 0 6px #ef4c431c,0 0 20px #ef4c43a8;animation:stationSignal 1.6s infinite}
+.train-experience .experience-status{color:#e34c43}
+.station-arrival{display:inline-flex;border:1px solid #f0b5ad;border-radius:30px;background:#fff2ef;padding:10px 14px;color:#d9423b;letter-spacing:.12em}
+.station-arrival>span:last-child{color:#526a77}
+.arrival-light{background:#ed4c43}
+.railway-track{left:0;top:0;bottom:0;width:82px;overflow:visible}
+.railway-track .rail-line,.railway-track .rail-line-inner{left:28px;width:5px;border-radius:5px;background:linear-gradient(90deg,#687984,#f8fbfc 48%,#687984);box-shadow:0 0 0 1px #9eabb2}
+.railway-track .rail-line-inner{left:53px}
+.railway-track .track-sleepers{position:absolute;left:19px;top:0;bottom:0;width:49px;background:repeating-linear-gradient(to bottom,transparent 0 16px,#697b85 16px 21px,transparent 21px 37px);opacity:.72}
+.railway-track .route-train.railway-locomotive{position:absolute;left:5px;top:0;width:72px;height:150px;border:0;border-radius:0;background:none;box-shadow:none;display:block;transform:none;transition:top .12s linear;z-index:5}
+.railway-locomotive:before{content:"";position:absolute;left:13px;top:8px;width:46px;height:105px;border-radius:15px 15px 9px 9px;background:linear-gradient(90deg,#9d2527 0%,#f14d43 23%,#c82e32 72%,#78232c 100%);border:2px solid #f8a39b;box-shadow:inset 0 0 0 3px #ffffff20,0 9px 22px #182b3c42}
+.train-engine{position:absolute;z-index:3;left:19px;top:12px;width:34px;height:35px;border-radius:9px 9px 5px 5px;background:linear-gradient(135deg,#fff3e7,#a9d8e8 45%,#285a73);border:3px solid #8f2027;box-shadow:inset 0 -5px 0 #173c50}
+.engine-window{position:absolute;left:5px;right:5px;top:5px;height:13px;border-radius:3px;background:linear-gradient(135deg,#bdeaff,#27546a);border:1px solid #fff}
+.engine-light{position:absolute;left:13px;bottom:-9px;width:8px;height:8px;border-radius:50%;background:#fff5b0;box-shadow:0 0 12px 4px #ffe78b}
+.train-carriage{position:absolute;z-index:2;left:18px;width:36px;height:34px;border-radius:7px;background:linear-gradient(90deg,#1c5c78,#3289aa 45%,#17465f);border:2px solid #a8d8e8;box-shadow:inset 0 0 0 3px #ffffff20}
+.carriage-one{top:53px}.carriage-two{top:91px}
+.train-wheel{position:absolute;z-index:4;left:14px;width:11px;height:11px;border-radius:50%;background:radial-gradient(circle,#dce5e9 0 24%,#34434b 30% 100%);border:1px solid #26333b}
+.wheel-a{top:39px}.wheel-b{top:79px}.wheel-c{top:119px}.wheel-d{top:119px;left:53px}
+.train-smoke{position:absolute;z-index:1;left:29px;top:-9px;width:12px;height:17px;border-radius:50%;background:#a8b9c2;filter:blur(5px);opacity:.65;animation:smokeRise 1.8s ease-out infinite}
+.railway-locomotive:after{content:"";position:absolute;left:31px;top:113px;width:14px;height:25px;background:linear-gradient(#667984,#283b46);clip-path:polygon(20% 0,80% 0,100% 100%,0 100%)}
+.train-experience .route-spark{color:#ed5147}
+@keyframes smokeRise{0%{transform:translateY(0) scale(.7);opacity:.65}100%{transform:translate(-8px,-25px) scale(1.7);opacity:0}}
+@keyframes stationSignal{0%,100%{opacity:1;box-shadow:0 0 0 6px #ef4c431c,0 0 20px #ef4c43a8}50%{opacity:.5;box-shadow:0 0 0 11px #ef4c430b,0 0 8px #ef4c4360}}
+@media(max-width:700px){
+ .career-route{margin-top:55px;padding-top:10px}
+ .train-experience .experience-list{padding-left:56px;gap:16px}
+ .train-experience .experience-list:before{left:5px;width:34px}
+ .train-experience .experience-list:after{left:19px}
+ .railway-track{width:56px}
+ .railway-track .rail-line{left:17px}.railway-track .rail-line-inner{left:36px}
+ .railway-track .track-sleepers{left:9px;width:44px}
+ .railway-track .route-train.railway-locomotive{left:-2px;transform:scale(.78);transform-origin:top left}
+ .train-experience .experience-card{grid-template-columns:32px minmax(0,1fr);gap:9px;padding:23px 15px 25px 12px;min-height:0;border-radius:14px}
+ .train-experience .experience-card:hover{padding-left:12px;transform:translateY(-2px)}
+ .train-experience .station-pin{left:0}
+ .train-experience .experience-index{font-size:10px}
+ .train-experience .experience-main h3{font-size:clamp(21px,6.4vw,29px);line-height:1.12}
+ .train-experience .experience-main h4{font-size:12px;line-height:1.5}
+ .train-experience .experience-main p{font-size:12px}
+ .train-experience .route-stop-current:after{right:14px;top:14px}
+}
+@media(prefers-reduced-motion:reduce){
+ .train-smoke,.train-experience .route-stop-current:after{animation:none!important}
+}
