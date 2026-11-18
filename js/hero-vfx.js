@@ -24,8 +24,8 @@
     const skip = document.getElementById('introSkip');
     if (skip) skip.addEventListener('click', finish, { once: true });
 
-    // Hold the full-screen opening for 7.2s, then fade it out over 0.8s.
-    window.setTimeout(() => intro.classList.add('is-leaving'), 7200);
+    // Hold the full-screen opening for 9.2s, then fade it out over 0.8s.
+    window.setTimeout(() => intro.classList.add('is-leaving'), 9200);
     window.setTimeout(finish, 8000);
   };
 
