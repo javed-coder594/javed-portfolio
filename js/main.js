@@ -1,15 +1,144 @@
-document.addEventListener('DOMContentLoaded',()=>{
- const menu=document.querySelector('.menu-toggle'),nav=document.querySelector('.navbar');
- if(menu&&nav){menu.addEventListener('click',()=>{const open=nav.classList.toggle('active');menu.classList.toggle('active',open);menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close menu':'Open menu')});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('active');menu.classList.remove('active');menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Open menu')}))}
- const hero=document.querySelector('.cinematic-hero');if(!hero)return;
- const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
- if(!reduced&&!sessionStorage.getItem('javedIntroSeen')){const intro=document.createElement('div');intro.className='vfx-intro';intro.setAttribute('aria-hidden','true');intro.innerHTML='<strong>Javed <span>Chaudhary.</span></strong>';document.body.appendChild(intro);setTimeout(()=>intro.remove(),1900);sessionStorage.setItem('javedIntroSeen','1')}
- const canvas=hero.querySelector('.hero-particle-canvas'),ctx=canvas?.getContext('2d',{alpha:true});if(!ctx||reduced)return;
- const mobile=matchMedia('(max-width:760px)').matches,pts=Array.from({length:mobile?18:34},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*.2,vy:(Math.random()-.5)*.2,r:.7+Math.random()}));
- let w=0,h=0,raf=0,last=0,active=false;const pointer={x:-999,y:-999};
- function resize(){const d=Math.min(devicePixelRatio||1,1.2),r=hero.getBoundingClientRect();w=r.width;h=r.height;canvas.width=Math.round(w*d);canvas.height=Math.round(h*d);ctx.setTransform(d,0,0,d,0,0)}resize();addEventListener('resize',resize,{passive:true});
- hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect();pointer.x=e.clientX-r.left;pointer.y=e.clientY-r.top},{passive:true});hero.addEventListener('pointerleave',()=>{pointer.x=-999;pointer.y=-999},{passive:true});
- function draw(now){if(!active)return;if(now-last<33){raf=requestAnimationFrame(draw);return}last=now;ctx.clearRect(0,0,w,h);for(let i=0;i<pts.length;i++){const p=pts[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;const dx=p.x-pointer.x,dy=p.y-pointer.y,dist=Math.hypot(dx,dy);if(dist<100&&dist>0){p.x+=dx/dist*.7;p.y+=dy/dist*.7}ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=i%5===0?'rgba(240,68,62,.8)':'rgba(91,190,235,.7)';ctx.fill();for(let j=i+1;j<pts.length;j++){const q=pts[j],x=p.x-q.x,y=p.y-q.y,d=x*x+y*y;if(d<6200){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle='rgba(77,157,196,'+((1-Math.sqrt(d)/79)*.17)+')';ctx.lineWidth=.6;ctx.stroke()}}}raf=requestAnimationFrame(draw)}
- if('IntersectionObserver'in window){const io=new IntersectionObserver(es=>{active=es[0].isIntersecting;if(active){last=0;raf=requestAnimationFrame(draw)}else cancelAnimationFrame(raf)},{threshold:.01});io.observe(hero)}else{active=true;draw(0)}
- addEventListener('pagehide',()=>cancelAnimationFrame(raf),{once:true});
+document.addEventListener('DOMContentLoaded', () => {
+  const menu = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('.navbar');
+  if (menu && nav) {
+    menu.addEventListener('click', () => {
+      const open = nav.classList.toggle('active');
+      menu.classList.toggle('active', open);
+      menu.setAttribute('aria-expanded', String(open));
+      menu.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      nav.classList.remove('active');
+      menu.classList.remove('active');
+      menu.setAttribute('aria-expanded', 'false');
+      menu.setAttribute('aria-label', 'Open menu');
+    }));
+  }
+
+  const hero = document.querySelector('.hero.astra-hero');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Reveal each content block as it enters the viewport; content stays visible
+  // if IntersectionObserver is unavailable or reduced motion is requested.
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    const revealTargets = document.querySelectorAll(
+      '.about-orbit-heading, .about-orbit-scene, .about-orbit-card, .about-orbit-copy, .sc-heading, .sc-stage, .sc-side-copy, .experience-card, .expertise-card, .project-card, .achievement-list > div, .contact-cta > div'
+    );
+    revealTargets.forEach((el, index) => {
+      el.classList.add('motion-reveal');
+      el.style.setProperty('--motion-delay', (index % 4) * 75 + 'ms');
+    });
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('motion-in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -35px 0px' });
+    revealTargets.forEach(el => observer.observe(el));
+  }
+
+  if (!hero || reduceMotion) return;
+
+  // Lightweight interactive particle network, attached to the actual hero markup.
+  const canvas = document.createElement('canvas');
+  canvas.className = 'hero-particle-canvas';
+  canvas.setAttribute('aria-hidden', 'true');
+  hero.prepend(canvas);
+  const ctx = canvas.getContext('2d', { alpha: true });
+  if (!ctx) return;
+
+  const pointer = { x: -1000, y: -1000 };
+  const points = [];
+  let width = 0, height = 0, frame = 0, running = false, last = 0;
+  const isMobile = window.matchMedia('(max-width: 760px)').matches;
+  const count = isMobile ? 22 : 42;
+
+  for (let i = 0; i < count; i++) {
+    points.push({
+      x: Math.random() * hero.clientWidth,
+      y: Math.random() * hero.clientHeight,
+      vx: (Math.random() - 0.5) * 0.24,
+      vy: (Math.random() - 0.5) * 0.24,
+      r: 0.7 + Math.random() * 1.1
+    });
+  }
+
+  const resize = () => {
+    const rect = hero.getBoundingClientRect();
+    const dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1 : 1.35);
+    width = rect.width;
+    height = rect.height;
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  };
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+  hero.addEventListener('pointermove', event => {
+    const rect = hero.getBoundingClientRect();
+    pointer.x = event.clientX - rect.left;
+    pointer.y = event.clientY - rect.top;
+  }, { passive: true });
+  hero.addEventListener('pointerleave', () => {
+    pointer.x = -1000;
+    pointer.y = -1000;
+  }, { passive: true });
+
+  const draw = time => {
+    if (!running) return;
+    if (time - last < 32) { frame = requestAnimationFrame(draw); return; }
+    last = time;
+    ctx.clearRect(0, 0, width, height);
+    points.forEach((point, i) => {
+      point.x += point.vx;
+      point.y += point.vy;
+      if (point.x < 0 || point.x > width) point.vx *= -1;
+      if (point.y < 0 || point.y > height) point.vy *= -1;
+
+      const dx = point.x - pointer.x, dy = point.y - pointer.y;
+      const distance = Math.hypot(dx, dy);
+      if (distance < 115 && distance > 0) {
+        point.x += (dx / distance) * 0.8;
+        point.y += (dy / distance) * 0.8;
+      }
+
+      ctx.beginPath();
+      ctx.arc(point.x, point.y, point.r, 0, Math.PI * 2);
+      ctx.fillStyle = i % 4 === 0 ? 'rgba(244,75,67,.9)' : 'rgba(73,174,218,.82)';
+      ctx.fill();
+
+      for (let j = i + 1; j < points.length; j++) {
+        const other = points[j];
+        const lineDistance = Math.hypot(point.x - other.x, point.y - other.y);
+        if (lineDistance < (isMobile ? 76 : 105)) {
+          const alpha = (1 - lineDistance / (isMobile ? 76 : 105)) * 0.24;
+          ctx.beginPath();
+          ctx.moveTo(point.x, point.y);
+          ctx.lineTo(other.x, other.y);
+          ctx.strokeStyle = i % 3 === 0
+            ? 'rgba(244,75,67,' + alpha + ')'
+            : 'rgba(73,174,218,' + alpha + ')';
+          ctx.lineWidth = 0.7;
+          ctx.stroke();
+        }
+      }
+    });
+    frame = requestAnimationFrame(draw);
+  };
+
+  const visibility = new IntersectionObserver(entries => {
+    running = entries[0].isIntersecting && !document.hidden;
+    if (running) { last = 0; frame = requestAnimationFrame(draw); }
+    else cancelAnimationFrame(frame);
+  }, { threshold: 0.01 });
+  visibility.observe(hero);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) { running = false; cancelAnimationFrame(frame); }
+    else if (hero.getBoundingClientRect().bottom > 0 && hero.getBoundingClientRect().top < innerHeight) {
+      running = true; last = 0; frame = requestAnimationFrame(draw);
+    }
+  });
 });
