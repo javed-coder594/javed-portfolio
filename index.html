@@ -31,6 +31,7 @@
 <link rel="stylesheet" href="css/hero-override.css">
 <link rel="stylesheet" href="css/astra-redesign.css">
 <link rel="stylesheet" href="css/editorial-redesign.css">
+<link rel="stylesheet" href="css/hero-vfx.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -45,6 +46,21 @@
 </script>
 </head>
 <body>
+<div class="cinematic-intro" id="cinematicIntro" aria-label="Javed Chaudhary portfolio intro">
+  <div class="intro-grid" aria-hidden="true"></div>
+  <div class="intro-sweep intro-sweep-one" aria-hidden="true"></div>
+  <div class="intro-sweep intro-sweep-two" aria-hidden="true"></div>
+  <div class="intro-center">
+    <div class="intro-monogram">J<span>.</span></div>
+    <p class="intro-kicker">SEARCH / EXPERIENCE / IMPACT</p>
+    <h2>JAVED <span>CHAUDHARY</span></h2>
+    <div class="intro-rule"><i></i></div>
+    <p class="intro-role">SEO · AEO · GEO</p>
+  </div>
+  <span class="intro-coordinate intro-coordinate-left">17° 26' N / 78° 26' E</span>
+  <span class="intro-coordinate intro-coordinate-right">HYDERABAD · INDIA</span>
+  <button class="intro-skip" type="button" id="introSkip">Skip intro ↗</button>
+</div>
 <header class="header">
   <div class="container">
     <a href="/" class="logo"><span>J</span>aved<span class="logo-dot">.</span></a>
@@ -68,27 +84,28 @@
   <div class="hero-orbit hero-orbit-one"></div><div class="hero-orbit hero-orbit-two"></div>
   <div class="container hero-grid">
     <div class="hero-text">
-      <div class="eyebrow"><span class="eyebrow-dot"></span> SEO Executive · AEO &amp; GEO Specialist</div>
+      <div class="eyebrow hero-location"><span class="eyebrow-dot"></span> Hyderabad · India</div>
       <h1>Search visibility,<br><span>built with intent.</span></h1>
       <p class="hero-lead">I help businesses become easier to discover across search engines and AI-driven search experiences through practical SEO, content and website optimization.</p>
       <div class="hero-btns">
         <a href="#experience" class="btn">View Experience <span>↗</span></a>
         <a href="assests/Javed_Chaudhary_CV.pdf" class="outline-btn" download>Download CV</a>
       </div>
-      <div class="hero-proof"><span>250+ pages & blogs optimized</span><i></i><span>Top 10 keyword growth</span><i></i><span>Search + AI visibility</span></div>
+      <div class="hero-proof"><span>500+ web pages optimized</span><i></i><span>Top 10 keyword growth</span><i></i><span>Search + AI visibility</span></div>
     </div>
-    <div class="hero-visual" aria-label="Animated search strategy visual">
-      <div class="visual-orbit orbit-a"></div><div class="visual-orbit orbit-b"></div><div class="visual-glow"></div>
-      <div class="visual-window">
-        <div class="window-bar"><span></span><span></span><span></span><small>SEARCH / PERFORMANCE.SYS</small></div>
-        <div class="visual-window-body">
-          <div class="visual-label">ORGANIC VISIBILITY <i>LIVE</i></div>
-          <div class="visual-score"><strong>+<b data-count="250">0</b></strong><span>pages optimized</span></div>
-          <div class="visual-chart"><span style="--h:24%"></span><span style="--h:38%"></span><span style="--h:31%"></span><span style="--h:53%"></span><span style="--h:48%"></span><span style="--h:67%"></span><span style="--h:59%"></span><span style="--h:82%"></span><span style="--h:73%"></span><span style="--h:100%"></span></div>
-          <div class="visual-metrics"><span><i></i> Technical SEO</span><span><i></i> AEO / GEO</span><span><i></i> Search growth</span></div>
-        </div>
+    <div class="hero-visual vfx-visual" aria-label="Animated 3D SEO growth model and performance metrics">
+      <div class="model-stage">
+        <div class="model-halo"></div>
+        <div class="model-ring ring-horizontal"></div><div class="model-ring ring-diagonal"></div><div class="model-ring ring-vertical"></div>
+        <div class="seo-core"><div class="core-shine"></div><div class="core-latitude"></div><div class="core-longitude"></div><strong>SEO</strong><small>GROWTH ENGINE</small></div>
+        <span class="model-node node-one"></span><span class="model-node node-two"></span><span class="model-node node-three"></span>
       </div>
-      <div class="floating-chip chip-one"><span>↗</span> Search visibility</div><div class="floating-chip chip-two"><span>✳</span> Strategy in motion</div>
+      <div class="floating-metric metric-keywords"><span class="metric-label">KEYWORDS OPTIMIZED</span><strong>200<span>+</span></strong><small>Across multiple industries</small></div>
+      <div class="floating-metric metric-impressions"><span class="metric-label">ORGANIC IMPRESSIONS</span><strong>3 M<span>+</span></strong><small>Illustrative search visibility</small></div>
+      <div class="floating-metric metric-experience"><span class="metric-label">EXPERIENCE</span><strong>1<span>+</span></strong><small>Years in SEO</small></div>
+      <div class="floating-metric metric-audits"><span class="metric-label">SEO AUDITS</span><strong>25<span>+</span></strong><small>Technical &amp; on-page</small></div>
+      <div class="floating-metric metric-pages"><span class="metric-label">WEB PAGES OPTIMIZED</span><strong>500<span>+</span></strong><small>Across live projects</small></div>
+      <div class="visual-caption">SEARCH PERFORMANCE / LIVE MODEL <span>01 — 05</span></div>
     </div>
   </div>
 </section>
@@ -101,7 +118,7 @@
       <p>SEO Executive with hands-on experience across On-Page, Off-Page, Technical, Local SEO, AEO and GEO. My work combines search intent, content quality, technical health and performance measurement to improve discoverability.</p>
       <p>I work with Google Search Console, GA4, SEMrush, Google Keyword Planner and Lighthouse, while also working across WordPress, HTML, CSS, JavaScript, React.js and Next.js.</p>
       <div class="about-facts">
-        <div><strong>250+</strong><span>Pages & blogs optimized</span></div>
+        <div><strong>500+</strong><span>Web pages optimized</span></div>
         <div><strong>Top 10</strong><span>Competitive keyword rankings</span></div>
         <div><strong>6+</strong><span>Core SEO disciplines</span></div>
       </div>
@@ -152,7 +169,7 @@
     <div><div class="section-kicker">05 / PROOF OF WORK</div><h2>Results, not just <span>checklists.</span></h2><p>My recent work focuses on measurable search improvements, cleaner technical foundations and content that matches how people actually search.</p></div>
     <div class="achievement-list">
       <div><strong>01</strong><p>Ranked competitive keywords in Top 10 search results through SEO, AEO and GEO-focused strategies.</p></div>
-      <div><strong>02</strong><p>Optimized 250+ pages and blogs for search visibility, content quality and organic growth.</p></div>
+      <div><strong>02</strong><p>Optimized 500+ web pages for search visibility, content quality and organic growth.</p></div>
       <div><strong>03</strong><p>Performed technical SEO audits covering crawlability, indexing, site speed and Core Web Vitals.</p></div>
       <div><strong>04</strong><p>Built backlinks and supported Local SEO activities to strengthen search visibility.</p></div>
     </div>
@@ -192,5 +209,6 @@
 </footer>
 <div class="sticky-contact"><a href="https://wa.me/918459791852" target="_blank" rel="noopener" class="whatsapp-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a><a href="tel:+918459791852" class="call-btn" aria-label="Call"><i class="fas fa-phone"></i></a></div>
 <script src="js/main.js"></script>
+<script src="js/hero-vfx.js" defer></script>
 </body>
 </html>
