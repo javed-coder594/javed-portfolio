@@ -252,3 +252,87 @@
  #projects .pocket-card{opacity:1!important;visibility:visible!important;transform:none!important}
  #projects .pocket-card.is-out{animation:none!important}
 }
+
+
+/* FINAL OVERRIDE — high-contrast copy, all five cards, responsive grid */
+#projects .pocket-cards{
+ width:100%!important;max-width:1240px!important;
+ display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;
+ gap:14px!important;overflow:visible!important;
+ margin:30px auto 0!important;padding:0 2px 8px!important;
+}
+#projects .pocket-card,
+#projects .pocket-card:last-child:nth-child(odd){
+ display:flex!important;flex-direction:column!important;
+ grid-column:auto!important;width:100%!important;min-width:0!important;
+ min-height:285px!important;box-sizing:border-box!important;
+ background:linear-gradient(155deg,#101f30 0%,#071321 100%)!important;
+ border:1px solid rgba(151,190,218,.35)!important;
+ box-shadow:0 14px 34px rgba(4,15,28,.22)!important;
+}
+#projects .pocket-card-copy{display:block!important;opacity:1!important;visibility:visible!important}
+#projects .pocket-card-copy h3,
+#projects .pocket-card h3{
+ color:#ffffff!important;-webkit-text-fill-color:#ffffff!important;
+ opacity:1!important;visibility:visible!important;
+ font-family:'Manrope',sans-serif!important;font-weight:800!important;
+ font-size:clamp(14px,1.1vw,18px)!important;line-height:1.3!important;
+ text-shadow:none!important;margin:0 0 9px!important;
+}
+#projects .pocket-card-copy p,
+#projects .pocket-card p{
+ color:#e2ebf4!important;-webkit-text-fill-color:#e2ebf4!important;
+ opacity:1!important;visibility:visible!important;
+ font-size:12px!important;line-height:1.55!important;font-weight:500!important;
+}
+#projects .pocket-card-index{color:#ff7b83!important;font-weight:800!important}
+#projects .pocket-card-index i{color:#c6d4e0!important}
+#projects .pocket-card-foot{color:#c5d3df!important;border-color:rgba(220,235,247,.2)!important}
+#projects .pocket-card-brand img{opacity:1!important;filter:none!important}
+#projects .pocket-card.is-out{
+ animation:pocketPullFromCentre 1.45s cubic-bezier(.16,.82,.2,1) both!important;
+}
+@keyframes pocketPullFromCentre{
+ 0%{opacity:0;visibility:hidden;transform:translate3d(var(--pocket-x),-410px,150px) rotateX(20deg) scale(.78)}
+ 10%{opacity:1;visibility:visible}
+ 75%{transform:translate3d(0,8px,20px) rotateX(-2deg) scale(1.02)}
+ 100%{opacity:1;visibility:visible;transform:translate3d(0,0,0) rotateX(0) scale(1)}
+}
+#projects .pocket-card.is-out:hover{transform:translate3d(0,-6px,0) scale(1.01)!important}
+@media(min-width:1051px){
+ #projects .pocket-cards{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+}
+@media(max-width:1050px) and (min-width:701px){
+ #projects .pocket-cards{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important}
+ #projects .pocket-card:nth-child(5){grid-column:2!important}
+}
+@media(max-width:700px){
+ #projects{overflow:hidden!important}
+ #projects>.container{width:calc(100% - 30px)!important}
+ #projects .pocket-stage{height:285px!important}
+ #projects .pocket-stage .pocket-body{width:90%!important;height:220px!important;top:58%!important}
+ #projects .pocket-stage .pocket-stack{width:84%!important;height:220px!important;top:53%!important}
+ #projects .pocket-cards{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:12px!important;margin-top:22px!important;padding:0 0 8px!important;
+ }
+ #projects .pocket-card,
+ #projects .pocket-card:last-child:nth-child(odd){
+  min-height:250px!important;padding:14px 12px 12px!important;
+ }
+ #projects .pocket-card:nth-child(5){grid-column:1/-1!important;width:calc(50% - 6px)!important;justify-self:center!important}
+ #projects .pocket-card-copy h3,#projects .pocket-card h3{
+  color:#fff!important;-webkit-text-fill-color:#fff!important;
+  font-size:15px!important;line-height:1.28!important;font-weight:800!important;
+ }
+ #projects .pocket-card-copy p,#projects .pocket-card p{
+  color:#e8eff6!important;-webkit-text-fill-color:#e8eff6!important;
+  font-size:12px!important;line-height:1.55!important;
+ }
+ #projects .pocket-card-brand{height:58px!important;margin:6px 0 11px!important}
+ #projects .pocket-card-brand img{max-height:44px!important;max-width:100%!important}
+}
+@media(prefers-reduced-motion:reduce){
+ #projects .pocket-card{opacity:1!important;visibility:visible!important;transform:none!important}
+ #projects .pocket-card.is-out{animation:none!important}
+}
