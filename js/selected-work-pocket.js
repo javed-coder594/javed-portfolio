@@ -14,7 +14,7 @@
    card.setAttribute('aria-hidden','false');
    scene.dataset.active=String(step+1);
    step++;
-   if(step<cards.length)timer=setTimeout(showNext,reduce?80:2450);
+   if(step<cards.length)timer=setTimeout(showNext,reduce?80:1750);
  };
  const begin=()=>{
    if(started)return;
