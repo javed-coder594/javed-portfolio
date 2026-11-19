@@ -120,3 +120,16 @@ html body header.creative-header .nav-links a[aria-current="page"]:before{right:
 @media(prefers-reduced-motion:reduce){
  html body header.creative-header .nav-orbit-indicator{transition:none!important}
 }
+
+/* Slim road + moving 3D bicycle that follows the active menu section */
+html body header.creative-header .creative-navbar{padding-bottom:22px!important}
+html body header.creative-header .nav-road{position:absolute;left:2px;right:2px;bottom:9px;height:3px;border-radius:99px;background:linear-gradient(90deg,rgba(23,43,67,.10),rgba(23,43,67,.42) 18%,rgba(23,43,67,.42) 82%,rgba(23,43,67,.10));box-shadow:0 2px 0 rgba(255,255,255,.9),0 4px 7px rgba(23,43,67,.10);pointer-events:none}
+html body header.creative-header .nav-road:after{content:"";position:absolute;left:0;right:0;top:1px;height:1px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.9) 0 7px,transparent 7px 14px);opacity:.8}
+html body header.creative-header .nav-cycle{position:absolute;left:0;bottom:-9px;width:46px;height:34px;z-index:3;display:block;pointer-events:none;opacity:0;transform:translate3d(0,0,0);transition:transform .85s cubic-bezier(.2,.8,.2,1),opacity .25s ease;filter:drop-shadow(0 5px 4px rgba(23,43,67,.24))}
+html body header.creative-header .nav-cycle.is-visible{opacity:1}
+html body header.creative-header .nav-cycle svg{display:block;width:100%;height:100%;overflow:visible;transform:perspective(90px) rotateX(8deg)}
+html body header.creative-header .nav-cycle .cycle-wheel{transform-box:fill-box;transform-origin:center;animation:cycleSpin .8s linear infinite}
+@keyframes cycleSpin{to{transform:rotate(360deg)}}
+html body header.creative-header .nav-orbit-indicator{display:none!important}
+@media(max-width:991px){html body header.creative-header .creative-navbar{padding-bottom:0!important}html body header.creative-header .nav-road,html body header.creative-header .nav-cycle{display:none!important}}
+@media(prefers-reduced-motion:reduce){html body header.creative-header .nav-cycle{transition:none!important}html body header.creative-header .nav-cycle .cycle-wheel{animation:none!important}}
