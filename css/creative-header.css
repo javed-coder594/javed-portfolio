@@ -133,3 +133,36 @@ html body header.creative-header .nav-cycle .cycle-wheel{transform-box:fill-box;
 html body header.creative-header .nav-orbit-indicator{display:none!important}
 @media(max-width:991px){html body header.creative-header .creative-navbar{padding-bottom:0!important}html body header.creative-header .nav-road,html body header.creative-header .nav-cycle{display:none!important}}
 @media(prefers-reduced-motion:reduce){html body header.creative-header .nav-cycle{transition:none!important}html body header.creative-header .nav-cycle .cycle-wheel{animation:none!important}}
+
+/* Continuous scroll-driven bike travel on every viewport */
+html body header.creative-header .nav-cycle{transition:transform .12s linear,opacity .2s ease!important}
+html body header.creative-header .mobile-cycle-track{display:none}
+@media(max-width:991px){
+ html body header.creative-header{overflow:visible!important}
+ html body header.creative-header .header-shell{position:relative!important}
+ html body header.creative-header .mobile-cycle-track{
+  display:block!important;position:absolute;left:5%;right:5%;bottom:-9px;height:19px;z-index:12;
+  pointer-events:none;overflow:visible;
+ }
+ html body header.creative-header .mobile-road{
+  position:absolute;left:0;right:0;top:12px;height:2px;border-radius:9px;
+  background:linear-gradient(90deg,rgba(23,43,67,.08),rgba(23,43,67,.46) 12%,rgba(23,43,67,.46) 88%,rgba(23,43,67,.08));
+  box-shadow:0 1px 0 rgba(255,255,255,.95),0 3px 5px rgba(23,43,67,.12);
+ }
+ html body header.creative-header .mobile-road:after{
+  content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.9) 0 6px,transparent 6px 13px);
+  height:1px;top:0;
+ }
+ html body header.creative-header .mobile-cycle{
+  position:absolute;left:0;top:-3px;width:46px;height:32px;z-index:2;
+  filter:drop-shadow(0 4px 3px rgba(23,43,67,.25));transition:transform .12s linear;
+ }
+ html body header.creative-header .mobile-cycle svg{width:100%;height:100%;display:block;overflow:visible;transform:perspective(90px) rotateX(8deg)}
+ html body header.creative-header .mobile-cycle .cycle-wheel{transform-box:fill-box;transform-origin:center;animation:cycleSpin .8s linear infinite}
+ html body header.creative-header .creative-navbar{padding-bottom:0!important}
+ html body header.creative-header .nav-road,html body header.creative-header .nav-cycle{display:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+ html body header.creative-header .nav-cycle,html body header.creative-header .mobile-cycle{transition:none!important}
+ html body header.creative-header .mobile-cycle .cycle-wheel{animation:none!important}
+}
