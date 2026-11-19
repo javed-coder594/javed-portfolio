@@ -1,26 +1,33 @@
-/* Watch-pocket sequential card reveal */
+/* Slow sequential pocket extraction: each card exits, lands in grid, then next starts */
 (() => {
  const scene=document.querySelector('[data-work-pocket]');
- if(!scene)return;
+ if(!scene || scene.dataset.pocketInitialized)return;
+ scene.dataset.pocketInitialized='true';
  const cards=[...scene.querySelectorAll('[data-pocket-card]')];
  if(!cards.length)return;
- let active=0,timer=null;
- const show=(index)=>{
-   cards.forEach((card,i)=>{card.classList.toggle('is-out',i===index);card.setAttribute('aria-hidden',i===index?'false':'true');});
-   scene.dataset.active=String(index+1);
+ const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ let started=false,step=0,timer=null;
+ const showNext=()=>{
+   if(step>=cards.length)return;
+   const card=cards[step];
+   card.classList.add('is-out');
+   card.setAttribute('aria-hidden','false');
+   scene.dataset.active=String(step+1);
+   step++;
+   if(step<cards.length)timer=setTimeout(showNext,reduce?80:1900);
  };
- const reveal=()=>{
+ const begin=()=>{
+   if(started)return;
+   started=true;
    scene.classList.add('is-ready');
-   show(0);
-   if(timer)clearInterval(timer);
-   timer=setInterval(()=>{active=(active+1)%cards.length;show(active);},3600);
+   cards.forEach(card=>{card.setAttribute('aria-hidden','true');});
+   showNext();
  };
  if('IntersectionObserver'in window){
-   const observer=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){reveal();observer.disconnect();}},{threshold:.22});
+   const observer=new IntersectionObserver(entries=>{
+     if(entries.some(entry=>entry.isIntersecting)){begin();observer.disconnect();}
+   },{threshold:.18});
    observer.observe(scene);
- }else reveal();
- scene.addEventListener('mouseenter',()=>{if(timer)clearInterval(timer);});
- scene.addEventListener('mouseleave',()=>{if(timer)clearInterval(timer);timer=setInterval(()=>{active=(active+1)%cards.length;show(active);},3600);});
- scene.addEventListener('focusin',()=>{if(timer)clearInterval(timer);});
- scene.addEventListener('focusout',()=>{if(timer)clearInterval(timer);timer=setInterval(()=>{active=(active+1)%cards.length;show(active);},3600);});
+ }else begin();
+ window.addEventListener('pagehide',()=>{if(timer)clearTimeout(timer);},{once:true});
 })();
