@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  const typed=word?.querySelector('.brand-typed');
  const header=document.querySelector('#siteHeader');
  const nav=header?.querySelector('.creative-navbar');
- const indicator=nav?.querySelector('.nav-orbit-indicator');
+ const indicator=nav?.querySelector('.nav-cycle');
  const links=[...(nav?.querySelectorAll('.nav-links a[href*="#"]')||[])];
  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
  if(word&&typed){
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   links.forEach(a=>{if(a===link)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
   if(window.matchMedia('(max-width: 991px)').matches){indicator.classList.remove('is-visible');return}
   const navRect=nav.getBoundingClientRect(),linkRect=link.getBoundingClientRect();
-  const x=linkRect.left-navRect.left+(linkRect.width-30)/2;
+  const x=linkRect.left-navRect.left+(linkRect.width-46)/2;
   indicator.style.transform='translate3d('+x+'px,0,0)';
   indicator.classList.add('is-visible');
  };
