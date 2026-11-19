@@ -1,0 +1,93 @@
+/* Creative portfolio header */
+:root{--header-ink:#172B43;--header-accent:#C96B55;--header-teal:#397887}
+html body header.creative-header{
+ position:sticky!important;top:0!important;z-index:10000!important;
+ width:100%;height:82px!important;background:rgba(250,250,248,.88)!important;
+ border-bottom:1px solid rgba(23,43,67,.10)!important;
+ box-shadow:0 8px 30px rgba(23,43,67,.055)!important;
+ -webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);
+ transition:height .3s ease,background .3s ease,box-shadow .3s ease;
+}
+html body header.creative-header.is-scrolled{height:70px!important;background:rgba(250,250,248,.96)!important;box-shadow:0 10px 35px rgba(23,43,67,.09)!important}
+html body header.creative-header .header-shell{
+ width:min(1200px,92%)!important;height:100%;margin:0 auto;padding:0!important;
+ display:grid!important;grid-template-columns:1fr auto 1fr;align-items:center;gap:26px;
+}
+html body header.creative-header .brand-logo{
+ display:inline-flex!important;align-items:center;gap:11px;width:max-content;
+ color:var(--header-ink)!important;text-decoration:none!important;
+}
+.brand-mark{width:43px;height:43px;display:grid;place-items:center;position:relative;
+ border-radius:13px;background:var(--header-ink);color:#fff;font:800 24px/1 "Manrope",sans-serif;
+ letter-spacing:-.09em;box-shadow:0 6px 15px rgba(23,43,67,.18);transition:transform .3s ease, border-radius .3s ease}
+.brand-mark span{color:#E77B65}
+.brand-logo:hover .brand-mark{transform:rotate(-7deg) translateY(-2px);border-radius:50% 50% 13px 13px}
+.brand-lockup{display:flex;flex-direction:column;gap:2px;min-width:92px}
+.brand-word{display:flex;align-items:center;min-height:25px;color:var(--header-ink);font:800 22px/1 "Manrope",sans-serif;letter-spacing:-.075em}
+.brand-typed{display:inline-block;min-width:1px}
+.typing-caret{width:2px;height:21px;margin-left:3px;background:var(--header-accent);display:inline-block;animation:brandBlink .85s steps(2,start) infinite}
+.brand-caption{font:700 8px/1 "DM Sans",sans-serif;letter-spacing:.19em;color:#70808E}
+.brand-caption i{font-style:normal;color:var(--header-accent);padding:0 1px}
+@keyframes brandBlink{to{visibility:hidden}}
+html body header.creative-header .creative-navbar{position:static!important;width:auto!important;height:auto!important;padding:0!important;background:transparent!important}
+html body header.creative-header .nav-links{display:flex!important;align-items:center;gap:clamp(15px,2.1vw,30px)!important;margin:0!important;padding:0!important;list-style:none}
+html body header.creative-header .nav-links a{
+ position:relative;display:inline-flex;padding:11px 0!important;color:#526274!important;
+ font:700 10px/1 "DM Sans",sans-serif!important;letter-spacing:.11em;text-transform:uppercase;
+ text-decoration:none!important;transition:color .25s ease;
+}
+html body header.creative-header .nav-links a:before{
+ content:"";position:absolute;left:0;right:100%;bottom:3px;height:2px;border-radius:3px;
+ background:linear-gradient(90deg,var(--header-accent),var(--header-teal));transition:right .28s ease;
+}
+html body header.creative-header .nav-links a:hover,
+html body header.creative-header .nav-links a:focus-visible{color:var(--header-ink)!important}
+html body header.creative-header .nav-links a:hover:before,
+html body header.creative-header .nav-links a:focus-visible:before{right:0}
+html body header.creative-header .header-cta{
+ justify-self:end;display:inline-flex!important;align-items:center;gap:12px;
+ min-height:43px;padding:0 17px!important;border-radius:9px!important;
+ background:var(--header-ink)!important;color:#fff!important;
+ box-shadow:0 7px 18px rgba(23,43,67,.16);font:700 10px "DM Sans",sans-serif!important;
+ letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:transform .25s,background .25s,box-shadow .25s;
+}
+html body header.creative-header .header-cta:hover{transform:translateY(-2px);background:#24445F!important;box-shadow:0 11px 24px rgba(23,43,67,.22)}
+.header-cta b{font-size:15px;color:#F09A83;font-weight:600}
+.cta-pulse{width:6px;height:6px;border-radius:50%;background:#75B8A8;box-shadow:0 0 0 4px rgba(117,184,168,.15)}
+html body header.creative-header .creative-menu-toggle{display:none!important}
+@media(max-width:991px){
+ html body header.creative-header{height:76px!important}
+ html body header.creative-header .header-shell{width:90%!important;grid-template-columns:1fr auto;gap:12px}
+ html body header.creative-header .header-cta{display:none!important}
+ html body header.creative-header .creative-menu-toggle{
+  display:flex!important;justify-self:end;width:44px;height:44px;border:1px solid rgba(23,43,67,.13);
+  border-radius:12px;background:#fff;align-items:center;justify-content:center;gap:5px;padding:0 11px;
+  box-shadow:0 4px 12px rgba(23,43,67,.06)
+ }
+ html body header.creative-header .creative-menu-toggle span{width:19px;height:2px;background:var(--header-ink);border-radius:3px;transition:transform .25s,opacity .25s}
+ html body header.creative-header .creative-menu-toggle.active span:first-child{transform:translateY(7px) rotate(45deg)}
+ html body header.creative-header .creative-menu-toggle.active span:nth-child(2){opacity:0}
+ html body header.creative-header .creative-menu-toggle.active span:last-child{transform:translateY(-7px) rotate(-45deg)}
+ html body header.creative-header .creative-navbar{
+  position:absolute!important;top:calc(100% + 9px)!important;left:5%!important;right:5%!important;
+  width:90%!important;height:auto!important;max-height:0;overflow:hidden;opacity:0;pointer-events:none;
+  padding:0!important;border:1px solid rgba(23,43,67,.10);border-radius:16px;
+  background:rgba(255,255,255,.97)!important;box-shadow:0 18px 48px rgba(23,43,67,.15);
+  transition:max-height .35s ease,opacity .25s ease,padding .25s ease;
+ }
+ html body header.creative-header .creative-navbar.active{max-height:430px;opacity:1;pointer-events:auto;padding:13px!important;right:5%!important}
+ html body header.creative-header .nav-links{display:grid!important;grid-template-columns:1fr 1fr;gap:4px!important}
+ html body header.creative-header .nav-links li a{width:100%;padding:14px 12px!important;border-radius:9px;font-size:11px!important}
+ html body header.creative-header .nav-links li a:hover{background:#F1F4F4}
+ html body header.creative-header .nav-links a:before{display:none}
+}
+@media(max-width:480px){
+ html body header.creative-header{height:70px!important}
+ .brand-mark{width:39px;height:39px;font-size:22px;border-radius:11px}
+ .brand-word{font-size:21px}
+ .brand-caption{font-size:7px}
+}
+@media(prefers-reduced-motion:reduce){
+ .typing-caret{animation:none}
+ html body header.creative-header,html body header.creative-header *{transition:none!important}
+}
