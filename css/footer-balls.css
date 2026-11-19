@@ -1,0 +1,18 @@
+/* Footer interactive physics balls — isolated to footer only */
+.footer-with-balls{position:relative;isolation:isolate;overflow:hidden!important;padding:0 0 24px!important}
+.footer-ball-playground{position:relative;width:100%;height:210px;overflow:hidden;isolation:isolate;touch-action:pan-y;background:radial-gradient(ellipse at 50% 100%,rgba(23,111,158,.14),transparent 65%)}
+.footer-ball-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1;touch-action:pan-y}
+.footer-ball-hint{position:absolute;z-index:2;left:50%;bottom:12px;transform:translateX(-50%);white-space:nowrap;color:rgba(213,223,234,.55);font:700 8px/1.2 'DM Sans',Arial,sans-serif;letter-spacing:.2em;pointer-events:none}
+.footer-with-balls>.container{position:relative;z-index:3}
+.footer-with-balls .footer-row{position:relative;z-index:3}
+@media(max-width:900px){
+ .footer-ball-playground{height:190px}
+ .footer-ball-hint{font-size:7px;bottom:9px}
+}
+@media(max-width:480px){
+ .footer-ball-playground{height:165px}
+ .footer-with-balls{padding-bottom:12px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .footer-ball-canvas{opacity:.92}
+}
