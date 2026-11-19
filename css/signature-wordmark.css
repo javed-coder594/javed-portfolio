@@ -1,58 +1,14 @@
-/* Oversized interactive name signature after footer */
-.signature-wordmark{
- position:relative;isolation:isolate;overflow:hidden;width:100%;
- padding:clamp(34px,5.5vw,78px) 20px clamp(28px,4vw,58px);
- background:linear-gradient(180deg,#0C2947 0%,#091F38 100%);
- border-top:1px solid rgba(117,184,168,.16);
-}
-.signature-inner{width:min(1440px,100%);margin:0 auto;text-align:center}
-.signature-kicker{margin:0 0 clamp(12px,2vw,24px);font:700 9px/1.2 'DM Sans',Arial,sans-serif;letter-spacing:.28em;color:rgba(218,230,239,.58)}
-.signature-name{
- display:flex;justify-content:center;align-items:center;flex-wrap:nowrap;
- margin:0 auto;padding:0;white-space:nowrap;
- font-family:'Space Grotesk','Poppins',Arial,sans-serif;
- font-size:clamp(2.05rem,8.1vw,8.8rem);font-weight:800;line-height:.94;
- letter-spacing:-.075em;text-transform:uppercase;
- perspective:900px;transform-style:preserve-3d;
-}
-.signature-letter{
- display:inline-block;position:relative;transform:translate3d(var(--sx,0px),var(--sy,0px),var(--sz,0px)) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
- transform-origin:50% 70%;
- background:linear-gradient(112deg,#2F83BD 2%,#397887 34%,#E77B65 67%,#F04F4B 100%);
- -webkit-background-clip:text;background-clip:text;color:transparent;
- filter:drop-shadow(0 10px 12px rgba(0,0,0,.18));
- transition:transform .42s cubic-bezier(.2,.8,.2,1),filter .35s ease;
- will-change:transform;
-}
-.signature-space{width:.24em;flex:0 0 .24em}
-.signature-name.is-playing .signature-letter{transition-duration:.18s}
-.signature-rule{display:block;width:min(190px,24vw);height:2px;margin:clamp(22px,3vw,38px) auto 0;border-radius:9px;background:linear-gradient(90deg,transparent,#397887 28%,#E77B65 72%,transparent);opacity:.8}
-@media(max-width:700px){
- .signature-wordmark{padding:34px 10px 28px}
- .signature-kicker{font-size:7px;letter-spacing:.2em}
- .signature-name{font-size:clamp(1.8rem,7.4vw,3.2rem);letter-spacing:-.08em}
- .signature-space{width:.2em;flex-basis:.2em}
-}
-@media(hover:none){
- .signature-letter{transition:transform .28s ease}
-}
-@media(prefers-reduced-motion:reduce){
- .signature-letter{transition:none!important;transform:none!important}
-}
-
-
-/* Signature becomes the visual finale: interactive balls rise up to the name; footer follows below */
-.signature-wordmark{padding:0 20px clamp(30px,4vw,58px)!important}
-.signature-ball-playground{
- position:relative;width:min(1440px,100%);height:clamp(150px,18vw,220px);
- margin:0 auto clamp(8px,1vw,16px);overflow:hidden;isolation:isolate;
- background:radial-gradient(ellipse at 50% 100%,rgba(57,120,135,.12),transparent 68%);
- touch-action:pan-y;
-}
+/* Single interactive signature finale with floating orbs; footer follows below */
+.signature-wordmark{position:relative;isolation:isolate;overflow:hidden;width:100%;min-height:clamp(310px,34vw,440px);display:flex;align-items:center;justify-content:center;padding:clamp(56px,7vw,92px) 20px clamp(48px,6vw,76px)!important;background:linear-gradient(180deg,#F7F5EF 0%,#F2F0E9 100%);border-top:1px solid rgba(57,120,135,.15)}
+.signature-ball-playground{position:absolute;inset:0;width:100%;height:100%;margin:0;overflow:hidden;isolation:isolate;pointer-events:auto;touch-action:pan-y;background:radial-gradient(ellipse at 50% 55%,rgba(57,120,135,.08),transparent 66%)}
 .signature-ball-playground .footer-ball-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1;touch-action:pan-y}
-.signature-ball-playground .footer-ball-hint{bottom:9px}
-.signature-wordmark .signature-inner{position:relative;z-index:2}
-@media(max-width:700px){
- .signature-wordmark{padding:0 10px 32px!important}
- .signature-ball-playground{height:155px;margin-bottom:8px}
-}
+.signature-ball-playground .footer-ball-hint{bottom:14px;color:rgba(23,43,67,.45)}
+.signature-wordmark .signature-inner{position:relative;z-index:2;width:min(1440px,100%);margin:0 auto;text-align:center;pointer-events:none}
+.signature-wordmark .signature-name{pointer-events:auto;text-shadow:0 10px 18px rgba(23,43,67,.12)}
+.signature-wordmark .signature-kicker{color:rgba(23,43,67,.58)}
+.signature-rule{opacity:.9}
+.footer-with-balls{position:relative;isolation:isolate;overflow:hidden!important;padding:28px 0 24px!important}
+.footer-with-balls>.container{position:relative;z-index:3}
+.footer-with-balls .footer-row{position:relative;z-index:3}
+@media(max-width:700px){.signature-wordmark{min-height:260px;padding:46px 10px 42px!important}.signature-kicker{font-size:7px;letter-spacing:.18em}.signature-name{font-size:clamp(1.7rem,7.4vw,3.2rem);letter-spacing:-.08em}.signature-space{width:.2em;flex-basis:.2em}.footer-with-balls{padding:22px 0 14px!important}}
+@media(prefers-reduced-motion:reduce){.signature-ball-playground .footer-ball-canvas{opacity:.9}.signature-letter{transition:none!important;transform:none!important}}
