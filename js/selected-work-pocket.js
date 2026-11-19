@@ -1,33 +1,29 @@
-/* Slow sequential pocket extraction: each card exits, lands in grid, then next starts */
+/* Reliable sequential reveal for all five Selected Work cards */
 (() => {
- const scene=document.querySelector('[data-work-pocket]');
- if(!scene || scene.dataset.pocketInitialized)return;
+ const scene=document.querySelector('#projects [data-work-pocket]');
+ if(!scene || scene.dataset.pocketInitialized==='true') return;
  scene.dataset.pocketInitialized='true';
- const cards=[...scene.querySelectorAll('[data-pocket-card]')];
- if(!cards.length)return;
- const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
- let started=false,step=0,timer=null;
- const showNext=()=>{
-   if(step>=cards.length)return;
-   const card=cards[step];
-   card.classList.add('is-out');
-   card.setAttribute('aria-hidden','false');
-   scene.dataset.active=String(step+1);
-   step++;
-   if(step<cards.length)timer=setTimeout(showNext,reduce?80:1750);
+ const cards=Array.from(scene.querySelectorAll('.pocket-cards > [data-pocket-card]'));
+ if(cards.length!==5) {
+   cards.forEach(card=>{card.classList.add('is-out');card.setAttribute('aria-hidden','false');});
+   return;
+ }
+ const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ let index=0;
+ cards.forEach(card=>{card.classList.remove('is-out');card.setAttribute('aria-hidden','true');});
+ const reveal=()=>{
+   if(index>=cards.length) return;
+   const current=cards[index++];
+   current.classList.add('is-out');
+   current.setAttribute('aria-hidden','false');
+   if(index<cards.length) window.setTimeout(reveal,reduced?60:1450);
  };
- const begin=()=>{
-   if(started)return;
-   started=true;
-   scene.classList.add('is-ready');
-   cards.forEach(card=>{card.setAttribute('aria-hidden','true');});
-   showNext();
- };
- if('IntersectionObserver'in window){
+ const start=()=>{scene.classList.add('is-ready');reveal();};
+ if(reduced){cards.forEach(card=>{card.classList.add('is-out');card.setAttribute('aria-hidden','false');});}
+ else if('IntersectionObserver' in window){
    const observer=new IntersectionObserver(entries=>{
-     if(entries.some(entry=>entry.isIntersecting)){begin();observer.disconnect();}
-   },{threshold:.18});
+     if(entries.some(entry=>entry.isIntersecting)){observer.disconnect();start();}
+   },{threshold:0.05});
    observer.observe(scene);
- }else begin();
- window.addEventListener('pagehide',()=>{if(timer)clearTimeout(timer);},{once:true});
+ } else start();
 })();
