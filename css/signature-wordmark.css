@@ -39,3 +39,20 @@
 @media(prefers-reduced-motion:reduce){
  .signature-letter{transition:none!important;transform:none!important}
 }
+
+
+/* Signature becomes the visual finale: interactive balls rise up to the name; footer follows below */
+.signature-wordmark{padding:0 20px clamp(30px,4vw,58px)!important}
+.signature-ball-playground{
+ position:relative;width:min(1440px,100%);height:clamp(150px,18vw,220px);
+ margin:0 auto clamp(8px,1vw,16px);overflow:hidden;isolation:isolate;
+ background:radial-gradient(ellipse at 50% 100%,rgba(57,120,135,.12),transparent 68%);
+ touch-action:pan-y;
+}
+.signature-ball-playground .footer-ball-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1;touch-action:pan-y}
+.signature-ball-playground .footer-ball-hint{bottom:9px}
+.signature-wordmark .signature-inner{position:relative;z-index:2}
+@media(max-width:700px){
+ .signature-wordmark{padding:0 10px 32px!important}
+ .signature-ball-playground{height:155px;margin-bottom:8px}
+}
