@@ -1,14 +1,51 @@
-/* Single interactive signature finale with floating orbs; footer follows below */
-.signature-wordmark{position:relative;isolation:isolate;overflow:hidden;width:100%;min-height:clamp(310px,34vw,440px);display:flex;align-items:center;justify-content:center;padding:clamp(56px,7vw,92px) 20px clamp(48px,6vw,76px)!important;background:linear-gradient(180deg,#F7F5EF 0%,#F2F0E9 100%);border-top:1px solid rgba(57,120,135,.15)}
-.signature-ball-playground{position:absolute;inset:0;width:100%;height:100%;margin:0;overflow:hidden;isolation:isolate;pointer-events:auto;touch-action:pan-y;background:radial-gradient(ellipse at 50% 55%,rgba(57,120,135,.08),transparent 66%)}
-.signature-ball-playground .footer-ball-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1;touch-action:pan-y}
-.signature-ball-playground .footer-ball-hint{bottom:14px;color:rgba(23,43,67,.45)}
-.signature-wordmark .signature-inner{position:relative;z-index:2;width:min(1440px,100%);margin:0 auto;text-align:center;pointer-events:none}
-.signature-wordmark .signature-name{pointer-events:auto;text-shadow:0 10px 18px rgba(23,43,67,.12)}
-.signature-wordmark .signature-kicker{color:rgba(23,43,67,.58)}
-.signature-rule{opacity:.9}
+/* Javed Chaudhary signature: large responsive type + tactile 3D interaction */
+.signature-wordmark{
+ position:relative!important;isolation:isolate!important;overflow:hidden!important;width:100%;
+ min-height:clamp(330px,39vw,490px);display:flex;align-items:center;justify-content:center;
+ padding:clamp(58px,8vw,104px) 18px clamp(48px,7vw,82px)!important;
+ background:radial-gradient(ellipse at 50% 48%,rgba(57,120,135,.12),transparent 58%),linear-gradient(180deg,#F8F6F0 0%,#F1EFE8 100%);
+ border-top:1px solid rgba(57,120,135,.18);
+}
+.signature-wordmark:before,.signature-wordmark:after{content:"";position:absolute;left:50%;width:min(76%,980px);height:1px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,rgba(57,120,135,.34),rgba(231,123,101,.38),transparent);z-index:0}
+.signature-wordmark:before{top:22px}.signature-wordmark:after{bottom:22px}
+.signature-ball-playground{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;margin:0!important;overflow:hidden!important;isolation:isolate;pointer-events:auto;touch-action:pan-y;z-index:1;background:radial-gradient(ellipse at 50% 50%,rgba(57,120,135,.07),transparent 68%)}
+.signature-ball-playground .footer-ball-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1;pointer-events:auto;touch-action:pan-y}
+.signature-ball-playground .footer-ball-hint{position:absolute;left:0;right:0;bottom:13px;text-align:center;color:rgba(23,43,67,.48);font:700 9px/1.4 'DM Sans',sans-serif;letter-spacing:.22em;z-index:2;pointer-events:none}
+.signature-wordmark .signature-inner{position:relative!important;z-index:3!important;width:min(1440px,100%);margin:0 auto;text-align:center;pointer-events:none;perspective:1000px}
+.signature-wordmark .signature-kicker{margin:0 0 clamp(18px,3vw,30px);color:#536579;font:800 clamp(8px,.75vw,11px)/1.5 'DM Sans',sans-serif;letter-spacing:.34em;text-transform:uppercase}
+.signature-wordmark .signature-name{
+ display:flex!important;flex-wrap:nowrap!important;align-items:center;justify-content:center;gap:0;
+ width:100%;margin:0 auto!important;padding:10px 0 18px;
+ color:#172B43;font-family:'Manrope','DM Sans',sans-serif!important;
+ font-size:clamp(30px,8.25vw,112px)!important;font-weight:800!important;
+ line-height:1.08!important;letter-spacing:-.075em!important;white-space:nowrap!important;
+ text-align:center;transform-style:preserve-3d;pointer-events:auto!important;
+ cursor:default;user-select:none;-webkit-user-select:none;touch-action:pan-y;
+}
+.signature-wordmark .signature-letter{
+ display:inline-block;position:relative;flex:0 0 auto;
+ color:transparent!important;
+ background:linear-gradient(115deg,#397887 0%,#172B43 32%,#E77B65 58%,#397887 100%);
+ background-size:220% 100%;background-position:0% 50%;
+ -webkit-background-clip:text;background-clip:text;
+ transform:translate3d(var(--sx,0px),var(--sy,0px),var(--sz,0px)) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+ transform-origin:50% 65%;will-change:transform,filter;
+ transition:transform .34s cubic-bezier(.2,.75,.2,1),filter .34s ease,background-position .7s ease;
+ filter:drop-shadow(0 8px 8px rgba(23,43,67,.13));
+}
+.signature-wordmark .signature-name.is-playing .signature-letter{transition-duration:.12s;filter:drop-shadow(0 13px 11px rgba(23,43,67,.19)) brightness(1.06)}
+.signature-wordmark .signature-name.is-rippling .signature-letter{animation:signaturePop .62s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0)*22ms)}
+.signature-wordmark .signature-space{display:inline-block;flex:0 0 .23em;width:.23em}
+.signature-wordmark .signature-rule{display:block;width:clamp(90px,14vw,190px);height:2px;margin:clamp(14px,2vw,22px) auto 0;background:linear-gradient(90deg,#397887,#E77B65,#397887);border-radius:5px;box-shadow:0 0 18px rgba(57,120,135,.2)}
+@keyframes signaturePop{0%{transform:translate3d(0,18px,0) rotateX(-25deg) scale(.86);opacity:.55}55%{transform:translate3d(0,-9px,22px) rotateX(8deg) scale(1.08);opacity:1}100%{transform:translate3d(var(--sx,0px),var(--sy,0px),var(--sz,0px)) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) scale(1);opacity:1}}
 .footer-with-balls{position:relative;isolation:isolate;overflow:hidden!important;padding:28px 0 24px!important}
-.footer-with-balls>.container{position:relative;z-index:3}
-.footer-with-balls .footer-row{position:relative;z-index:3}
-@media(max-width:700px){.signature-wordmark{min-height:260px;padding:46px 10px 42px!important}.signature-kicker{font-size:7px;letter-spacing:.18em}.signature-name{font-size:clamp(1.7rem,7.4vw,3.2rem);letter-spacing:-.08em}.signature-space{width:.2em;flex-basis:.2em}.footer-with-balls{padding:22px 0 14px!important}}
-@media(prefers-reduced-motion:reduce){.signature-ball-playground .footer-ball-canvas{opacity:.9}.signature-letter{transition:none!important;transform:none!important}}
+.footer-with-balls>.container,.footer-with-balls .footer-row{position:relative;z-index:3}
+@media(max-width:700px){
+ .signature-wordmark{min-height:260px;padding:46px 8px 42px!important}
+ .signature-wordmark .signature-kicker{font-size:7px;letter-spacing:.2em;margin-bottom:18px}
+ .signature-wordmark .signature-name{font-size:clamp(24px,7.1vw,48px)!important;letter-spacing:-.085em!important;padding:12px 0}
+ .signature-wordmark .signature-space{flex-basis:.19em;width:.19em}
+ .signature-wordmark .signature-ball-playground .footer-ball-hint{font-size:7px;letter-spacing:.15em}
+}
+@media(max-width:380px){.signature-wordmark .signature-name{font-size:clamp(21px,6.7vw,26px)!important}}
+@media(prefers-reduced-motion:reduce){.signature-wordmark .signature-letter{transition:none!important;animation:none!important}.signature-ball-playground .footer-ball-hint{display:none}}
