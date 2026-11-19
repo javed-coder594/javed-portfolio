@@ -408,3 +408,102 @@
  #projects .pocket-cards>.pocket-card{grid-row:auto!important;min-height:250px!important}
  #projects .pocket-cards>.pocket-card:nth-child(5){grid-column:1/-1!important;width:calc(50% - 6px)!important;justify-self:center!important}
 }
+
+
+/* MOBILE-ONLY ART DIRECTION: compact pocket + two-column project cards */
+@media(max-width:700px){
+  #projects{padding:58px 0 64px!important;overflow:hidden!important}
+  #projects>.container{width:calc(100% - 28px)!important;max-width:520px!important}
+  #projects .pocket-work-heading{display:block!important;margin:0 0 10px!important;text-align:left!important}
+  #projects .pocket-work-heading .section-kicker{font-size:10px!important;letter-spacing:.16em!important}
+  #projects .pocket-work-heading h2{font-size:clamp(28px,8vw,36px)!important;line-height:1.08!important;max-width:12ch!important}
+  #projects .pocket-work-heading p{font-size:13px!important;line-height:1.55!important;margin:10px 0 0!important;max-width:34ch!important;color:#dce7f0!important}
+  #projects .work-pocket-scene{width:100%!important}
+  #projects .pocket-stage{
+    height:238px!important;min-height:238px!important;
+    margin:0 auto!important;perspective:900px!important;
+  }
+  #projects .pocket-stage .pocket-ambient{transform:scale(.78)!important}
+  #projects .pocket-stage .pocket-stack{
+    width:min(82%,330px)!important;height:205px!important;
+    top:53%!important;left:50%!important;transform:translate(-50%,-50%)!important;
+  }
+  #projects .pocket-stage .pocket-body{
+    width:min(88%,350px)!important;height:190px!important;
+    top:58%!important;left:50%!important;transform:translate(-50%,-50%)!important;
+    border-radius:22px!important;
+  }
+  #projects .pocket-mark{font-size:68px!important}
+  #projects .pocket-label{font-size:7px!important;letter-spacing:.18em!important}
+  #projects .pocket-exit-label{font-size:8px!important;letter-spacing:.13em!important}
+  #projects .pocket-cards{
+    display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    grid-auto-flow:row!important;gap:11px!important;
+    width:100%!important;margin:18px auto 0!important;padding:0 0 4px!important;
+    overflow:visible!important;align-items:stretch!important;
+  }
+  #projects .pocket-cards>.pocket-card,
+  #projects .pocket-cards>.pocket-card:last-child:nth-child(odd){
+    grid-column:auto!important;grid-row:auto!important;
+    width:100%!important;min-width:0!important;max-width:none!important;
+    min-height:238px!important;height:auto!important;
+    margin:0!important;padding:13px 11px 11px!important;
+    border-radius:14px!important;box-sizing:border-box!important;
+    transform:translate3d(0,-245px,0) scale(.9)!important;
+    transform-origin:50% 50%!important;
+  }
+  #projects .pocket-cards>.pocket-card:nth-child(1){--mobile-x:-8vw}
+  #projects .pocket-cards>.pocket-card:nth-child(2){--mobile-x:8vw}
+  #projects .pocket-cards>.pocket-card:nth-child(3){--mobile-x:-8vw}
+  #projects .pocket-cards>.pocket-card:nth-child(4){--mobile-x:8vw}
+  #projects .pocket-cards>.pocket-card:nth-child(5){
+    grid-column:1/-1!important;width:calc(50% - 6px)!important;
+    justify-self:center!important;--mobile-x:0vw;
+  }
+  #projects .pocket-cards>.pocket-card.is-out:not(.is-landed){
+    animation:pocketMobileDrop 1.25s cubic-bezier(.18,.78,.22,1) both!important;
+  }
+  @keyframes pocketMobileDrop{
+    0%{opacity:0;visibility:hidden;transform:translate3d(var(--mobile-x),-245px,0) scale(.88) rotateX(12deg)}
+    12%{opacity:1;visibility:visible}
+    78%{transform:translate3d(0,6px,0) scale(1.015) rotateX(-1deg)}
+    100%{opacity:1;visibility:visible;transform:translate3d(0,0,0) scale(1) rotateX(0)}
+  }
+  #projects .pocket-cards>.pocket-card.is-landed{
+    opacity:1!important;visibility:visible!important;pointer-events:auto!important;
+    transform:none!important;animation:none!important;
+  }
+  #projects .pocket-card-index{font-size:9px!important;letter-spacing:.12em!important;margin-bottom:7px!important}
+  #projects .pocket-card-brand{height:52px!important;min-height:52px!important;margin:3px 0 9px!important;display:flex!important;align-items:center!important;justify-content:center!important}
+  #projects .pocket-card-brand img{max-width:100%!important;max-height:40px!important;width:auto!important;height:auto!important;object-fit:contain!important}
+  #projects .pocket-card-type{display:none!important}
+  #projects .pocket-card-copy{display:block!important;min-width:0!important}
+  #projects .pocket-card-copy h3{
+    color:#fff!important;-webkit-text-fill-color:#fff!important;
+    font-size:14px!important;line-height:1.25!important;font-weight:800!important;
+    margin:0 0 7px!important;overflow-wrap:anywhere!important;
+  }
+  #projects .pocket-card-copy p{
+    color:#e5edf5!important;-webkit-text-fill-color:#e5edf5!important;
+    font-size:11px!important;line-height:1.45!important;font-weight:500!important;
+    margin:0!important;
+  }
+  #projects .pocket-card-foot{
+    margin-top:auto!important;padding-top:9px!important;
+    font-size:7px!important;letter-spacing:.08em!important;
+    color:#c6d4e0!important;gap:5px!important;
+  }
+  #projects .pocket-card-foot a{width:26px!important;height:26px!important;flex:0 0 26px!important}
+  #projects .pocket-caption{
+    display:flex!important;justify-content:space-between!important;
+    gap:8px!important;margin-top:17px!important;
+    font-size:7px!important;letter-spacing:.1em!important;
+  }
+}
+@media(max-width:360px){
+  #projects>.container{width:calc(100% - 22px)!important}
+  #projects .pocket-cards{gap:8px!important}
+  #projects .pocket-cards>.pocket-card{padding:11px 9px 10px!important;min-height:245px!important}
+  #projects .pocket-card-copy h3{font-size:13px!important}
+  #projects .pocket-card-copy p{font-size:10px!important}
+}
