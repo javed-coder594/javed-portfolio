@@ -1,0 +1,79 @@
+/* Signature wordmark after the footer */
+.signature-mark{
+  --signature-x:50%;
+  --signature-y:50%;
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  padding:clamp(26px,5vw,64px) 0 clamp(30px,6vw,76px);
+  background:#06080c;
+  border-top:1px solid rgba(255,255,255,.07);
+  color:#f5f0e7;
+  text-align:center;
+}
+.signature-mark:before{
+  content:"";
+  position:absolute;inset:-40%;
+  z-index:-1;pointer-events:none;
+  opacity:.52;
+  background:radial-gradient(ellipse at var(--signature-x) var(--signature-y),rgba(40,127,168,.25),transparent 26%),
+             radial-gradient(ellipse at 22% 70%,rgba(240,91,73,.13),transparent 38%);
+  transition:opacity .65s ease;
+}
+.signature-mark__eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  margin:0 0 clamp(12px,2.2vw,24px);
+  color:#9da8b3;font:600 9px/1.2 "DM Sans",sans-serif;
+  letter-spacing:.24em;text-transform:uppercase;
+}
+.signature-mark__eyebrow:before,.signature-mark__eyebrow:after{
+  content:"";width:clamp(18px,3vw,38px);height:1px;background:linear-gradient(90deg,transparent,#287fa8);
+}
+.signature-mark__eyebrow:after{transform:scaleX(-1)}
+.signature-mark__name{
+  position:relative;display:block;width:100%;margin:0 auto;
+  padding:0 .025em;
+  color:rgba(245,240,231,.13);
+  font-family:"Manrope","DM Sans",sans-serif;
+  font-size:clamp(2.45rem,10.5vw,10.8rem);
+  font-weight:800;line-height:.88;letter-spacing:-.085em;
+  white-space:nowrap;
+  -webkit-text-stroke:1px rgba(245,240,231,.25);
+  transition:letter-spacing .65s cubic-bezier(.2,.75,.2,1),transform .65s cubic-bezier(.2,.75,.2,1);
+  cursor:default;user-select:none;
+  background:linear-gradient(105deg,#f05b49 0%,#f2a08a 27%,#f5f0e7 48%,#287fa8 70%,#73bad5 100%);
+  background-size:240% 100%;background-position:0% 50%;
+  -webkit-background-clip:text;background-clip:text;
+}
+.signature-mark__name:after{
+  content:attr(data-name);
+  position:absolute;inset:0;
+  color:transparent;-webkit-text-stroke:0;
+  background:linear-gradient(105deg,transparent 24%,rgba(255,255,255,.9) 48%,transparent 68%);
+  background-size:220% 100%;background-position:var(--signature-shine, -120%) 50%;
+  -webkit-background-clip:text;background-clip:text;
+  opacity:0;transition:opacity .35s ease;
+}
+.signature-mark__hint{
+  margin:clamp(16px,2.5vw,28px) 0 0;
+  color:#75818e;font:500 9px/1.5 "DM Sans",sans-serif;
+  letter-spacing:.2em;text-transform:uppercase;
+}
+.signature-mark.is-active:before,.signature-mark:hover:before{opacity:1}
+.signature-mark.is-active .signature-mark__name,
+.signature-mark:hover .signature-mark__name{
+  letter-spacing:-.065em;transform:translateY(-3px);
+  background-position:100% 50%;
+  -webkit-text-stroke:1px rgba(245,240,231,.48);
+}
+.signature-mark.is-active .signature-mark__name:after,
+.signature-mark:hover .signature-mark__name:after{opacity:.85;animation:signature-sweep 1.25s cubic-bezier(.2,.65,.25,1) both}
+@keyframes signature-sweep{from{background-position:-120% 50%}to{background-position:120% 50%}}
+@media(max-width:600px){
+ .signature-mark{padding:32px 0 38px}
+ .signature-mark__name{font-size:clamp(2.15rem,10.1vw,4rem);letter-spacing:-.09em}
+ .signature-mark__hint{font-size:8px;letter-spacing:.14em}
+}
+@media(prefers-reduced-motion:reduce){
+ .signature-mark__name,.signature-mark:before,.signature-mark__name:after{transition:none!important;animation:none!important}
+}
