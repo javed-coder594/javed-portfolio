@@ -57,3 +57,35 @@
 @media(min-width:1000px){.pocket-cards{grid-template-columns:repeat(2,minmax(0,1fr));max-width:900px}.pocket-card:last-child:nth-child(odd){grid-column:1/-1;width:calc(50% - 11px);justify-self:center}}
 @media(max-width:700px){.pocket-stage{height:350px}.pocket-stage .pocket-body{height:265px;width:88%;top:60%}.pocket-stage .pocket-stack{height:250px;width:82%;top:55%}.pocket-cards{grid-template-columns:1fr;gap:16px;margin-top:28px}.pocket-card{min-height:280px;padding:20px;transform:translate3d(0,-100px,100px) rotateX(18deg) scale(.9)}.pocket-card:last-child:nth-child(odd){grid-column:auto;width:100%}.pocket-caption{margin-top:24px}}
 @media(prefers-reduced-motion:reduce){.pocket-card{transition:none!important;transform:none!important}.pocket-card.is-out{opacity:1;visibility:visible}}
+
+
+/* Final Selected Work layout: five compact cards in one continuous row */
+.pocket-cards{grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:14px!important;max-width:100%!important;overflow:visible}
+.pocket-card,.pocket-card:last-child:nth-child(odd){width:100%!important;min-width:0;min-height:280px;padding:17px 15px 14px;border-radius:15px}
+.pocket-card-brand{height:70px;gap:8px;margin:7px 0 13px;justify-content:center}
+.pocket-card-brand img{max-width:100%;max-height:54px;width:auto;height:auto;object-fit:contain}
+.pocket-card-type{display:none}
+.pocket-card-copy h3{font-size:clamp(15px,1.2vw,19px)!important;line-height:1.25!important;letter-spacing:-.025em!important;color:#fff!important;margin:0 0 8px!important;overflow-wrap:anywhere}
+.pocket-card-copy p{font-size:12px!important;line-height:1.55!important;color:#d0dce6!important;margin:0!important}
+.pocket-card-index{font-size:10px;color:#ff777c}
+.pocket-card-foot{margin-top:13px;padding-top:10px;font-size:8px;letter-spacing:.1em}
+.pocket-card-foot a{width:29px;height:29px;flex:0 0 29px}
+.pocket-stage{height:410px}
+.pocket-stage .pocket-body{width:min(74%,560px);height:315px;top:60%}
+.pocket-stage .pocket-stack{width:min(70%,520px);height:330px;top:56%}
+.pocket-cards{margin-top:32px!important}
+@media(max-width:1050px){
+ .pocket-cards{grid-template-columns:repeat(5,minmax(185px,1fr))!important;overflow-x:auto;overflow-y:hidden;padding:8px 2px 18px;scroll-snap-type:x mandatory}
+ .pocket-card{scroll-snap-align:start}
+}
+@media(max-width:700px){
+ .pocket-stage{height:340px}
+ .pocket-stage .pocket-body{width:88%;height:260px;top:60%}
+ .pocket-stage .pocket-stack{width:82%;height:245px;top:55%}
+ .pocket-cards{grid-template-columns:repeat(5,minmax(190px,1fr))!important;gap:12px!important;margin-top:24px!important}
+ .pocket-card,.pocket-card:last-child:nth-child(odd){min-height:265px;padding:16px 14px 13px}
+ .pocket-card-brand{height:64px}
+ .pocket-card-brand img{max-height:48px}
+ .pocket-card-copy h3{font-size:16px!important}
+ .pocket-card-copy p{font-size:11px!important}
+}
