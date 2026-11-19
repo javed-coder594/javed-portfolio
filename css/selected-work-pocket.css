@@ -37,3 +37,23 @@
 @keyframes pocketCardIn{0%{opacity:0;transform:translate(-50%,130px) rotateX(-25deg) scale(.8)}100%{opacity:1;transform:translate(-50%,-30px) rotateX(0) scale(1)}}
 @media(max-width:700px){.work-pocket-scene{min-height:690px}.pocket-body{top:59%;height:285px;width:88%}.pocket-stack{top:54%;height:300px;width:82%}.pocket-cards{top:32%;width:88%;height:330px}.pocket-card{min-height:300px;padding:20px 20px 17px}.pocket-card-brand{height:78px}.pocket-card-brand img{max-width:145px;max-height:52px}.pocket-card-type{font-size:8px}.pocket-card-copy p{font-size:13px}.pocket-caption{bottom:1%;font-size:8px}.pocket-work-heading{margin-bottom:20px}}
 @media(prefers-reduced-motion:reduce){.pocket-card,.pocket-card:before{transition:none!important;animation:none!important}.work-pocket-scene.is-ready .pocket-card{opacity:1;transform:translate(-50%,-30px)}}
+
+/* Slower one-by-one pocket extraction, cards settle into a persistent grid */
+.work-pocket-scene{min-height:0;display:flex;flex-direction:column;align-items:center;perspective:none}
+.pocket-stage{position:relative;width:100%;height:440px;display:grid;place-items:center;perspective:1400px;isolation:isolate}
+.pocket-stage .pocket-ambient{top:5%;left:50%;transform:translateX(-50%)}
+.pocket-stage .pocket-rail{top:0;bottom:0}
+.pocket-stage .pocket-stack{top:56%}
+.pocket-stage .pocket-body{top:60%}
+.pocket-exit-label{position:absolute;bottom:0;left:0;right:0;text-align:center;color:#8199aa;font-size:9px;letter-spacing:.24em}
+.pocket-cards{position:relative;z-index:6;width:100%;height:auto;left:auto;top:auto;transform:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin:42px auto 0}
+.pocket-card{position:relative;left:auto;top:auto;width:100%;min-height:300px;opacity:0;visibility:hidden;transform:translate3d(0,-135px,180px) rotateX(24deg) scale(.82);transition:opacity .9s ease,transform 1.5s cubic-bezier(.16,.84,.22,1),border-color .35s,box-shadow .35s;pointer-events:none}
+.pocket-card.is-out{opacity:1;visibility:visible;transform:translate3d(0,0,0) rotateX(0) scale(1);pointer-events:auto}
+.pocket-card.is-out:hover{transform:translate3d(0,-8px,0) rotateX(2deg) scale(1.015)}
+.pocket-card:before{display:none}
+.pocket-card:nth-child(odd){transform-origin:70% 0}
+.pocket-card:nth-child(even){transform-origin:30% 0}
+.pocket-caption{position:relative;left:auto;right:auto;bottom:auto;width:100%;margin-top:32px}
+@media(min-width:1000px){.pocket-cards{grid-template-columns:repeat(2,minmax(0,1fr));max-width:900px}.pocket-card:last-child:nth-child(odd){grid-column:1/-1;width:calc(50% - 11px);justify-self:center}}
+@media(max-width:700px){.pocket-stage{height:350px}.pocket-stage .pocket-body{height:265px;width:88%;top:60%}.pocket-stage .pocket-stack{height:250px;width:82%;top:55%}.pocket-cards{grid-template-columns:1fr;gap:16px;margin-top:28px}.pocket-card{min-height:280px;padding:20px;transform:translate3d(0,-100px,100px) rotateX(18deg) scale(.9)}.pocket-card:last-child:nth-child(odd){grid-column:auto;width:100%}.pocket-caption{margin-top:24px}}
+@media(prefers-reduced-motion:reduce){.pocket-card{transition:none!important;transform:none!important}.pocket-card.is-out{opacity:1;visibility:visible}}
