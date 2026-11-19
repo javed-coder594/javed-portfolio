@@ -5,10 +5,7 @@
  scene.dataset.pocketInitialized='true';
  const cards=Array.from(scene.querySelectorAll('.pocket-cards > [data-pocket-card]'));
  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
- if(cards.length!==5){
-   cards.forEach(card=>{card.classList.add('is-out','is-landed');card.setAttribute('aria-hidden','false');});
-   return;
- }
+ if(cards.length===0) return;
  let index=0;
  cards.forEach(card=>{
    card.classList.remove('is-out','is-landed');
