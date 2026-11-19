@@ -1,0 +1,60 @@
+/* Typography system inspired by the supplied reference */
+:root{
+  --font-heading:"Manrope",sans-serif;
+  --font-body:"DM Sans",sans-serif;
+}
+html body{
+  font-family:var(--font-body)!important;
+  font-weight:400;
+  letter-spacing:-.015em;
+}
+html body p,
+html body li,
+html body label,
+html body input,
+html body textarea,
+html body button,
+html body .hero-lead,
+html body .section-description,
+html body .section-copy,
+html body .timeline-content p,
+html body .rope-card p,
+html body .project-content p,
+html body .about-orbit-card p,
+html body .sc-side-copy p{
+  font-family:var(--font-body)!important;
+}
+html body h1,
+html body h2,
+html body h3,
+html body h4,
+html body h5,
+html body h6,
+html body .section-title,
+html body .section-kicker + h2,
+html body .section-heading-row h2,
+html body .about-orbit-heading h2,
+html body .sc-heading h2,
+html body .experience-heading h2,
+html body .expertise-heading h2,
+html body .hero-text h1,
+html body .experience-main h3,
+html body .rope-card h3,
+html body .project-content h3,
+html body .about-orbit-card h3,
+html body .sc-side-copy h3{
+  font-family:var(--font-heading)!important;
+  font-weight:800!important;
+  letter-spacing:-.055em!important;
+  font-feature-settings:"ss01" on;
+}
+html body h1{letter-spacing:-.065em!important}
+html body h2{letter-spacing:-.06em!important}
+html body .nav-links a,
+html body .hire-btn,
+html body .eyebrow,
+html body .section-kicker,
+html body .footer-links a,
+html body .footer-copy{
+  font-family:var(--font-body)!important;
+}
