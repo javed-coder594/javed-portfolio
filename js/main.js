@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     revealTargets.forEach(el => observer.observe(el));
   }
 
-  if (!hero || reduceMotion) return;
+  if (!hero || reduceMotion || window.matchMedia('(max-width: 760px)').matches || navigator.connection?.saveData) return;
 
   // Lightweight interactive particle network, attached to the actual hero markup.
   const canvas = document.createElement('canvas');
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const points = [];
   let width = 0, height = 0, frame = 0, running = false, last = 0;
   const isMobile = window.matchMedia('(max-width: 760px)').matches;
-  const count = isMobile ? 22 : 42;
+  const count = isMobile ? 0 : 16;
 
   for (let i = 0; i < count; i++) {
     points.push({
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const resize = () => {
     const rect = hero.getBoundingClientRect();
-    const dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1 : 1.35);
+    const dpr = Math.min(window.devicePixelRatio || 1, 1);
     width = rect.width;
     height = rect.height;
     canvas.width = Math.round(width * dpr);
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const draw = time => {
     if (!running) return;
-    if (time - last < 32) { frame = requestAnimationFrame(draw); return; }
+    if (time - last < 50) { frame = requestAnimationFrame(draw); return; }
     last = time;
     ctx.clearRect(0, 0, width, height);
     points.forEach((point, i) => {
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const dx = point.x - pointer.x, dy = point.y - pointer.y;
       const distance = Math.hypot(dx, dy);
-      if (distance < 115 && distance > 0) {
+      if (distance < 90 && distance > 0) {
         point.x += (dx / distance) * 0.8;
         point.y += (dy / distance) * 0.8;
       }
@@ -113,8 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
       for (let j = i + 1; j < points.length; j++) {
         const other = points[j];
         const lineDistance = Math.hypot(point.x - other.x, point.y - other.y);
-        if (lineDistance < (isMobile ? 76 : 105)) {
-          const alpha = (1 - lineDistance / (isMobile ? 76 : 105)) * 0.24;
+        if (lineDistance < 82) {
+          const alpha = (1 - lineDistance / 82) * 0.18;
           ctx.beginPath();
           ctx.moveTo(point.x, point.y);
           ctx.lineTo(other.x, other.y);
