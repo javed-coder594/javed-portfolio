@@ -149,3 +149,9 @@ body.intro-active .cinematic-intro{display:grid}
  .hero.astra-hero:before,.hero.astra-hero .hero-text h1,.hero.astra-hero .hero-lead,.hero.astra-hero .hero-btns,.hero.astra-hero .hero-proof,.hero.astra-hero .vfx-visual{animation:none!important}
  .motion-reveal{opacity:1;transform:none;filter:none;transition:none}
 }
+
+/* Five-second intro countdown */
+.intro-timer{position:absolute;right:28px;top:78px;z-index:4;display:flex;align-items:center;gap:8px;color:#aab5c2;font:700 9px/1 'DM Sans',Arial,sans-serif;letter-spacing:.16em}
+.intro-timer strong{display:grid;place-items:center;width:28px;height:28px;border:1px solid rgba(255,255,255,.35);border-radius:50%;color:#fff;font-size:12px;letter-spacing:0}
+@media(max-width:560px){.intro-timer{right:14px;top:58px;font-size:8px}.intro-timer strong{width:25px;height:25px}}
+@media(prefers-reduced-motion:reduce){.intro-timer{display:none}}
