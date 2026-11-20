@@ -49,3 +49,53 @@
 }
 @media(max-width:380px){.signature-wordmark .signature-name{font-size:clamp(21px,6.7vw,26px)!important}}
 @media(prefers-reduced-motion:reduce){.signature-wordmark .signature-letter{transition:none!important;animation:none!important}.signature-ball-playground .footer-ball-hint{display:none}}
+
+/* 20 Nov 2026 — text-only signature; compact single-row mobile footer */
+.signature-wordmark{
+ min-height:clamp(300px,32vw,410px)!important;
+ padding:clamp(52px,6vw,76px) 18px clamp(42px,5vw,62px)!important;
+}
+.signature-wordmark .signature-name{
+ font-size:clamp(42px,9.2vw,124px)!important;
+}
+.signature-wordmark .signature-letter{will-change:transform;filter:drop-shadow(0 9px 9px rgba(23,43,67,.15))}
+.signature-wordmark .signature-inner{z-index:2!important}
+.signature-ball-playground{display:none!important}
+@media(max-width:700px){
+ .signature-wordmark{min-height:230px!important;padding:42px 8px 34px!important}
+ .signature-wordmark .signature-name{
+  font-size:clamp(30px,8.5vw,58px)!important;
+  letter-spacing:-.078em!important;
+  padding:14px 0!important;
+ }
+ .signature-wordmark .signature-kicker{font-size:7px!important;letter-spacing:.18em!important;margin-bottom:16px!important}
+ .signature-wordmark .signature-rule{margin-top:12px!important}
+ .footer-with-balls{padding:16px 0 14px!important;overflow:hidden!important}
+ .footer-with-balls .container{width:100%!important;max-width:100%!important;padding-left:10px!important;padding-right:10px!important}
+ .footer-with-balls .footer-row{
+  display:flex!important;flex-direction:column!important;flex-wrap:nowrap!important;
+  align-items:center!important;justify-content:center!important;gap:13px!important;
+  min-width:0!important;width:100%!important;padding:14px 0!important;white-space:normal!important;
+ }
+ .footer-with-balls .footer-links{
+  display:flex!important;flex-flow:row nowrap!important;justify-content:flex-start!important;align-items:center!important;
+  gap:clamp(10px,3vw,17px)!important;width:100%!important;max-width:100%!important;
+  overflow-x:auto!important;overflow-y:hidden!important;white-space:nowrap!important;
+  padding:3px 2px 7px!important;scrollbar-width:none!important;-webkit-overflow-scrolling:touch;
+ }
+ .footer-with-balls .footer-links::-webkit-scrollbar{display:none}
+ .footer-with-balls .footer-links a{
+  flex:0 0 auto!important;white-space:nowrap!important;font-size:clamp(9px,2.8vw,11px)!important;
+  letter-spacing:.025em!important;
+ }
+ .footer-with-balls .footer-logo{font-size:23px!important}
+ .footer-with-balls .footer-phone{font-size:12px!important}
+ .footer-with-balls .footer-social{display:flex!important;flex-flow:row nowrap!important;gap:9px!important}
+ .footer-with-balls .footer-social a{width:31px!important;height:31px!important}
+ .footer-with-balls .footer-copy{flex:0 0 auto!important;font-size:10px!important;text-align:center!important}
+}
+@media(max-width:360px){
+ .signature-wordmark .signature-name{font-size:clamp(27px,8vw,31px)!important}
+ .footer-with-balls .footer-links{gap:9px!important}
+ .footer-with-balls .footer-links a{font-size:9px!important}
+}
