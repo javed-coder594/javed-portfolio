@@ -1,0 +1,7 @@
+/* Lightweight global motion and scroll polish */
+html{scroll-behavior:smooth;scroll-padding-top:88px;-webkit-text-size-adjust:100%}
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{max-width:100%;height:auto}
+section[id]{scroll-margin-top:88px}
+@media(max-width:760px){html{scroll-padding-top:76px}section[id]{scroll-margin-top:76px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
