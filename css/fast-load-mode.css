@@ -1,0 +1,26 @@
+/* FAST MODE — prioritize first paint, scroll responsiveness and battery */
+html{scroll-behavior:auto!important}
+body{ text-rendering:optimizeSpeed }
+.hero.astra-hero:before{animation:none!important}
+.hero.astra-hero .hero-text h1,.hero.astra-hero .hero-lead,
+.hero.astra-hero .hero-btns,.hero.astra-hero .hero-proof,
+.hero.astra-hero .vfx-visual{animation:none!important;filter:none!important;opacity:1!important;transform:none!important}
+.hero.astra-hero .seo-core,.hero.astra-hero .model-halo,
+.hero.astra-hero .model-ring,.hero.astra-hero .floating-metric,
+.hero.astra-hero .core-shine{animation:none!important;filter:none!important}
+.hero.astra-hero .seo-core{will-change:auto}
+.hero.astra-hero .floating-metric{will-change:auto;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.about-space-glow,.about-solar-orbit,.about-sun,.about-satellite,.about-star{animation:none!important;filter:none!important;will-change:auto!important}
+.about-orbit-card,.work-archive-card,.sc-slide,.sc-arrow,.sc-dot span{
+ transition-duration:.18s!important
+}
+.search-console-showcase .sc-slide{will-change:auto!important}
+.motion-reveal{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
+.train-experience .railway-locomotive{will-change:auto!important}
+.signature-letter{will-change:auto!important}
+@media(max-width:760px){
+ .hero-particle-canvas{display:none!important}
+ .hero.astra-hero .model-ring{animation:none!important}
+ .about-orbit,.train-experience,.expertise,.projects,.contact{content-visibility:auto}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}}
