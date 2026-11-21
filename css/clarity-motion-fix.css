@@ -1,0 +1,47 @@
+/* Clarity pass: keep moving hero/About elements crisp */
+.hero.astra-hero .vfx-visual{animation:heroVisualRevealCrisp 1s .2s both!important;filter:none!important}
+@keyframes heroVisualRevealCrisp{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:none}}
+.hero.astra-hero .hero-text h1,
+.hero.astra-hero .hero-lead,
+.hero.astra-hero .hero-btns,
+.hero.astra-hero .hero-proof{filter:none!important}
+@keyframes heroTextRiseCrisp{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
+.hero.astra-hero .hero-text h1{animation:heroTextRiseCrisp .75s .1s both!important}
+.hero.astra-hero .hero-lead,.hero.astra-hero .hero-btns,.hero.astra-hero .hero-proof{animation:heroTextRiseCrisp .7s .2s both!important}
+.hero.astra-hero .seo-core{animation:core-float-crisp 6s ease-in-out infinite!important;filter:none!important;will-change:transform}
+@keyframes core-float-crisp{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-7px,0)}}
+.hero.astra-hero .core-shine{filter:blur(5px)!important}
+.hero.astra-hero .model-halo{filter:blur(9px)!important}
+.hero.astra-hero .floating-metric{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;filter:none!important;animation:metric-float-crisp 6s ease-in-out infinite!important;will-change:transform}
+@keyframes metric-float-crisp{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-5px,0)}}
+.hero.astra-hero .metric-pages{animation:metric-pages-crisp 6s ease-in-out infinite!important}
+@keyframes metric-pages-crisp{0%,100%{transform:scale(.88) translateY(0)}50%{transform:scale(.88) translateY(-5px)}}
+.about-orbit-scene,.about-solar-system,.about-satellite{filter:none!important}
+.about-satellite{
+ width:clamp(64px,7.2vw,78px)!important;
+ font-size:12px!important;font-weight:900!important;
+ letter-spacing:.025em!important;
+ backface-visibility:visible!important;
+ -webkit-backface-visibility:visible!important;
+ text-shadow:0 1px 3px rgba(0,0,0,.25);
+ filter:none!important;
+ transform-style:flat!important;
+ will-change:transform;
+}
+.about-satellite:after{inset:-9px!important;opacity:.28!important}
+.satellite-seo,.satellite-aeo,.satellite-geo,.satellite-web{filter:none!important}
+@media(max-width:900px){
+ .about-satellite{width:68px!important;font-size:11px!important}
+}
+@media(max-width:600px){
+ .about-solar-system{overflow:visible!important}
+ .about-satellite{width:58px!important;font-size:10px!important}
+ .about-satellite:after{inset:-7px!important}
+ .hero.astra-hero .seo-core{animation:core-float-crisp 7s ease-in-out infinite!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero.astra-hero .vfx-visual,.hero.astra-hero .hero-text h1,
+ .hero.astra-hero .hero-lead,.hero.astra-hero .hero-btns,
+ .hero.astra-hero .hero-proof{animation:none!important;filter:none!important}
+ .hero.astra-hero .seo-core,.hero.astra-hero .floating-metric{animation:none!important}
+}
