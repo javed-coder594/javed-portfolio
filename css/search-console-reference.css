@@ -21,3 +21,19 @@
 .sc-reference-progress{display:flex;align-items:center;gap:12px;max-width:760px;margin:20px auto 0}.sc-dot{width:20px;height:20px;padding:6px;border:0;background:transparent;cursor:pointer}.sc-dot span{display:block;width:7px;height:7px;border-radius:9px;background:#536678;transition:width .35s,background .35s}.sc-dot[aria-current="true"] span{width:22px;background:linear-gradient(90deg,#f04b43,#45b6df)}.sc-progress-track{height:2px;flex:1;background:#253444;overflow:hidden}.sc-progress-track i{display:block;width:33.333%;height:100%;background:linear-gradient(90deg,#f04b43,#45b6df);transition:width .65s}.sc-progress-caption{color:#71879b;font-size:8px;letter-spacing:.16em;white-space:nowrap}
 @media(max-width:640px){.search-console-showcase.sc-reference-style{padding:72px 0}.sc-reference-heading{margin-bottom:26px;text-align:left}.sc-reference-heading h2{font-size:clamp(43px,11vw,60px)}.sc-reference-heading>p{margin-left:0;font-size:13px}.sc-reference-stage{height:clamp(245px,72vw,360px);width:calc(100% + 16px);margin-left:-8px}.sc-slide{inset:10% 8%;border-radius:10px}.sc-reference-stage:before{inset:12% 4%;border-radius:18px}.sc-reference-stage:after{inset:16% 8%;border-radius:15px}.sc-reference-meta{align-items:flex-start;gap:14px;margin-top:20px;padding:18px 0;flex-direction:column}.sc-meta-controls{width:100%;justify-content:space-between}.sc-meta-copy h3{font-size:26px}.sc-meta-copy p{font-size:12px}.sc-reference-progress{gap:7px}.sc-progress-caption{font-size:7px}}
 @media(prefers-reduced-motion:reduce){.sc-slide,.sc-dot span,.sc-progress-track i,.sc-arrow{transition:none!important}.sc-slide.is-active{animation:none!important}}
+
+/* Faster, smooth report transitions for the refreshed GSC screenshots */
+.search-console-showcase.sc-reference-style .sc-slide{
+ transition:opacity .48s ease,transform .58s cubic-bezier(.22,.75,.25,1),visibility .48s;
+}
+.search-console-showcase.sc-reference-style .sc-slide.is-active{
+ animation:sc-reference-enter-fast .62s cubic-bezier(.22,.75,.25,1) both;
+}
+@keyframes sc-reference-enter-fast{
+ 0%{clip-path:inset(0 0 100% 0 round 15px);filter:blur(3px)}
+ 100%{clip-path:inset(0 0 0 0 round 15px);filter:blur(0)}
+}
+@media(prefers-reduced-motion:reduce){
+ .search-console-showcase.sc-reference-style .sc-slide{transition:none!important}
+ .search-console-showcase.sc-reference-style .sc-slide.is-active{animation:none!important}
+}
