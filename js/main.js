@@ -40,7 +40,41 @@ document.addEventListener('DOMContentLoaded', () => {
     revealTargets.forEach(el => observer.observe(el));
   }
 
-  // Decorative particle canvas is intentionally disabled for fast rendering.
+  // Lightweight interactive particle network, attached to the actual hero markup.
+  if (!hero || reduceMotion || window.matchMedia('(max-width: 760px)').matches || navigator.connection?.saveData) return;
+  const canvas = document.createElement('canvas');
+  canvas.className = 'hero-particle-canvas';
+  canvas.setAttribute('aria-hidden', 'true');
+  hero.prepend(canvas);
+  const ctx = canvas.getContext('2d', { alpha: true });
+  if (!ctx) return;
+  const pointer = { x: -1000, y: -1000 };
+  const points = [];
+  let width = 0, height = 0, frame = 0, running = false, last = 0;
+  const count = 16;
+  for (let i = 0; i < count; i++) points.push({x:Math.random()*hero.clientWidth,y:Math.random()*hero.clientHeight,vx:(Math.random()-.5)*.24,vy:(Math.random()-.5)*.24,r:.7+Math.random()*1.1});
+  const resize=()=>{const rect=hero.getBoundingClientRect();const dpr=Math.min(window.devicePixelRatio||1,1);width=rect.width;height=rect.height;canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0)};
+  resize();
+  window.addEventListener('resize',resize,{passive:true});
+  hero.addEventListener('pointermove',event=>{const rect=hero.getBoundingClientRect();pointer.x=event.clientX-rect.left;pointer.y=event.clientY-rect.top},{passive:true});
+  hero.addEventListener('pointerleave',()=>{pointer.x=-1000;pointer.y=-1000},{passive:true});
+  const draw=time=>{
+    if(!running)return;
+    if(time-last<50){frame=requestAnimationFrame(draw);return}
+    last=time;ctx.clearRect(0,0,width,height);
+    points.forEach((point,i)=>{
+      point.x+=point.vx;point.y+=point.vy;
+      if(point.x<0||point.x>width)point.vx*=-1;if(point.y<0||point.y>height)point.vy*=-1;
+      const dx=point.x-pointer.x,dy=point.y-pointer.y,distance=Math.hypot(dx,dy);
+      if(distance<90&&distance>0){point.x+=(dx/distance)*.8;point.y+=(dy/distance)*.8}
+      ctx.beginPath();ctx.arc(point.x,point.y,point.r,0,Math.PI*2);ctx.fillStyle=i%4===0?'rgba(244,75,67,.9)':'rgba(73,174,218,.82)';ctx.fill();
+      for(let j=i+1;j<points.length;j++){const other=points[j],d=Math.hypot(point.x-other.x,point.y-other.y);if(d<82){const alpha=(1-d/82)*.18;ctx.beginPath();ctx.moveTo(point.x,point.y);ctx.lineTo(other.x,other.y);ctx.strokeStyle=i%3===0?'rgba(244,75,67,'+alpha+')':'rgba(73,174,218,'+alpha+')';ctx.lineWidth=.7;ctx.stroke()}}
+    });
+    frame=requestAnimationFrame(draw);
+  };
+  const visibility=new IntersectionObserver(entries=>{running=entries[0].isIntersecting&&!document.hidden;if(running){last=0;frame=requestAnimationFrame(draw)}else cancelAnimationFrame(frame)},{threshold:.01});
+  visibility.observe(hero);
+  document.addEventListener('visibilitychange',()=>{if(document.hidden){running=false;cancelAnimationFrame(frame)}else if(hero.getBoundingClientRect().bottom>0&&hero.getBoundingClientRect().top<innerHeight){running=true;last=0;frame=requestAnimationFrame(draw)}});
 
   // Railway journey: move the locomotive down the career line and stop at Naresh i Technologies.
   const careerSection = document.querySelector('.train-experience');
