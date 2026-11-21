@@ -12,11 +12,14 @@
     const title = root.querySelector('[data-sc-title]');
     const description = root.querySelector('[data-sc-description]');
     const progress = root.querySelector('[data-sc-progress]');
-    if (slides.length !== 3 || !counter) return;
+    if (slides.length !== 6 || dots.length !== 6 || !counter) return;
     const items = [
       {type:'GOOGLE SEARCH CONSOLE / PERFORMANCE',title:'Search visibility, measured.',description:'Reviewing clicks, impressions, average position and search queries to understand what is working and where to improve.'},
       {type:'GOOGLE SEARCH CONSOLE / ORGANIC GROWTH',title:'Turning impressions into discovery.',description:'Tracking how pages appear in search, which queries bring visitors and where content can earn stronger visibility.'},
-      {type:'GOOGLE SEARCH CONSOLE / SEARCH INSIGHTS',title:'Find the next opportunity.',description:'Using query and page-level insights to spot ranking opportunities, refine content and guide the next SEO action.'}
+      {type:'GOOGLE SEARCH CONSOLE / SEARCH INSIGHTS',title:'Find the next opportunity.',description:'Using query and page-level insights to spot ranking opportunities, refine content and guide the next SEO action.'},
+      {type:'GOOGLE SEARCH CONSOLE / PERFORMANCE SNAPSHOT',title:'Measure the search impact.',description:'A further Search Console snapshot from the SEO work, keeping the performance evidence together in one place.'},
+      {type:'GOOGLE SEARCH CONSOLE / ORGANIC VISIBILITY',title:'Track visibility over time.',description:'An additional report view showing search presence and helping identify where pages can improve.'},
+      {type:'GOOGLE SEARCH CONSOLE / SEO REPORT',title:'More data. Better decisions.',description:'Another Search Console report added to the collection for a fuller view of organic search performance.'}
     ];
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let active=0,timer=null,paused=false,startX=0;
