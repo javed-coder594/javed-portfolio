@@ -1,0 +1,29 @@
+
+/* Selected work — editorial brand archive refresh */
+#projects.work-archive-redesign{padding:clamp(76px,9vw,122px) 0;background:radial-gradient(ellipse at 12% 15%,rgba(57,120,135,.12),transparent 38%),radial-gradient(ellipse at 90% 85%,rgba(201,107,85,.1),transparent 36%),#f4f2ed;color:#172b43;overflow:hidden}
+#projects.work-archive-redesign:before{display:none}
+#projects .work-archive-heading{display:grid;grid-template-columns:1.1fr .65fr;align-items:end;gap:44px;margin-bottom:42px}
+#projects .work-archive-kicker{color:#b85f4d;font-size:10px;font-weight:800;letter-spacing:.2em}
+#projects .work-archive-heading h2{margin:14px 0 0;color:#172b43;font-size:clamp(42px,6vw,72px);line-height:.98;letter-spacing:-.07em}
+#projects .work-archive-heading h2 span{background:linear-gradient(100deg,#c96b55,#397887);background-clip:text;-webkit-background-clip:text;color:transparent}
+#projects .work-archive-heading>p{max-width:390px;margin:0 0 5px;color:#596b7a;font-size:14px;line-height:1.85}
+#projects .work-archive-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;align-items:stretch}
+#projects .work-archive-card{position:relative;display:flex;flex-direction:column;min-width:0;min-height:340px;padding:19px;border:1px solid rgba(23,43,67,.12);border-radius:17px;background:linear-gradient(155deg,#fff 0%,#f7f8f7 100%);box-shadow:0 14px 34px rgba(23,43,67,.07);overflow:hidden;transition:transform .42s cubic-bezier(.2,.75,.2,1),box-shadow .42s,border-color .35s}
+#projects .work-archive-card:before{content:"";position:absolute;inset:0 0 auto;height:3px;background:linear-gradient(90deg,#c96b55,#397887);transform:scaleX(0);transform-origin:left;transition:transform .45s}
+#projects .work-archive-card:hover{transform:translateY(-8px);border-color:rgba(57,120,135,.35);box-shadow:0 24px 48px rgba(23,43,67,.13)}
+#projects .work-archive-card:hover:before{transform:scaleX(1)}
+#projects .work-archive-top{display:flex;justify-content:space-between;gap:8px;align-items:center;color:#8b9aa5;font-size:9px;font-weight:800;letter-spacing:.12em}
+#projects .work-archive-top span:first-child{color:#c96b55;font-size:12px}
+#projects .work-archive-logo{height:100px;margin:17px 0 15px;padding:14px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(145deg,#f0f3f3,#fff);border:1px solid rgba(23,43,67,.07)}
+#projects .work-archive-logo img{display:block;max-width:100%;max-height:66px;width:auto;height:auto;object-fit:contain}
+#projects .work-archive-card h3{margin:0 0 9px;color:#172b43;font-size:clamp(17px,1.45vw,21px);line-height:1.2;letter-spacing:-.045em}
+#projects .work-archive-card p{margin:0 0 18px;color:#62717d;font-size:12px;line-height:1.7}
+#projects .work-archive-card>a{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:13px;border-top:1px solid rgba(23,43,67,.1);color:#315b6b;font-size:10px;font-weight:800;letter-spacing:.08em;text-decoration:none;text-transform:uppercase}
+#projects .work-archive-card>a span{width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:#172b43;color:white;font-size:15px;transition:transform .3s,background .3s}
+#projects .work-archive-card>a:hover span{transform:rotate(45deg);background:#c96b55}
+#projects .work-archive-footer{display:flex;justify-content:space-between;gap:16px;margin-top:25px;padding-top:15px;border-top:1px solid rgba(23,43,67,.13);color:#84939d;font-size:9px;font-weight:800;letter-spacing:.17em}
+#projects .work-archive-footer i{color:#c96b55;font-style:normal}
+@media(max-width:950px){#projects .work-archive-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#projects .work-archive-card{min-height:315px}}
+@media(max-width:700px){#projects .work-archive-heading{grid-template-columns:1fr;gap:15px;margin-bottom:27px}#projects .work-archive-heading h2{font-size:clamp(40px,10vw,58px)}#projects .work-archive-heading>p{font-size:13px}#projects .work-archive-grid{gap:11px}#projects .work-archive-card{min-height:300px;padding:14px;border-radius:14px}#projects .work-archive-top{font-size:8px}#projects .work-archive-logo{height:76px;margin:13px 0 12px;padding:10px}#projects .work-archive-logo img{max-height:52px}#projects .work-archive-card h3{font-size:15px}#projects .work-archive-card p{font-size:11px;line-height:1.55}#projects .work-archive-card>a{font-size:8px}#projects .work-archive-footer{font-size:7px;letter-spacing:.1em}}
+@media(max-width:380px){#projects .work-archive-grid{grid-template-columns:1fr}#projects .work-archive-card{min-height:270px}}
+@media(prefers-reduced-motion:reduce){#projects .work-archive-card,#projects .work-archive-card:before,#projects .work-archive-card>a span{transition:none!important}}
