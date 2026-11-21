@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     revealTargets.forEach(el => observer.observe(el));
   }
 
-  if (!hero || reduceMotion || window.matchMedia('(max-width: 760px)').matches || navigator.connection?.saveData) return;
+  if (!hero || reduceMotion || window.matchMedia('(max-width: 760px)').matches || navigator.connection?.saveData || true) return;
 
   // Lightweight interactive particle network, attached to the actual hero markup.
   const canvas = document.createElement('canvas');
